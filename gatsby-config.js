@@ -18,11 +18,11 @@ module.exports = {
     {
       resolve: "gatsby-plugin-manifest",
       options: {
-        name: "gatsby-starter-default",
-        short_name: "starter",
+        name: "sepans.com",
+        short_name: "sepans",
         start_url: "/",
-        background_color: "#663399",
-        theme_color: "#663399",
+        background_color: "#AAAAAA",
+        theme_color: "#555555",
         display: "minimal-ui",
         icon: "src/images/sepans-logo.png",
       },
