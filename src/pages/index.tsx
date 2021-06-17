@@ -6,29 +6,29 @@ import styled from "styled-components"
 
 const IndexPage: React.FC = () => (
   <Layout>
-    <SEO title="Home" />
+    <SEO title="sepans.com" />
     <Title>Sepand Ansari</Title>
     <Links>
       <Link target="_blank" href="https://purplebulldozer.com">
-        purple bulldozer
+        work
       </Link>
       <Link
         target="_blank"
         href="https://www.goodreads.com/user/show/22717-sepand"
       >
-        goodreads
+        books
       </Link>
-      <Link target="_blank" href="https://photos.app.goo.gl/5zZy6MCcMiavUdLx9">
-        random projects
+      <Link target="_blank" href="content/diy">
+        diy
       </Link>
       <Link target="_blank" href="https://github.com/sepans/">
-        github
-      </Link>
-      <Link target="_blank" href="https://www.linkedin.com/in/sepans/">
-        linkedin
+        code
       </Link>
       <Link target="_blank" href="https://www.strava.com/athletes/14784454">
-        strava
+        rides
+      </Link>
+      <Link target="_blank" href="https://www.linkedin.com/in/sepans/">
+        jobs
       </Link>
     </Links>
   </Layout>
@@ -50,11 +50,16 @@ const Link = styled.a`
   &:hover {
     color: #000;
   }
+  padding-bottom: 20px;
+
+  @media (min-width: 768px) {
+    padding-bottom: 10px;
+  }
 `
 
 const Title = styled.h1 `
   font-family: Inter;
-  font-size:48px;
+  font-size:24px;
   color:black;
 `
 
