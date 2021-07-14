@@ -35,7 +35,7 @@ const SEO: React.FC<Props> = ({ description, lang, meta, title }) => {
   const metaDescription = description || site.siteMetadata.description
 
   return (
-
+    
       <Helmet
         htmlAttributes={{
           lang,

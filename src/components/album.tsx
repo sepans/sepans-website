@@ -1,5 +1,5 @@
-import { useStaticQuery, graphql } from "gatsby"
 import React from 'react'
+import { useStaticQuery, graphql } from "gatsby"
 import styled from "styled-components"
 import { groupBy } from "lodash"
 
