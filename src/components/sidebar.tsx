@@ -30,7 +30,6 @@ const Sidebar: React.FC = () => {
             type
           }
           fileAbsolutePath
-          timeToRead
           html
         }
       }
