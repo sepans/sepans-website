@@ -37,7 +37,6 @@ const SEO: React.FC<Props> = ({
   const metaDescription = description || site.siteMetadata.description;
 
   return (
-
     <Helmet
       htmlAttributes={{
         lang,

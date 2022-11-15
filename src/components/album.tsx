@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { groupBy } from 'lodash';
 
 type Props = {
-    albumName: string
+  albumName: string
 }
 
 const PHOTO_WIDTH = 300;
@@ -11,27 +11,36 @@ const PHOTO_WIDTH = 300;
 export const Album: React.FC<Props> = () => {
   const photos: any[] = [];
 
-  const groups = groupBy(photos.filter((photo) => photo.label), (photo) => photo.label);
+  const groups = groupBy(
+    photos.filter((photo) => photo.label),
+    (photo) => photo.label,
+  );
   const photosWithoutGroup = photos.filter((photo) => !photo.label);
 
-  // eslint-disable-next-line react/jsx-props-no-spreading
-  const renderPhotos = (photo: ImageProps) => <LinkedImage imageWidth={PHOTO_WIDTH} {...photo} />;
+  const renderPhotos = (photo: ImageProps) => (
+    // eslint-disable-next-line react/jsx-props-no-spreading
+    <LinkedImage imageWidth={PHOTO_WIDTH} {...photo} />
+  );
 
   return (
     <>
       <h2>A photostream of some random projects</h2>
       <AlbumWrapper>
         {Object.keys(groups).map((label) => (
-          <ImageGroup key={`group-${label}`} title={label}>{groups[label].map(renderPhotos)}</ImageGroup>
+          <ImageGroup key={`group-${label}`} title={label}>
+            {groups[label].map(renderPhotos)}
+          </ImageGroup>
         ))}
-        <ImageGroup title="more">{photosWithoutGroup.map(renderPhotos)}</ImageGroup>
+        <ImageGroup title="more">
+          {photosWithoutGroup.map(renderPhotos)}
+        </ImageGroup>
       </AlbumWrapper>
     </>
   );
 };
 
 interface ImageGroupProps {
-    title: string
+  title: string
 }
 
 const ImageGroup: React.FC<ImageGroupProps> = (props) => {
@@ -39,23 +48,21 @@ const ImageGroup: React.FC<ImageGroupProps> = (props) => {
   return (
     <GroupWrapper>
       <GroupTitle>{title}</GroupTitle>
-      <GroupPhotos>
-        {children}
-      </GroupPhotos>
+      <GroupPhotos>{children}</GroupPhotos>
     </GroupWrapper>
   );
 };
 
 type ImageProps = {
-    imageSrc: string
-    ratio: number
-    link: string
-    description: string
-    label: string
+  imageSrc: string
+  ratio: number
+  link: string
+  description: string
+  label: string
 }
 
 interface LinkedImageProps extends ImageProps {
-    imageWidth: number
+  imageWidth: number
 }
 
 const LinkedImage: React.FC<LinkedImageProps> = (props) => {
@@ -73,42 +80,42 @@ const LinkedImage: React.FC<LinkedImageProps> = (props) => {
 };
 
 const AlbumWrapper = styled.div`
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: space-between;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
 `;
 
 const GroupTitle = styled.h4`
-    margin-top: 10px;
-    margin-bottom: 5px;
+  margin-top: 10px;
+  margin-bottom: 5px;
 `;
 
 const GroupWrapper = styled.div`
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 `;
 
 const GroupPhotos = styled.div`
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: start;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: start;
 `;
 
 const PhotoWrapper = styled.div`
-    display: flex;
-    flex-direction: column;
-    margin: 10px;
-    img {
-        margin: 0;
-    }
+  display: flex;
+  flex-direction: column;
+  margin: 10px;
+  img {
+    margin: 0;
+  }
 `;
 
 const PhotoDescription = styled.div`
-    font-size: 12px;
-    max-width: ${PHOTO_WIDTH}px;
-    text-align: center;
-    line-height: 1.5em;
-    font-family: arial, sans;
+  font-size: 12px;
+  max-width: ${PHOTO_WIDTH}px;
+  text-align: center;
+  line-height: 1.5em;
+  font-family: arial, sans;
 `;

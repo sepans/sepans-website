@@ -60,8 +60,8 @@ const Link = styled.a`
 
 const Title = styled.h1`
   font-family: Inter;
-  font-size:24px;
-  color:black;
+  font-size: 24px;
+  color: black;
 `;
 
 // const Description = styled.p`

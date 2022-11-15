@@ -9,9 +9,7 @@ import * as React from 'react';
 import { useStaticQuery, graphql } from 'gatsby';
 import styled from 'styled-components';
 
-const SIDEBAR_CATEGORIES = [
-  'experience',
-  'process'];
+const SIDEBAR_CATEGORIES = ['experience', 'process'];
 
 const Sidebar: React.FC = () => {
   const postData = useStaticQuery(graphql`
@@ -44,9 +42,11 @@ const Sidebar: React.FC = () => {
   ));
 
   const sidebarCategories = SIDEBAR_CATEGORIES.map((categoryName) => {
-    const categoryItems = makeMenuList(postData.allMdx.nodes.filter(
-      (item: any) => item.frontmatter.type === categoryName,
-    ));
+    const categoryItems = makeMenuList(
+      postData.allMdx.nodes.filter(
+        (item: any) => item.frontmatter.type === categoryName,
+      ),
+    );
     return <SidebarCategory key={categoryName}>{categoryItems}</SidebarCategory>;
   });
 
@@ -72,7 +72,7 @@ const Sidebar: React.FC = () => {
 const Container = styled.div`
   display: flex;
   flex-direction: column;
-  `;
+`;
 
 const SidebarCategory = styled.div`
   padding: 20px;

@@ -20,7 +20,6 @@ const Layout: React.FC<LayoutProps> = ({ children }) => (
     <Header />
     <Container>
       <MainArea>{children}</MainArea>
-
     </Container>
   </>
 );
@@ -32,14 +31,12 @@ const Container = styled.div`
   margin-bottom: 30px;
   @media (min-width: 768px) {
     max-width: 1200px;
-    padding-left:80px;
-    padding-top:120px;
+    padding-left: 80px;
+    padding-top: 120px;
   }
-
 `;
 const MainArea = styled.div`
   flex: 1;
-
 `;
 
 export default Layout;
