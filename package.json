@@ -12,6 +12,7 @@
     "@types/react-helmet": "^6.0.0",
     "@types/styled-components": "^5.1.0",
     "@types/styled-system": "^5.1.9",
+    "dotenv": "^16.0.3",
     "gatsby": "^3.6.1",
     "gatsby-image": "^2.4.4",
     "gatsby-plugin-google-analytics": "^2.4.0",
@@ -22,7 +23,7 @@
     "gatsby-plugin-react-helmet": "^3.3.1",
     "gatsby-plugin-typescript": "^2.4.3",
     "gatsby-source-filesystem": "^2.3.4",
-    "gatsby-source-google-photos": "^2.4.3",
+    "gatsby-source-flickr": "^0.0.5",
     "lodash": "^4.17.21",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
@@ -56,7 +57,7 @@
     "clean": "gatsby clean",
     "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1",
     "type-check": "tsc --noEmit",
-    "token": "gatsby-source-google-photos-token"
+    "lint:fix": "eslint --fix . --ext .tsx,.jsx,.js,.ts"
   },
   "repository": {
     "type": "git",
@@ -72,7 +73,8 @@
   },
   "lint-staged": {
     "*.{js,ts,tsx}": [
-      "eslint --fix"
+      "eslint --fix",
+      "prettier -w"
     ]
   }
 }

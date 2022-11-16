@@ -1,3 +1,7 @@
+require("dotenv").config({
+  path: ".env", // `.env.${process.env.NODE_ENV}`,
+})
+
 module.exports = {
   siteMetadata: {
     title: "sepans.com",
@@ -31,14 +35,14 @@ module.exports = {
     "gatsby-plugin-react-helmet",
     "gatsby-plugin-typescript",
     {
-      resolve: `gatsby-source-filesystem`,
+      resolve: "gatsby-source-filesystem",
       options: {
-        name: `content`,
+        name: "content",
         path: `${__dirname}/src/pages/content`,
       },
     },
     {
-      resolve: `gatsby-plugin-mdx`,
+      resolve: "gatsby-plugin-mdx",
       options: {
         defaultLayouts: {
           default: require.resolve("./src/components/layout.tsx"),
@@ -46,29 +50,25 @@ module.exports = {
       },
     },
     {
-      resolve: `gatsby-plugin-google-fonts`,
+      resolve: "gatsby-plugin-google-fonts",
       options: {
-        fonts: [`Inter:400,700`],
+        fonts: ["Inter:400,700"],
       },
     },
     {
-      resolve: `gatsby-plugin-google-analytics`,
+      resolve: "gatsby-plugin-google-analytics",
       options: {
         trackingId: "UA-11178641-1",
       },
     },
     {
-      resolve: "gatsby-source-google-photos",
+      resolve: "gatsby-source-flickr",
       options: {
-          albumsTitles: ["diy"],
-          debug: true
+        api_key: process.env.FLICKR_API_KEY,
+        user_id: process.env.FLICKR_USER_ID,
+        // method: 'flickr.photosets.getPhotos',
+        // photoset_id: 72157721253330801,
       },
-  },
-  // Recommanded to use with gatsby-image
-  // "gatsby-transformer-sharp",
-  // "gatsby-plugin-sharp",     
-    // this (optional) plugin enables Progressive Web App + Offline functionality
-    // To learn more, visit: https://gatsby.dev/offline
-    // 'gatsby-plugin-offline',
+    },
   ],
 }
