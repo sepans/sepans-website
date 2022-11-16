@@ -18,7 +18,7 @@ const IndexPage: React.FC = () => (
       >
         books
       </Link>
-      <Link href="/">diy (under construction)</Link>
+      <Link href="content/diy">diy (under construction)</Link>
       <Link target="_blank" href="https://github.com/sepans/">
         code
       </Link>
