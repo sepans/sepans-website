@@ -75,5 +75,8 @@
       "eslint --fix",
       "prettier -w"
     ]
+  },
+  "prettier": {
+    "singleQuote": true
   }
 }

@@ -1,8 +1,8 @@
-import React from "react"
+import React from 'react';
 
-import styled from "styled-components"
-import Layout from "../components/layout"
-import SEO from "../components/seo"
+import styled from 'styled-components';
+import Layout from '../components/layout';
+import SEO from '../components/seo';
 
 const IndexPage: React.FC = () => (
   <Layout>
@@ -30,7 +30,7 @@ const IndexPage: React.FC = () => (
       </Link>
     </Links>
   </Layout>
-)
+);
 
 const Links = styled.div`
   font-family: Inter;
@@ -38,7 +38,7 @@ const Links = styled.div`
   display: flex;
   flex-direction: column;
   align-items: baseline;
-`
+`;
 
 const Link = styled.a`
   color: #333;
@@ -54,13 +54,13 @@ const Link = styled.a`
   @media (min-width: 768px) {
     padding-bottom: 10px;
   }
-`
+`;
 
 const Title = styled.h1`
   font-family: Inter;
   font-size: 24px;
   color: black;
-`
+`;
 
 // const Description = styled.p`
 //   font-family: Inter;
@@ -97,4 +97,4 @@ const Title = styled.h1`
 
 // `;
 
-export default IndexPage
+export default IndexPage;

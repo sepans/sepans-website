@@ -5,11 +5,11 @@
  * See: https://www.gatsbyjs.org/docs/use-static-query/
  */
 
-import * as React from "react"
-import { useStaticQuery, graphql } from "gatsby"
-import styled from "styled-components"
+import * as React from 'react';
+import { useStaticQuery, graphql } from 'gatsby';
+import styled from 'styled-components';
 
-const SIDEBAR_CATEGORIES = ["experience", "process"]
+const SIDEBAR_CATEGORIES = ['experience', 'process'];
 
 const Sidebar: React.FC = () => {
   const postData = useStaticQuery(graphql`
@@ -26,7 +26,7 @@ const Sidebar: React.FC = () => {
         }
       }
     }
-  `)
+  `);
 
   const makeMenuList = (items: [any]) =>
     items.map((item) => (
@@ -34,16 +34,18 @@ const Sidebar: React.FC = () => {
         <Link href="/content/">{item.frontmatter.title}</Link>
         <div key={item.frontmatter.slug}>{item.excerpt}</div>
       </SidebarItem>
-    ))
+    ));
 
   const sidebarCategories = SIDEBAR_CATEGORIES.map((categoryName) => {
     const categoryItems = makeMenuList(
       postData.allMdx.nodes.filter(
         (item: any) => item.frontmatter.type === categoryName
       )
-    )
-    return <SidebarCategory key={categoryName}>{categoryItems}</SidebarCategory>
-  })
+    );
+    return (
+      <SidebarCategory key={categoryName}>{categoryItems}</SidebarCategory>
+    );
+  });
 
   const staticItems = (
     <SidebarCategory>
@@ -52,7 +54,7 @@ const Sidebar: React.FC = () => {
         <div>A description a about the link</div>
       </SidebarItem>
     </SidebarCategory>
-  )
+  );
 
   return (
     <>
@@ -61,17 +63,17 @@ const Sidebar: React.FC = () => {
         {staticItems}
       </Container>
     </>
-  )
-}
+  );
+};
 
 const Container = styled.div`
   display: flex;
   flex-direction: column;
-`
+`;
 
 const SidebarCategory = styled.div`
   padding: 20px;
-`
+`;
 
 const SidebarItem = styled.div`
   margin-bottom: 10px;
@@ -80,8 +82,8 @@ const SidebarItem = styled.div`
   a:hover {
     color: #555;
   }
-`
+`;
 
-const Link = styled.a``
+const Link = styled.a``;
 
-export default Sidebar
+export default Sidebar;
