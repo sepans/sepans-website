@@ -21,9 +21,9 @@ export const Album: React.FC<Props> = () => {
             tags
             datetaken
             url_o
-            width_s
-            height_s
-            url_sq
+            width_q
+            height_q
+            url_q
             width_o
             height_o
           }
@@ -42,7 +42,7 @@ export const Album: React.FC<Props> = () => {
       matches?.length && matches[0]?.replace("label:", "")?.replace(/-/g, " ")
     const description = rawLabel?.replace(labelRegex, "")
     return {
-      imageSrc: node.url_sq,
+      imageSrc: node.url_q,
       ratio: node.width_s / node.height_s,
       link: node.url_o,
       description,
