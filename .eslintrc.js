@@ -1,16 +1,16 @@
 module.exports = {
   env: {
     browser: true,
-    es2021: true,
+    es2021: true
   },
-  extends: ['plugin:react/recommended', 'airbnb'],
+  extends: ['plugin:react/recommended', 'airbnb', 'prettier'],
   parser: '@typescript-eslint/parser',
   parserOptions: {
     ecmaFeatures: {
-      jsx: true,
+      jsx: true
     },
     ecmaVersion: 12,
-    sourceType: 'module',
+    sourceType: 'module'
   },
   ignorePatterns: ['node_modules/*', 'public/*'],
   plugins: ['react', '@typescript-eslint'],
@@ -20,8 +20,8 @@ module.exports = {
     '@typescript-eslint/no-use-before-define': [
       'warn',
       {
-        variables: false,
-      },
+        variables: false
+      }
     ],
     'import/prefer-default-export': 'off',
     'import/extensions': [
@@ -31,19 +31,19 @@ module.exports = {
         js: 'never',
         jsx: 'never',
         ts: 'never',
-        tsx: 'never',
-      },
+        tsx: 'never'
+      }
     ],
     'react/jsx-filename-extension': [
       2,
-      { extensions: ['.js', '.jsx', '.ts', '.tsx'] },
-    ],
+      { extensions: ['.js', '.jsx', '.ts', '.tsx'] }
+    ]
   },
   settings: {
     'import/resolver': {
       node: {
-        extensions: ['.js', '.jsx', '.ts', '.tsx'],
-      },
-    },
-  },
-};
+        extensions: ['.js', '.jsx', '.ts', '.tsx']
+      }
+    }
+  }
+}
