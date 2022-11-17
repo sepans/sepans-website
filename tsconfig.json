@@ -10,7 +10,9 @@
     "isolatedModules": true,
     "esModuleInterop": true,
     "noUnusedLocals": false,
-    "allowJs": true
+    "allowJs": true,
+    "skipLibCheck": true
   },
+  "include": ["./src/**/*", "./gatsby-node.ts", "./gatsby-config.ts", "./plugins/**/*"],
   "exclude": ["node_modules", "public", ".cache"]
 }
