@@ -8,6 +8,7 @@ module.exports = {
     description: 'Sepand Ansari',
     author: '@s3pans'
   },
+  graphqlTypegen: true,
   plugins: [
     'gatsby-plugin-react-helmet',
     {

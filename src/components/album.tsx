@@ -31,24 +31,30 @@ export const Album: React.FC<Props> = () => {
       }
     }
   `
-  const data = useStaticQuery(albumQuery)
+  // eslint cannot find gatsby-types
+  // eslint-disable-next-line no-undef
+  const data: Queries.PhotoQueryQuery = useStaticQuery(albumQuery)
 
-  const photos = data.allFlickrPhoto.edges.map((edge) => {
-    const { node } = edge
-    const rawLabel = node.description
-    const labelRegex = /label:([\w-]+)/g
-    const matches = rawLabel.match(labelRegex)
-    const label =
-      matches?.length && matches[0]?.replace('label:', '')?.replace(/-/g, ' ')
-    const description = rawLabel?.replace(labelRegex, '')
-    return {
-      imageSrc: node.url_q,
-      ratio: node.width_s / node.height_s,
-      link: node.url_o,
-      description,
-      label
-    }
-  })
+  const photos = data.allFlickrPhoto.edges
+    .map((edge) => {
+      const { node } = edge
+      const rawLabel = node.description
+      const labelRegex = /label:([\w-]+)/g
+      const matches = rawLabel?.match(labelRegex)
+      const label =
+        (matches?.length &&
+          matches[0]?.replace('label:', '')?.replace(/-/g, ' ')) ||
+        ''
+      const description = rawLabel?.replace(labelRegex, '')
+      return {
+        imageSrc: node.url_q || '',
+        ratio: (node.width_o || 1) / (node.height_o || 1),
+        link: node.url_o || '',
+        description,
+        label
+      }
+    })
+    .filter((photo) => photo.imageSrc && photo.link)
 
   const groups = groupBy(
     photos.filter((photo) => photo.label),
@@ -80,6 +86,7 @@ export const Album: React.FC<Props> = () => {
 
 interface ImageGroupProps {
   title: string
+  children?: React.ReactNode
 }
 
 const ImageGroup: React.FC<ImageGroupProps> = (props) => {
@@ -96,8 +103,8 @@ type ImageProps = {
   imageSrc: string
   ratio: number
   link: string
-  description: string
-  label: string
+  description?: string
+  label?: string
 }
 
 interface LinkedImageProps extends ImageProps {

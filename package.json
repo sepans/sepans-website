@@ -9,7 +9,7 @@
     "@mdx-js/react": "^1.6.4",
     "@types/react": "^18.0.25",
     "@types/react-dom": "^18.0.9",
-    "@types/react-helmet": "^6.0.0",
+    "@types/react-helmet": "^6.1.5",
     "@types/styled-components": "^5.1.26",
     "dotenv": "^16.0.3",
     "gatsby": "^5.0.1",
@@ -26,7 +26,7 @@
     "lodash": "^4.17.21",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-helmet": "^6.0.0",
+    "react-helmet": "^6.1.0",
     "styled-components": "^5.3.6"
   },
   "devDependencies": {
