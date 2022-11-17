@@ -46,7 +46,7 @@ export const Album: React.FC<Props> = () => {
       ratio: node.width_s / node.height_s,
       link: node.url_o,
       description,
-      label,
+      label
     };
   });
 
