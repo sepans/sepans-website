@@ -1,7 +1,7 @@
-import React from "react"
-import styled from "styled-components"
-import { groupBy } from "lodash"
-import { useStaticQuery, graphql } from "gatsby"
+import React from 'react'
+import styled from 'styled-components'
+import { groupBy } from 'lodash'
+import { useStaticQuery, graphql } from 'gatsby'
 
 type Props = {
   albumName: string
@@ -21,9 +21,9 @@ export const Album: React.FC<Props> = () => {
             tags
             datetaken
             url_o
-            width_s
-            height_s
-            url_sq
+            width_q
+            height_q
+            url_q
             width_o
             height_o
           }
@@ -39,14 +39,14 @@ export const Album: React.FC<Props> = () => {
     const labelRegex = /label:([\w-]+)/g
     const matches = rawLabel.match(labelRegex)
     const label =
-      matches?.length && matches[0]?.replace("label:", "")?.replace(/-/g, " ")
-    const description = rawLabel?.replace(labelRegex, "")
+      matches?.length && matches[0]?.replace('label:', '')?.replace(/-/g, ' ')
+    const description = rawLabel?.replace(labelRegex, '')
     return {
-      imageSrc: node.url_sq,
+      imageSrc: node.url_q,
       ratio: node.width_s / node.height_s,
       link: node.url_o,
       description,
-      label,
+      label
     }
   })
 

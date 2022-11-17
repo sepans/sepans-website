@@ -5,11 +5,11 @@
  * See: https://www.gatsbyjs.org/docs/use-static-query/
  */
 
-import * as React from 'react';
-import styled from 'styled-components';
+import * as React from 'react'
+import styled from 'styled-components'
 
-import Header from './header';
-import './layout.css';
+import Header from './header'
+import './layout.css'
 
 export interface LayoutProps {
   children: React.ReactNode
@@ -22,7 +22,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => (
       <MainArea>{children}</MainArea>
     </Container>
   </>
-);
+)
 
 const Container = styled.div`
   display: flex;
@@ -34,9 +34,9 @@ const Container = styled.div`
     padding-left: 80px;
     padding-top: 120px;
   }
-`;
+`
 const MainArea = styled.div`
   flex: 1;
-`;
+`
 
-export default Layout;
+export default Layout
