@@ -146,8 +146,9 @@ const Link = styled.a`
 
 const Title = styled.h1`
   font-family: Inter;
-  font-size: 24px;
+  font-size: 18px;
   color: black;
+  font-weight: normal;
 `
 
 export default IndexPage
