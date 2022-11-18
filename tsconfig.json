@@ -13,6 +13,11 @@
     "allowJs": true,
     "skipLibCheck": true
   },
-  "include": ["./src/**/*", "./gatsby-node.ts", "./gatsby-config.ts", "./plugins/**/*"],
+  "include": [
+    "./src/**/*",
+    "./gatsby-node.ts",
+    "./gatsby-config.ts",
+    "./plugins/**/*"
+  ],
   "exclude": ["node_modules", "public", ".cache"]
 }
