@@ -51,6 +51,14 @@ const IndexPage: React.FC = () => {
             src="https://camo.githubusercontent.com/56c0d87a4feb8bd15277e3438066375d49f0d5ef6ecb62068febb8b84ae2de90/687474703a2f2f736570616e732e6769746875622e696f2f70622d6c65707261637572736f722f636f6d706f6e656e74732f70622d6c65707261637572736f722f707265766965772e706e67"
             alt="lepra cursor"
           />
+          <img
+            src="https://user-images.githubusercontent.com/687513/202743886-e1602ba2-3685-4ace-a9f5-18753508a6fb.jpeg"
+            alt="wikistalker"
+          />
+          <img
+            src="https://user-images.githubusercontent.com/687513/202745453-ce13a00c-0854-43db-91c2-c55f3298aea4.png"
+            alt="theuse.info"
+          />
         </PreviewContainer>
         <Link
           target="_blank"

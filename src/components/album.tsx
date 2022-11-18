@@ -23,7 +23,7 @@ export const Album: React.FC<Props> = () => {
             {group.map(renderPhotos)}
           </ImageGroup>
         ))}
-        <ImageGroup title="more">
+        <ImageGroup title="misc">
           {photosWithoutGroup.map(renderPhotos)}
         </ImageGroup>
       </AlbumWrapper>
