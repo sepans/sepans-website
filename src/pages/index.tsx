@@ -1,3 +1,4 @@
+import { random } from 'lodash'
 import React from 'react'
 
 import styled from 'styled-components'
@@ -7,6 +8,14 @@ import { useFlickrImages } from '../hooks/useFlickrImages'
 
 const IndexPage: React.FC = () => {
   const { photoGroups } = useFlickrImages()
+
+  const groupsSize = Object.keys(photoGroups).length
+  const groupsToPick = 6
+  const start = random(0, groupsSize - groupsToPick)
+  const randomGroups = Object.entries(photoGroups).slice(
+    start,
+    start + groupsToPick
+  )
 
   return (
     <Layout>
@@ -68,16 +77,16 @@ const IndexPage: React.FC = () => {
         </Link>
         <Link href="content/diy">diy projects</Link>
         <div>
-          {Object.entries(photoGroups)
-            .reverse()
-            .slice(0, 7)
-            .map(([label, group]) => (
+          {randomGroups.map(([label, group]) => {
+            const randomIndex = random(0, group.length - 1)
+            return (
               <PreviewContainer key={`group-${label}`} title={label}>
-                {group.slice(0, 1).map((photo) => (
+                {group.slice(randomIndex, randomIndex + 1).map((photo) => (
                   <img src={photo.imageSrc} alt={photo.label} />
                 ))}
               </PreviewContainer>
-            ))}
+            )
+          })}
         </div>
         <Link target="_blank" href="https://github.com/sepans/">
           code
@@ -123,10 +132,14 @@ const Link = styled.a`
   &:hover {
     color: #000;
   }
-  padding-bottom: 10px;
+  margin-top: 20px;
+  margin-bottom: -5px;
+
+  font-size: 16px;
 
   @media (min-width: 768px) {
-    padding-bottom: 5px;
+    margin-top: 10px;
+    font-size: 14px;
   }
   text-decoration: none;
 `
