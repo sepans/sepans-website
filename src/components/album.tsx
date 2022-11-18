@@ -1,66 +1,13 @@
 import React from 'react'
 import styled from 'styled-components'
-import { groupBy } from 'lodash'
-import { useStaticQuery, graphql } from 'gatsby'
+import { useFlickrImages } from '../hooks/useFlickrImages'
 
-type Props = {
-  albumName: string
-}
+type Props = {}
 
 const PHOTO_WIDTH = 100
 
 export const Album: React.FC<Props> = () => {
-  const albumQuery = graphql`
-    query PhotoQuery {
-      allFlickrPhoto(limit: 100) {
-        edges {
-          node {
-            id
-            title
-            description
-            tags
-            datetaken
-            url_o
-            width_q
-            height_q
-            url_q
-            width_o
-            height_o
-          }
-        }
-      }
-    }
-  `
-  // eslint cannot find gatsby-types
-  // eslint-disable-next-line no-undef
-  const data: Queries.PhotoQueryQuery = useStaticQuery(albumQuery)
-
-  const photos = data.allFlickrPhoto.edges
-    .map((edge) => {
-      const { node } = edge
-      const rawLabel = node.description
-      const labelRegex = /label:([\w-]+)/g
-      const matches = rawLabel?.match(labelRegex)
-      const label =
-        (matches?.length &&
-          matches[0]?.replace('label:', '')?.replace(/-/g, ' ')) ||
-        ''
-      const description = rawLabel?.replace(labelRegex, '')
-      return {
-        imageSrc: node.url_q || '',
-        ratio: (node.width_o || 1) / (node.height_o || 1),
-        link: node.url_o || '',
-        description,
-        label
-      }
-    })
-    .filter((photo) => photo.imageSrc && photo.link)
-
-  const groups = groupBy(
-    photos.filter((photo) => photo.label),
-    (photo) => photo.label
-  )
-  const photosWithoutGroup = photos.filter((photo) => !photo.label)
+  const { photoGroups, photosWithoutGroup } = useFlickrImages()
 
   const renderPhotos = (photo: ImageProps) => (
     // eslint-disable-next-line react/jsx-props-no-spreading
@@ -71,9 +18,9 @@ export const Album: React.FC<Props> = () => {
     <>
       <h3>A photostream of some random projects</h3>
       <AlbumWrapper>
-        {Object.keys(groups).map((label) => (
+        {Object.entries(photoGroups).map(([label, group]) => (
           <ImageGroup key={`group-${label}`} title={label}>
-            {groups[label].map(renderPhotos)}
+            {group.map(renderPhotos)}
           </ImageGroup>
         ))}
         <ImageGroup title="more">
