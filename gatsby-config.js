@@ -70,6 +70,10 @@ module.exports = {
         // method: 'flickr.photosets.getPhotos',
         // photoset_id: 72157721253330801,
       }
+    },
+    {
+      resolve: `gatsby-plugin-styled-components`,
+      options: {}
     }
   ]
 }
