@@ -1,3 +1,4 @@
+import { shuffle } from 'lodash'
 import React from 'react'
 import styled from 'styled-components'
 import { useFlickrImages } from '../hooks/useFlickrImages'
@@ -8,23 +9,33 @@ const PHOTO_WIDTH = 100
 
 export const Album: React.FC<Props> = () => {
   const { photoGroups, photosWithoutGroup } = useFlickrImages()
-
-  const renderPhotos = (photo: ImageProps) => (
-    // eslint-disable-next-line react/jsx-props-no-spreading
-    <LinkedImage imageWidth={PHOTO_WIDTH} {...photo} />
-  )
+  const shuffledGroups = shuffle(Object.entries(photoGroups))
 
   return (
     <>
-      <h3>A photostream of some random projects</h3>
+      <h4>A photostream of some random projects</h4>
       <AlbumWrapper>
-        {Object.entries(photoGroups).map(([label, group]) => (
+        {shuffledGroups.map(([label, group]) => (
           <ImageGroup key={`group-${label}`} title={label}>
-            {group.map(renderPhotos)}
+            {group.map((photo) => (
+              // eslint-disable-next-line react/jsx-props-no-spreading
+              <LinkedImage
+                key={`image-${photo.imageSrc}`}
+                imageWidth={PHOTO_WIDTH}
+                {...photo}
+              />
+            ))}
           </ImageGroup>
         ))}
         <ImageGroup title="misc">
-          {photosWithoutGroup.map(renderPhotos)}
+          {photosWithoutGroup.map((photo) => (
+            // eslint-disable-next-line react/jsx-props-no-spreading
+            <LinkedImage
+              key={`image-${photo.imageSrc}`}
+              imageWidth={PHOTO_WIDTH}
+              {...photo}
+            />
+          ))}
         </ImageGroup>
       </AlbumWrapper>
     </>
@@ -81,6 +92,9 @@ const AlbumWrapper = styled.div`
 const GroupTitle = styled.h4`
   margin-top: 10px;
   margin-bottom: 5px;
+  font-size: 14px;
+  margin-left: 10px;
+  font-weight: normal;
 `
 
 const GroupWrapper = styled.div`

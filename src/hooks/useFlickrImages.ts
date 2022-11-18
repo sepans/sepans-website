@@ -4,7 +4,7 @@ import { useStaticQuery, graphql } from 'gatsby'
 export const useFlickrImages = () => {
   const albumQuery = graphql`
     query PhotoQuery {
-      allFlickrPhoto(limit: 100) {
+      allFlickrPhoto(limit: 150) {
         edges {
           node {
             id
