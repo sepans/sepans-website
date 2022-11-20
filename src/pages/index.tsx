@@ -69,12 +69,6 @@ const IndexPage: React.FC = () => {
             alt="theuse.info"
           />
         </PreviewContainer>
-        <Link
-          target="_blank"
-          href="https://observablehq.com/d/97c72828e7c9156a"
-        >
-          books
-        </Link>
         <Link href="content/diy">diy projects</Link>
         <div>
           {randomGroups.map(([label, group]) => {
@@ -88,6 +82,18 @@ const IndexPage: React.FC = () => {
             )
           })}
         </div>
+        <Link
+          target="_blank"
+          href="https://observablehq.com/d/97c72828e7c9156a"
+        >
+          books
+        </Link>
+        <PreviewContainer>
+          <img
+            src="https://covers.openlibrary.org/b/id/12921955-L.jpg"
+            alt="unnamable"
+          />
+        </PreviewContainer>
         <Link target="_blank" href="https://github.com/sepans/">
           code
         </Link>
