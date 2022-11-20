@@ -71,7 +71,7 @@ const IndexPage: React.FC = () => {
         </PreviewContainer>
         <Link
           target="_blank"
-          href="https://www.goodreads.com/user/show/22717-sepand"
+          href="https://observablehq.com/d/97c72828e7c9156a"
         >
           books
         </Link>
