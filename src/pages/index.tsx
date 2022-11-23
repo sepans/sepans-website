@@ -97,7 +97,7 @@ const IndexPage: React.FC = () => {
         <Link target="_blank" href="https://github.com/sepans/">
           code
         </Link>
-        <Link target="_blank" href="https://www.strava.com/athletes/14784454">
+        <Link target="_blank" href="https://observablehq.com/@sepans/strava">
           rides
         </Link>
         <Link target="_blank" href="https://www.linkedin.com/in/sepans/">
