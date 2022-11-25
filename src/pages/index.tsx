@@ -94,11 +94,17 @@ const IndexPage: React.FC = () => {
             alt="unnamable"
           />
         </PreviewContainer>
-        <Link target="_blank" href="https://github.com/sepans/">
-          code
-        </Link>
         <Link target="_blank" href="https://observablehq.com/@sepans/strava">
           rides
+        </Link>
+        <PreviewContainer>
+          <img
+            src="https://user-images.githubusercontent.com/687513/203892216-08ea7db9-347c-440e-ad45-43af08b98d82.png"
+            alt="rides"
+          />
+        </PreviewContainer>
+        <Link target="_blank" href="https://github.com/sepans/">
+          code
         </Link>
         <Link target="_blank" href="https://www.linkedin.com/in/sepans/">
           jobs
