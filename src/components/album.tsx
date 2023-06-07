@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-props-no-spreading */
 import { shuffle } from 'lodash'
 import React from 'react'
 import styled from 'styled-components'
@@ -10,6 +11,7 @@ const PHOTO_WIDTH = 100
 export const Album: React.FC<Props> = () => {
   const { photoGroups, photosWithoutGroup } = useFlickrImages()
   const shuffledGroups = shuffle(Object.entries(photoGroups))
+  // const shuffledGroups = Object.entries(photoGroups).reverse()
 
   return (
     <>
@@ -86,7 +88,7 @@ const AlbumWrapper = styled.div`
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: start;
 `
 
 const GroupTitle = styled.h4`
@@ -100,6 +102,7 @@ const GroupTitle = styled.h4`
 const GroupWrapper = styled.div`
   display: flex;
   flex-direction: column;
+  margin-right: 30px;
 `
 
 const GroupPhotos = styled.div`
