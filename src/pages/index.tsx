@@ -76,7 +76,7 @@ const IndexPage: React.FC = () => {
             return (
               <PreviewContainer key={`group-${label}`} title={label}>
                 {group.slice(randomIndex, randomIndex + 1).map((photo) => (
-                  <img src={photo.imageSrc} alt={photo.label} />
+                  <img src={photo.thumbnailSrc} alt={photo.label} />
                 ))}
               </PreviewContainer>
             )

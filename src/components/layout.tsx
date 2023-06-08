@@ -30,7 +30,7 @@ const Container = styled.div`
   padding: 30px;
   margin-bottom: 30px;
   @media (min-width: 768px) {
-    max-width: 1200px;
+    max-width: 90%; /* for diy grid */
     padding-left: 80px;
     padding-top: 120px;
   }
