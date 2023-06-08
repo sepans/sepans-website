@@ -1,4 +1,5 @@
-import { groupBy } from 'lodash'
+import groupBy from 'lodash/groupBy'
+import sortBy from 'lodash/sortBy'
 import { useStaticQuery, graphql } from 'gatsby'
 
 export const useFlickrImages = () => {
@@ -18,6 +19,7 @@ export const useFlickrImages = () => {
             url_q
             width_o
             height_o
+            datetaken
           }
         }
       }
@@ -44,14 +46,24 @@ export const useFlickrImages = () => {
         ratio: (node.width_o || 1) / (node.height_o || 1),
         link: node.url_o || '',
         description,
+        dateTaken: node.datetaken,
         label
       }
     })
     .filter((photo) => photo.thumbnailSrc && photo.link)
 
-  const photosWithLabel = photos.filter((photo) => photo.label)
+  const photosWithLabel = sortBy(
+    photos.filter((photo) => photo.label),
+    (photo) => photo.dateTaken
+  )
 
   const photoGroups = groupBy(photosWithLabel, (photo) => photo.label)
+
+  // const photoGroups2 = flow(
+  //   filter<PhotoType>(photo => photo.label),
+  //   sortBy<PhotoType>(photo => photo.dateTaken),
+  //   groupBy(photo => photo.label)
+  // )(photos)
 
   const photosWithoutGroup = photos.filter((photo) => !photo.label)
   return {

@@ -19,9 +19,17 @@ export const Album: React.FC<Props> = () => {
     <>
       <h4>A photostream of some random projects</h4>
       <AlbumWrapper>
-        {shuffledGroups.map(([label, group]) => (
-          <ImageGroup key={`group-${label}`} group={group} title={label} />
-        ))}
+        {shuffledGroups.map(([label, group]) => {
+          const year = new Date(group.at(0)?.dateTaken || '2022').getFullYear()
+          const labelDate = `${label} (${year})`
+          return (
+            <ImageGroup
+              key={`group-${label}`}
+              group={group}
+              title={labelDate}
+            />
+          )
+        })}
         <ImageGroup title="misc" group={photosWithoutGroup} />
       </AlbumWrapper>
     </>
@@ -135,6 +143,7 @@ const ImageButton = styled.button`
   padding: 0;
   margin: 0;
   background-color: inherit;
+  cursor: pointer;
 `
 
 const PhotoDescription = styled.div`
