@@ -1,8 +1,11 @@
+/* eslint-disable import/no-unresolved */
 /* eslint-disable react/jsx-props-no-spreading */
 import { shuffle } from 'lodash'
-import React from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
+import Lightbox from 'yet-another-react-lightbox'
 import { useFlickrImages } from '../hooks/useFlickrImages'
+import 'yet-another-react-lightbox/styles.css'
 
 type Props = {}
 
@@ -11,56 +14,60 @@ const PHOTO_WIDTH = 100
 export const Album: React.FC<Props> = () => {
   const { photoGroups, photosWithoutGroup } = useFlickrImages()
   const shuffledGroups = shuffle(Object.entries(photoGroups))
-  // const shuffledGroups = Object.entries(photoGroups).reverse()
 
   return (
     <>
       <h4>A photostream of some random projects</h4>
       <AlbumWrapper>
         {shuffledGroups.map(([label, group]) => (
-          <ImageGroup key={`group-${label}`} title={label}>
-            {group.map((photo) => (
-              // eslint-disable-next-line react/jsx-props-no-spreading
-              <LinkedImage
-                key={`image-${photo.imageSrc}`}
-                imageWidth={PHOTO_WIDTH}
-                {...photo}
-              />
-            ))}
-          </ImageGroup>
+          <ImageGroup key={`group-${label}`} group={group} title={label} />
         ))}
-        <ImageGroup title="misc">
-          {photosWithoutGroup.map((photo) => (
-            // eslint-disable-next-line react/jsx-props-no-spreading
-            <LinkedImage
-              key={`image-${photo.imageSrc}`}
-              imageWidth={PHOTO_WIDTH}
-              {...photo}
-            />
-          ))}
-        </ImageGroup>
+        <ImageGroup title="misc" group={photosWithoutGroup} />
       </AlbumWrapper>
     </>
   )
 }
 
+type ImageGroupsType = ReturnType<typeof useFlickrImages>
+type ImageGroupsPhotosType = ImageGroupsType['photoGroups']
+
+type ValueOf<T> = T[keyof T]
 interface ImageGroupProps {
   title: string
-  children?: React.ReactNode
+  group: ValueOf<ImageGroupsPhotosType>
 }
 
 const ImageGroup: React.FC<ImageGroupProps> = (props) => {
-  const { title, children } = props
+  const { title, group } = props
+  const [lightboxIndex, setLightboxIndex] = useState<number>(-1)
+
   return (
     <GroupWrapper>
       <GroupTitle>{title}</GroupTitle>
-      <GroupPhotos>{children}</GroupPhotos>
+      <GroupPhotos>
+        {group.map((photo, i) => (
+          // eslint-disable-next-line react/jsx-props-no-spreading
+          <LinkedImage
+            key={`image-${photo.thumbnailSrc}`}
+            imageWidth={PHOTO_WIDTH}
+            {...photo}
+            albumIndex={i}
+            click={setLightboxIndex}
+          />
+        ))}
+      </GroupPhotos>
+      <Lightbox
+        open={lightboxIndex > -1}
+        close={() => setLightboxIndex(-1)}
+        index={lightboxIndex}
+        slides={group.map((photo) => ({ src: photo.imageSrc }))}
+      />
     </GroupWrapper>
   )
 }
 
 type ImageProps = {
-  imageSrc: string
+  thumbnailSrc: string
   ratio: number
   link: string
   description?: string
@@ -69,15 +76,18 @@ type ImageProps = {
 
 interface LinkedImageProps extends ImageProps {
   imageWidth: number
+  click: (index: any) => void
+  albumIndex?: number
 }
 
 const LinkedImage: React.FC<LinkedImageProps> = (props) => {
-  const { imageSrc, link, imageWidth, description } = props
+  const { thumbnailSrc, albumIndex, click, imageWidth, description } = props
+  const openLighbox = () => click(albumIndex)
   return (
     <PhotoWrapper>
-      <a href={link}>
-        <img alt={description} width={imageWidth} src={imageSrc} />
-      </a>
+      <ImageButton type="button" onKeyDown={openLighbox} onClick={openLighbox}>
+        <img alt={description} width={imageWidth} src={thumbnailSrc} />
+      </ImageButton>
       {description && <PhotoDescription>{description}</PhotoDescription>}
     </PhotoWrapper>
   )
@@ -118,6 +128,13 @@ const PhotoWrapper = styled.div`
   img {
     margin: 0;
   }
+`
+
+const ImageButton = styled.button`
+  border: 0;
+  padding: 0;
+  margin: 0;
+  background-color: inherit;
 `
 
 const PhotoDescription = styled.div`

@@ -29,7 +29,8 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-helmet": "^6.1.0",
-    "styled-components": "^5.3.6"
+    "styled-components": "^5.3.6",
+    "yet-another-react-lightbox": "^3.10.2"
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^4.28.3",

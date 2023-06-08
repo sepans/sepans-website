@@ -39,19 +39,19 @@ export const useFlickrImages = () => {
         ''
       const description = rawLabel?.replace(labelRegex, '')
       return {
-        imageSrc: node.url_q || '',
+        thumbnailSrc: node.url_q || '',
+        imageSrc: node.url_o || '',
         ratio: (node.width_o || 1) / (node.height_o || 1),
         link: node.url_o || '',
         description,
         label
       }
     })
-    .filter((photo) => photo.imageSrc && photo.link)
+    .filter((photo) => photo.thumbnailSrc && photo.link)
 
-  const photoGroups = groupBy(
-    photos.filter((photo) => photo.label),
-    (photo) => photo.label
-  )
+  const photosWithLabel = photos.filter((photo) => photo.label)
+
+  const photoGroups = groupBy(photosWithLabel, (photo) => photo.label)
 
   const photosWithoutGroup = photos.filter((photo) => !photo.label)
   return {
