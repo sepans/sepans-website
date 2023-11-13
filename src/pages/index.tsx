@@ -27,26 +27,36 @@ const IndexPage: React.FC = () => {
         </Link>
         <div>
           <PreviewContainer>
-            <img
-              src="https://purplebulldozer.com/img/posts/encartopedia.png"
-              alt="Encartopedia"
-            />
-            <img
-              src="https://user-images.githubusercontent.com/687513/81590005-c3016680-937f-11ea-8b76-50590f07cbbd.png"
-              alt="ctzen"
-            />
-            <img
-              src="https://purplebulldozer.com/img/posts/lenses.png"
-              alt="lenses"
-            />
-            <img
-              src="https://purplebulldozer.com/img/posts/lohgic.png"
-              alt="lohgic"
-            />
-            <img
-              src="https://purplebulldozer.com/img/posts/historylab.png"
-              alt="history lab"
-            />
+            <Link target="_blank" href="https://purplebulldozer.com">
+              <img
+                src="https://purplebulldozer.com/img/posts/encartopedia.png"
+                alt="Encartopedia"
+              />
+            </Link>
+            <Link target="_blank" href="https://purplebulldozer.com">
+              <img
+                src="https://user-images.githubusercontent.com/687513/81590005-c3016680-937f-11ea-8b76-50590f07cbbd.png"
+                alt="ctzen"
+              />
+            </Link>
+            <Link target="_blank" href="https://purplebulldozer.com">
+              <img
+                src="https://purplebulldozer.com/img/posts/lenses.png"
+                alt="lenses"
+              />
+            </Link>
+            <Link target="_blank" href="https://purplebulldozer.com">
+              <img
+                src="https://purplebulldozer.com/img/posts/lohgic.png"
+                alt="lohgic"
+              />
+            </Link>
+            <Link target="_blank" href="https://purplebulldozer.com">
+              <img
+                src="https://purplebulldozer.com/img/posts/historylab.png"
+                alt="history lab"
+              />
+            </Link>
           </PreviewContainer>
         </div>
         <Link
@@ -56,18 +66,30 @@ const IndexPage: React.FC = () => {
           old work (web archive)
         </Link>
         <PreviewContainer>
-          <img
-            src="https://camo.githubusercontent.com/56c0d87a4feb8bd15277e3438066375d49f0d5ef6ecb62068febb8b84ae2de90/687474703a2f2f736570616e732e6769746875622e696f2f70622d6c65707261637572736f722f636f6d706f6e656e74732f70622d6c65707261637572736f722f707265766965772e706e67"
-            alt="lepra cursor"
-          />
-          <img
-            src="https://user-images.githubusercontent.com/687513/202743886-e1602ba2-3685-4ace-a9f5-18753508a6fb.jpeg"
-            alt="wikistalker"
-          />
-          <img
-            src="https://user-images.githubusercontent.com/687513/202745453-ce13a00c-0854-43db-91c2-c55f3298aea4.png"
-            alt="theuse.info"
-          />
+          <Link
+            target="_blank"
+            href="http://sepans.github.io/pb-lepracursor/components/pb-lepracursor/demo.html"
+          >
+            <img
+              src="https://camo.githubusercontent.com/56c0d87a4feb8bd15277e3438066375d49f0d5ef6ecb62068febb8b84ae2de90/687474703a2f2f736570616e732e6769746875622e696f2f70622d6c65707261637572736f722f636f6d706f6e656e74732f70622d6c65707261637572736f722f707265766965772e706e67"
+              alt="lepra cursor"
+            />
+          </Link>
+          <Link
+            target="_blank"
+            href="https://web.archive.org/web/20131223080911/http://sepans.com/sp/works/wikistalker/"
+          >
+            <img
+              src="https://user-images.githubusercontent.com/687513/202743886-e1602ba2-3685-4ace-a9f5-18753508a6fb.jpeg"
+              alt="wikistalker"
+            />
+          </Link>
+          <Link target="_blank" href="https://theuse.info">
+            <img
+              src="https://user-images.githubusercontent.com/687513/202745453-ce13a00c-0854-43db-91c2-c55f3298aea4.png"
+              alt="theuse.info"
+            />
+          </Link>
         </PreviewContainer>
         <Link href="content/diy">diy projects</Link>
         <div>
@@ -76,7 +98,9 @@ const IndexPage: React.FC = () => {
             return (
               <PreviewContainer key={`group-${label}`} title={label}>
                 {group.slice(randomIndex, randomIndex + 1).map((photo) => (
-                  <img src={photo.thumbnailSrc} alt={photo.label} />
+                  <Link href="content/diy">
+                    <img src={photo.thumbnailSrc} alt={photo.label} />
+                  </Link>
                 ))}
               </PreviewContainer>
             )
@@ -107,7 +131,7 @@ const IndexPage: React.FC = () => {
           code
         </Link>
         <Link target="_blank" href="https://www.linkedin.com/in/sepans/">
-          jobs
+          resume
         </Link>
       </Links>
     </Layout>
