@@ -1,68 +1,22 @@
 import groupBy from 'lodash/groupBy'
 import sortBy from 'lodash/sortBy'
 import { useStaticQuery, graphql } from 'gatsby'
+import { processFlickrImageData } from './shared/ProcessFlickrImageData'
 
 export const useFlickrImages = () => {
-  const albumQuery = graphql`
+  const generalAlbumQuery = graphql`
     query PhotoQuery {
-      allFlickrPhoto(limit: 150) {
-        edges {
-          node {
-            id
-            title
-            description
-            tags
-            datetaken
-            url_o
-            width_q
-            height_q
-            url_q
-            width_o
-            height_o
-            datetaken
-            media
-            media_status
-            url_m
-            url_c
-            url_z
-            farm
-            server
-            secret
-            originalsecret
-            photo_id
-          }
-        }
+      allFlickrPhoto(limit: 150, filter: { tags: { ne: "gdmbr" } }) {
+        ...FlickrImageFragment
       }
     }
   `
-  // eslint cannot find gatsby-types
-  // eslint-disable-next-line no-undef
-  const data: Queries.PhotoQueryQuery = useStaticQuery(albumQuery)
 
-  const photos = data.allFlickrPhoto.edges
-    .map((edge) => {
-      const { node } = edge
-      const rawLabel = node.description
-      const labelRegex = /label:([\w-]+)/g
-      const matches = rawLabel?.match(labelRegex)
-      const label =
-        (matches?.length &&
-          matches[0]?.replace('label:', '')?.replace(/-/g, ' ')) ||
-        ''
-      const description = rawLabel?.replace(labelRegex, '')
-      return {
-        thumbnailSrc: node.url_q || '',
-        imageSrc: node.url_o || '',
-        ratio: (node.width_o || 1) / (node.height_o || 1),
-        link: node.url_o || '',
-        description,
-        dateTaken: node.datetaken,
-        label,
-        media: node.media,
-        videoUrl: `https://www.flickr.com/apps/video/stewart.swf?v=2968162862&photo_id=${node.photo_id}&photo_secret=${node.secret}`
-      }
-    })
-    .filter((photo) => photo.thumbnailSrc && photo.link)
+  // TODO: fix type
+  // eslint-disable-next-line no-undef
+  const data: Queries.PhotoQueryQuery = useStaticQuery(generalAlbumQuery)
+
+  const photos = processFlickrImageData(data)
 
   const photosWithLabel = sortBy(
     photos.filter((photo) => photo.label),

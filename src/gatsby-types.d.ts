@@ -2315,6 +2315,34 @@ declare namespace Queries {
     readonly regex: InputMaybe<Scalars['String']>
   }
 
+  type FlickrImageFragmentFragment = {
+    readonly edges: ReadonlyArray<{
+      readonly node: {
+        readonly id: string
+        readonly title: string | null
+        readonly description: string | null
+        readonly tags: string | null
+        readonly datetaken: string | null
+        readonly url_o: string | null
+        readonly width_q: number | null
+        readonly height_q: number | null
+        readonly url_q: string | null
+        readonly width_o: number | null
+        readonly height_o: number | null
+        readonly media: string | null
+        readonly media_status: string | null
+        readonly url_m: string | null
+        readonly url_c: string | null
+        readonly url_z: string | null
+        readonly farm: number | null
+        readonly server: string | null
+        readonly secret: string | null
+        readonly originalsecret: string | null
+        readonly photo_id: string | null
+      }
+    }>
+  }
+
   type PhotoQueryQueryVariables = Exact<{ [key: string]: never }>
 
   type PhotoQueryQuery = {
