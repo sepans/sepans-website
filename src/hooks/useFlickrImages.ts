@@ -20,6 +20,16 @@ export const useFlickrImages = () => {
             width_o
             height_o
             datetaken
+            media
+            media_status
+            url_m
+            url_c
+            url_z
+            farm
+            server
+            secret
+            originalsecret
+            photo_id
           }
         }
       }
@@ -47,7 +57,9 @@ export const useFlickrImages = () => {
         link: node.url_o || '',
         description,
         dateTaken: node.datetaken,
-        label
+        label,
+        media: node.media,
+        videoUrl: `https://www.flickr.com/apps/video/stewart.swf?v=2968162862&photo_id=${node.photo_id}&photo_secret=${node.secret}`
       }
     })
     .filter((photo) => photo.thumbnailSrc && photo.link)
