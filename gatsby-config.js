@@ -11,6 +11,7 @@ module.exports = {
   graphqlTypegen: true,
   plugins: [
     'gatsby-plugin-react-helmet',
+    `gatsby-transformer-xml`,
     {
       resolve: 'gatsby-source-filesystem',
       options: {

@@ -28,6 +28,170 @@ declare namespace Queries {
     JSON: Record<string, unknown>
   }
 
+  type BooksXml = Node & {
+    readonly attributes: Maybe<BooksXmlAttributes>
+    readonly children: ReadonlyArray<Node>
+    readonly content: Maybe<Scalars['String']>
+    readonly id: Scalars['ID']
+    readonly internal: Internal
+    readonly name: Maybe<Scalars['String']>
+    readonly parent: Maybe<Node>
+    readonly xmlChildren: Maybe<ReadonlyArray<Maybe<BooksXmlXmlChildren>>>
+  }
+
+  type BooksXmlAttributes = {
+    readonly id: Maybe<Scalars['String']>
+  }
+
+  type BooksXmlAttributesFieldSelector = {
+    readonly id: InputMaybe<FieldSelectorEnum>
+  }
+
+  type BooksXmlAttributesFilterInput = {
+    readonly id: InputMaybe<StringQueryOperatorInput>
+  }
+
+  type BooksXmlAttributesSortInput = {
+    readonly id: InputMaybe<SortOrderEnum>
+  }
+
+  type BooksXmlConnection = {
+    readonly distinct: ReadonlyArray<Scalars['String']>
+    readonly edges: ReadonlyArray<BooksXmlEdge>
+    readonly group: ReadonlyArray<BooksXmlGroupConnection>
+    readonly max: Maybe<Scalars['Float']>
+    readonly min: Maybe<Scalars['Float']>
+    readonly nodes: ReadonlyArray<BooksXml>
+    readonly pageInfo: PageInfo
+    readonly sum: Maybe<Scalars['Float']>
+    readonly totalCount: Scalars['Int']
+  }
+
+  type BooksXmlConnection_distinctArgs = {
+    field: BooksXmlFieldSelector
+  }
+
+  type BooksXmlConnection_groupArgs = {
+    field: BooksXmlFieldSelector
+    limit: InputMaybe<Scalars['Int']>
+    skip: InputMaybe<Scalars['Int']>
+  }
+
+  type BooksXmlConnection_maxArgs = {
+    field: BooksXmlFieldSelector
+  }
+
+  type BooksXmlConnection_minArgs = {
+    field: BooksXmlFieldSelector
+  }
+
+  type BooksXmlConnection_sumArgs = {
+    field: BooksXmlFieldSelector
+  }
+
+  type BooksXmlEdge = {
+    readonly next: Maybe<BooksXml>
+    readonly node: BooksXml
+    readonly previous: Maybe<BooksXml>
+  }
+
+  type BooksXmlFieldSelector = {
+    readonly attributes: InputMaybe<BooksXmlAttributesFieldSelector>
+    readonly children: InputMaybe<NodeFieldSelector>
+    readonly content: InputMaybe<FieldSelectorEnum>
+    readonly id: InputMaybe<FieldSelectorEnum>
+    readonly internal: InputMaybe<InternalFieldSelector>
+    readonly name: InputMaybe<FieldSelectorEnum>
+    readonly parent: InputMaybe<NodeFieldSelector>
+    readonly xmlChildren: InputMaybe<BooksXmlXmlChildrenFieldSelector>
+  }
+
+  type BooksXmlFilterInput = {
+    readonly attributes: InputMaybe<BooksXmlAttributesFilterInput>
+    readonly children: InputMaybe<NodeFilterListInput>
+    readonly content: InputMaybe<StringQueryOperatorInput>
+    readonly id: InputMaybe<StringQueryOperatorInput>
+    readonly internal: InputMaybe<InternalFilterInput>
+    readonly name: InputMaybe<StringQueryOperatorInput>
+    readonly parent: InputMaybe<NodeFilterInput>
+    readonly xmlChildren: InputMaybe<BooksXmlXmlChildrenFilterListInput>
+  }
+
+  type BooksXmlFilterListInput = {
+    readonly elemMatch: InputMaybe<BooksXmlFilterInput>
+  }
+
+  type BooksXmlGroupConnection = {
+    readonly distinct: ReadonlyArray<Scalars['String']>
+    readonly edges: ReadonlyArray<BooksXmlEdge>
+    readonly field: Scalars['String']
+    readonly fieldValue: Maybe<Scalars['String']>
+    readonly group: ReadonlyArray<BooksXmlGroupConnection>
+    readonly max: Maybe<Scalars['Float']>
+    readonly min: Maybe<Scalars['Float']>
+    readonly nodes: ReadonlyArray<BooksXml>
+    readonly pageInfo: PageInfo
+    readonly sum: Maybe<Scalars['Float']>
+    readonly totalCount: Scalars['Int']
+  }
+
+  type BooksXmlGroupConnection_distinctArgs = {
+    field: BooksXmlFieldSelector
+  }
+
+  type BooksXmlGroupConnection_groupArgs = {
+    field: BooksXmlFieldSelector
+    limit: InputMaybe<Scalars['Int']>
+    skip: InputMaybe<Scalars['Int']>
+  }
+
+  type BooksXmlGroupConnection_maxArgs = {
+    field: BooksXmlFieldSelector
+  }
+
+  type BooksXmlGroupConnection_minArgs = {
+    field: BooksXmlFieldSelector
+  }
+
+  type BooksXmlGroupConnection_sumArgs = {
+    field: BooksXmlFieldSelector
+  }
+
+  type BooksXmlSortInput = {
+    readonly attributes: InputMaybe<BooksXmlAttributesSortInput>
+    readonly children: InputMaybe<NodeSortInput>
+    readonly content: InputMaybe<SortOrderEnum>
+    readonly id: InputMaybe<SortOrderEnum>
+    readonly internal: InputMaybe<InternalSortInput>
+    readonly name: InputMaybe<SortOrderEnum>
+    readonly parent: InputMaybe<NodeSortInput>
+    readonly xmlChildren: InputMaybe<BooksXmlXmlChildrenSortInput>
+  }
+
+  type BooksXmlXmlChildren = {
+    readonly content: Maybe<Scalars['String']>
+    readonly name: Maybe<Scalars['String']>
+  }
+
+  type BooksXmlXmlChildrenFieldSelector = {
+    readonly content: InputMaybe<FieldSelectorEnum>
+    readonly name: InputMaybe<FieldSelectorEnum>
+  }
+
+  type BooksXmlXmlChildrenFilterInput = {
+    readonly content: InputMaybe<StringQueryOperatorInput>
+    readonly name: InputMaybe<StringQueryOperatorInput>
+  }
+
+  type BooksXmlXmlChildrenFilterListInput = {
+    readonly elemMatch: InputMaybe<BooksXmlXmlChildrenFilterInput>
+  }
+
+  type BooksXmlXmlChildrenSortInput = {
+    readonly content: InputMaybe<SortOrderEnum>
+    readonly name: InputMaybe<SortOrderEnum>
+  }
+
   type BooleanQueryOperatorInput = {
     readonly eq: InputMaybe<Scalars['Boolean']>
     readonly in: InputMaybe<ReadonlyArray<InputMaybe<Scalars['Boolean']>>>
@@ -341,11 +505,19 @@ declare namespace Queries {
     readonly blksize: Maybe<Scalars['Int']>
     readonly blocks: Maybe<Scalars['Int']>
     readonly changeTime: Scalars['Date']
+    /** Returns the first child node of type BooksXml or null if there are no children of given type on this node */
+    readonly childBooksXml: Maybe<BooksXml>
     /** Returns the first child node of type Mdx or null if there are no children of given type on this node */
     readonly childMdx: Maybe<Mdx>
+    /** Returns the first child node of type RideXml or null if there are no children of given type on this node */
+    readonly childRideXml: Maybe<RideXml>
     readonly children: ReadonlyArray<Node>
+    /** Returns all children nodes filtered by type BooksXml */
+    readonly childrenBooksXml: Maybe<ReadonlyArray<Maybe<BooksXml>>>
     /** Returns all children nodes filtered by type Mdx */
     readonly childrenMdx: Maybe<ReadonlyArray<Maybe<Mdx>>>
+    /** Returns all children nodes filtered by type RideXml */
+    readonly childrenRideXml: Maybe<ReadonlyArray<Maybe<RideXml>>>
     readonly ctime: Scalars['Date']
     readonly ctimeMs: Scalars['Float']
     readonly dev: Scalars['Int']
@@ -476,9 +648,13 @@ declare namespace Queries {
     readonly blksize: InputMaybe<FieldSelectorEnum>
     readonly blocks: InputMaybe<FieldSelectorEnum>
     readonly changeTime: InputMaybe<FieldSelectorEnum>
+    readonly childBooksXml: InputMaybe<BooksXmlFieldSelector>
     readonly childMdx: InputMaybe<MdxFieldSelector>
+    readonly childRideXml: InputMaybe<RideXmlFieldSelector>
     readonly children: InputMaybe<NodeFieldSelector>
+    readonly childrenBooksXml: InputMaybe<BooksXmlFieldSelector>
     readonly childrenMdx: InputMaybe<MdxFieldSelector>
+    readonly childrenRideXml: InputMaybe<RideXmlFieldSelector>
     readonly ctime: InputMaybe<FieldSelectorEnum>
     readonly ctimeMs: InputMaybe<FieldSelectorEnum>
     readonly dev: InputMaybe<FieldSelectorEnum>
@@ -519,9 +695,13 @@ declare namespace Queries {
     readonly blksize: InputMaybe<IntQueryOperatorInput>
     readonly blocks: InputMaybe<IntQueryOperatorInput>
     readonly changeTime: InputMaybe<DateQueryOperatorInput>
+    readonly childBooksXml: InputMaybe<BooksXmlFilterInput>
     readonly childMdx: InputMaybe<MdxFilterInput>
+    readonly childRideXml: InputMaybe<RideXmlFilterInput>
     readonly children: InputMaybe<NodeFilterListInput>
+    readonly childrenBooksXml: InputMaybe<BooksXmlFilterListInput>
     readonly childrenMdx: InputMaybe<MdxFilterListInput>
+    readonly childrenRideXml: InputMaybe<RideXmlFilterListInput>
     readonly ctime: InputMaybe<DateQueryOperatorInput>
     readonly ctimeMs: InputMaybe<FloatQueryOperatorInput>
     readonly dev: InputMaybe<IntQueryOperatorInput>
@@ -598,9 +778,13 @@ declare namespace Queries {
     readonly blksize: InputMaybe<SortOrderEnum>
     readonly blocks: InputMaybe<SortOrderEnum>
     readonly changeTime: InputMaybe<SortOrderEnum>
+    readonly childBooksXml: InputMaybe<BooksXmlSortInput>
     readonly childMdx: InputMaybe<MdxSortInput>
+    readonly childRideXml: InputMaybe<RideXmlSortInput>
     readonly children: InputMaybe<NodeSortInput>
+    readonly childrenBooksXml: InputMaybe<BooksXmlSortInput>
     readonly childrenMdx: InputMaybe<MdxSortInput>
+    readonly childrenRideXml: InputMaybe<RideXmlSortInput>
     readonly ctime: InputMaybe<SortOrderEnum>
     readonly ctimeMs: InputMaybe<SortOrderEnum>
     readonly dev: InputMaybe<SortOrderEnum>
@@ -638,6 +822,10 @@ declare namespace Queries {
     readonly dateupload_date: Maybe<Scalars['Date']>
     readonly description: Maybe<Scalars['String']>
     readonly farm: Maybe<Scalars['Int']>
+    readonly geo_is_contact: Maybe<Scalars['Int']>
+    readonly geo_is_family: Maybe<Scalars['Int']>
+    readonly geo_is_friend: Maybe<Scalars['Int']>
+    readonly geo_is_public: Maybe<Scalars['Int']>
     readonly height_c: Maybe<Scalars['Int']>
     readonly height_l: Maybe<Scalars['Int']>
     readonly height_m: Maybe<Scalars['Int']>
@@ -669,6 +857,7 @@ declare namespace Queries {
     readonly ownername: Maybe<Scalars['String']>
     readonly parent: Maybe<Node>
     readonly photo_id: Maybe<Scalars['String']>
+    readonly place_id: Maybe<Scalars['String']>
     readonly secret: Maybe<Scalars['String']>
     readonly server: Maybe<Scalars['String']>
     readonly tags: Maybe<Scalars['String']>
@@ -694,6 +883,7 @@ declare namespace Queries {
     readonly width_sq: Maybe<Scalars['Int']>
     readonly width_t: Maybe<Scalars['Int']>
     readonly width_z: Maybe<Scalars['Int']>
+    readonly woeid: Maybe<Scalars['String']>
   }
 
   type FlickrPhoto_datetakenArgs = {
@@ -766,6 +956,10 @@ declare namespace Queries {
     readonly dateupload_date: InputMaybe<FieldSelectorEnum>
     readonly description: InputMaybe<FieldSelectorEnum>
     readonly farm: InputMaybe<FieldSelectorEnum>
+    readonly geo_is_contact: InputMaybe<FieldSelectorEnum>
+    readonly geo_is_family: InputMaybe<FieldSelectorEnum>
+    readonly geo_is_friend: InputMaybe<FieldSelectorEnum>
+    readonly geo_is_public: InputMaybe<FieldSelectorEnum>
     readonly height_c: InputMaybe<FieldSelectorEnum>
     readonly height_l: InputMaybe<FieldSelectorEnum>
     readonly height_m: InputMaybe<FieldSelectorEnum>
@@ -797,6 +991,7 @@ declare namespace Queries {
     readonly ownername: InputMaybe<FieldSelectorEnum>
     readonly parent: InputMaybe<NodeFieldSelector>
     readonly photo_id: InputMaybe<FieldSelectorEnum>
+    readonly place_id: InputMaybe<FieldSelectorEnum>
     readonly secret: InputMaybe<FieldSelectorEnum>
     readonly server: InputMaybe<FieldSelectorEnum>
     readonly tags: InputMaybe<FieldSelectorEnum>
@@ -822,6 +1017,7 @@ declare namespace Queries {
     readonly width_sq: InputMaybe<FieldSelectorEnum>
     readonly width_t: InputMaybe<FieldSelectorEnum>
     readonly width_z: InputMaybe<FieldSelectorEnum>
+    readonly woeid: InputMaybe<FieldSelectorEnum>
   }
 
   type FlickrPhotoFilterInput = {
@@ -833,6 +1029,10 @@ declare namespace Queries {
     readonly dateupload_date: InputMaybe<DateQueryOperatorInput>
     readonly description: InputMaybe<StringQueryOperatorInput>
     readonly farm: InputMaybe<IntQueryOperatorInput>
+    readonly geo_is_contact: InputMaybe<IntQueryOperatorInput>
+    readonly geo_is_family: InputMaybe<IntQueryOperatorInput>
+    readonly geo_is_friend: InputMaybe<IntQueryOperatorInput>
+    readonly geo_is_public: InputMaybe<IntQueryOperatorInput>
     readonly height_c: InputMaybe<IntQueryOperatorInput>
     readonly height_l: InputMaybe<IntQueryOperatorInput>
     readonly height_m: InputMaybe<IntQueryOperatorInput>
@@ -864,6 +1064,7 @@ declare namespace Queries {
     readonly ownername: InputMaybe<StringQueryOperatorInput>
     readonly parent: InputMaybe<NodeFilterInput>
     readonly photo_id: InputMaybe<StringQueryOperatorInput>
+    readonly place_id: InputMaybe<StringQueryOperatorInput>
     readonly secret: InputMaybe<StringQueryOperatorInput>
     readonly server: InputMaybe<StringQueryOperatorInput>
     readonly tags: InputMaybe<StringQueryOperatorInput>
@@ -889,6 +1090,7 @@ declare namespace Queries {
     readonly width_sq: InputMaybe<IntQueryOperatorInput>
     readonly width_t: InputMaybe<IntQueryOperatorInput>
     readonly width_z: InputMaybe<IntQueryOperatorInput>
+    readonly woeid: InputMaybe<StringQueryOperatorInput>
   }
 
   type FlickrPhotoGroupConnection = {
@@ -936,6 +1138,10 @@ declare namespace Queries {
     readonly dateupload_date: InputMaybe<SortOrderEnum>
     readonly description: InputMaybe<SortOrderEnum>
     readonly farm: InputMaybe<SortOrderEnum>
+    readonly geo_is_contact: InputMaybe<SortOrderEnum>
+    readonly geo_is_family: InputMaybe<SortOrderEnum>
+    readonly geo_is_friend: InputMaybe<SortOrderEnum>
+    readonly geo_is_public: InputMaybe<SortOrderEnum>
     readonly height_c: InputMaybe<SortOrderEnum>
     readonly height_l: InputMaybe<SortOrderEnum>
     readonly height_m: InputMaybe<SortOrderEnum>
@@ -967,6 +1173,7 @@ declare namespace Queries {
     readonly ownername: InputMaybe<SortOrderEnum>
     readonly parent: InputMaybe<NodeSortInput>
     readonly photo_id: InputMaybe<SortOrderEnum>
+    readonly place_id: InputMaybe<SortOrderEnum>
     readonly secret: InputMaybe<SortOrderEnum>
     readonly server: InputMaybe<SortOrderEnum>
     readonly tags: InputMaybe<SortOrderEnum>
@@ -992,6 +1199,7 @@ declare namespace Queries {
     readonly width_sq: InputMaybe<SortOrderEnum>
     readonly width_t: InputMaybe<SortOrderEnum>
     readonly width_z: InputMaybe<SortOrderEnum>
+    readonly woeid: InputMaybe<SortOrderEnum>
   }
 
   type FloatQueryOperatorInput = {
@@ -1284,24 +1492,35 @@ declare namespace Queries {
   }
 
   type Query = {
+    readonly allBooksXml: BooksXmlConnection
     readonly allDirectory: DirectoryConnection
     readonly allFile: FileConnection
     readonly allFlickrPhoto: FlickrPhotoConnection
     readonly allMdx: MdxConnection
+    readonly allRideXml: RideXmlConnection
     readonly allSite: SiteConnection
     readonly allSiteBuildMetadata: SiteBuildMetadataConnection
     readonly allSiteFunction: SiteFunctionConnection
     readonly allSitePage: SitePageConnection
     readonly allSitePlugin: SitePluginConnection
+    readonly booksXml: Maybe<BooksXml>
     readonly directory: Maybe<Directory>
     readonly file: Maybe<File>
     readonly flickrPhoto: Maybe<FlickrPhoto>
     readonly mdx: Maybe<Mdx>
+    readonly rideXml: Maybe<RideXml>
     readonly site: Maybe<Site>
     readonly siteBuildMetadata: Maybe<SiteBuildMetadata>
     readonly siteFunction: Maybe<SiteFunction>
     readonly sitePage: Maybe<SitePage>
     readonly sitePlugin: Maybe<SitePlugin>
+  }
+
+  type Query_allBooksXmlArgs = {
+    filter: InputMaybe<BooksXmlFilterInput>
+    limit: InputMaybe<Scalars['Int']>
+    skip: InputMaybe<Scalars['Int']>
+    sort: InputMaybe<ReadonlyArray<InputMaybe<BooksXmlSortInput>>>
   }
 
   type Query_allDirectoryArgs = {
@@ -1330,6 +1549,13 @@ declare namespace Queries {
     limit: InputMaybe<Scalars['Int']>
     skip: InputMaybe<Scalars['Int']>
     sort: InputMaybe<ReadonlyArray<InputMaybe<MdxSortInput>>>
+  }
+
+  type Query_allRideXmlArgs = {
+    filter: InputMaybe<RideXmlFilterInput>
+    limit: InputMaybe<Scalars['Int']>
+    skip: InputMaybe<Scalars['Int']>
+    sort: InputMaybe<ReadonlyArray<InputMaybe<RideXmlSortInput>>>
   }
 
   type Query_allSiteArgs = {
@@ -1365,6 +1591,17 @@ declare namespace Queries {
     limit: InputMaybe<Scalars['Int']>
     skip: InputMaybe<Scalars['Int']>
     sort: InputMaybe<ReadonlyArray<InputMaybe<SitePluginSortInput>>>
+  }
+
+  type Query_booksXmlArgs = {
+    attributes: InputMaybe<BooksXmlAttributesFilterInput>
+    children: InputMaybe<NodeFilterListInput>
+    content: InputMaybe<StringQueryOperatorInput>
+    id: InputMaybe<StringQueryOperatorInput>
+    internal: InputMaybe<InternalFilterInput>
+    name: InputMaybe<StringQueryOperatorInput>
+    parent: InputMaybe<NodeFilterInput>
+    xmlChildren: InputMaybe<BooksXmlXmlChildrenFilterListInput>
   }
 
   type Query_directoryArgs = {
@@ -1417,9 +1654,13 @@ declare namespace Queries {
     blksize: InputMaybe<IntQueryOperatorInput>
     blocks: InputMaybe<IntQueryOperatorInput>
     changeTime: InputMaybe<DateQueryOperatorInput>
+    childBooksXml: InputMaybe<BooksXmlFilterInput>
     childMdx: InputMaybe<MdxFilterInput>
+    childRideXml: InputMaybe<RideXmlFilterInput>
     children: InputMaybe<NodeFilterListInput>
+    childrenBooksXml: InputMaybe<BooksXmlFilterListInput>
     childrenMdx: InputMaybe<MdxFilterListInput>
+    childrenRideXml: InputMaybe<RideXmlFilterListInput>
     ctime: InputMaybe<DateQueryOperatorInput>
     ctimeMs: InputMaybe<FloatQueryOperatorInput>
     dev: InputMaybe<IntQueryOperatorInput>
@@ -1457,6 +1698,10 @@ declare namespace Queries {
     dateupload_date: InputMaybe<DateQueryOperatorInput>
     description: InputMaybe<StringQueryOperatorInput>
     farm: InputMaybe<IntQueryOperatorInput>
+    geo_is_contact: InputMaybe<IntQueryOperatorInput>
+    geo_is_family: InputMaybe<IntQueryOperatorInput>
+    geo_is_friend: InputMaybe<IntQueryOperatorInput>
+    geo_is_public: InputMaybe<IntQueryOperatorInput>
     height_c: InputMaybe<IntQueryOperatorInput>
     height_l: InputMaybe<IntQueryOperatorInput>
     height_m: InputMaybe<IntQueryOperatorInput>
@@ -1488,6 +1733,7 @@ declare namespace Queries {
     ownername: InputMaybe<StringQueryOperatorInput>
     parent: InputMaybe<NodeFilterInput>
     photo_id: InputMaybe<StringQueryOperatorInput>
+    place_id: InputMaybe<StringQueryOperatorInput>
     secret: InputMaybe<StringQueryOperatorInput>
     server: InputMaybe<StringQueryOperatorInput>
     tags: InputMaybe<StringQueryOperatorInput>
@@ -1513,6 +1759,7 @@ declare namespace Queries {
     width_sq: InputMaybe<IntQueryOperatorInput>
     width_t: InputMaybe<IntQueryOperatorInput>
     width_z: InputMaybe<IntQueryOperatorInput>
+    woeid: InputMaybe<StringQueryOperatorInput>
   }
 
   type Query_mdxArgs = {
@@ -1526,20 +1773,26 @@ declare namespace Queries {
     tableOfContents: InputMaybe<JSONQueryOperatorInput>
   }
 
+  type Query_rideXmlArgs = {
+    children: InputMaybe<NodeFilterListInput>
+    content: InputMaybe<StringQueryOperatorInput>
+    id: InputMaybe<StringQueryOperatorInput>
+    internal: InputMaybe<InternalFilterInput>
+    name: InputMaybe<StringQueryOperatorInput>
+    parent: InputMaybe<NodeFilterInput>
+    xmlChildren: InputMaybe<RideXmlXmlChildrenFilterListInput>
+  }
+
   type Query_siteArgs = {
     buildTime: InputMaybe<DateQueryOperatorInput>
     children: InputMaybe<NodeFilterListInput>
-    graphqlTypegen: InputMaybe<SiteGraphqlTypegenFilterInput>
+    graphqlTypegen: InputMaybe<BooleanQueryOperatorInput>
     host: InputMaybe<StringQueryOperatorInput>
     id: InputMaybe<StringQueryOperatorInput>
     internal: InputMaybe<InternalFilterInput>
-    jsxRuntime: InputMaybe<StringQueryOperatorInput>
     parent: InputMaybe<NodeFilterInput>
-    pathPrefix: InputMaybe<StringQueryOperatorInput>
-    polyfill: InputMaybe<BooleanQueryOperatorInput>
     port: InputMaybe<IntQueryOperatorInput>
     siteMetadata: InputMaybe<SiteSiteMetadataFilterInput>
-    trailingSlash: InputMaybe<StringQueryOperatorInput>
   }
 
   type Query_siteBuildMetadataArgs = {
@@ -1594,20 +1847,242 @@ declare namespace Queries {
     version: InputMaybe<StringQueryOperatorInput>
   }
 
+  type RideXml = Node & {
+    readonly children: ReadonlyArray<Node>
+    readonly content: Maybe<Scalars['String']>
+    readonly id: Scalars['ID']
+    readonly internal: Internal
+    readonly name: Maybe<Scalars['String']>
+    readonly parent: Maybe<Node>
+    readonly xmlChildren: Maybe<ReadonlyArray<Maybe<RideXmlXmlChildren>>>
+  }
+
+  type RideXmlConnection = {
+    readonly distinct: ReadonlyArray<Scalars['String']>
+    readonly edges: ReadonlyArray<RideXmlEdge>
+    readonly group: ReadonlyArray<RideXmlGroupConnection>
+    readonly max: Maybe<Scalars['Float']>
+    readonly min: Maybe<Scalars['Float']>
+    readonly nodes: ReadonlyArray<RideXml>
+    readonly pageInfo: PageInfo
+    readonly sum: Maybe<Scalars['Float']>
+    readonly totalCount: Scalars['Int']
+  }
+
+  type RideXmlConnection_distinctArgs = {
+    field: RideXmlFieldSelector
+  }
+
+  type RideXmlConnection_groupArgs = {
+    field: RideXmlFieldSelector
+    limit: InputMaybe<Scalars['Int']>
+    skip: InputMaybe<Scalars['Int']>
+  }
+
+  type RideXmlConnection_maxArgs = {
+    field: RideXmlFieldSelector
+  }
+
+  type RideXmlConnection_minArgs = {
+    field: RideXmlFieldSelector
+  }
+
+  type RideXmlConnection_sumArgs = {
+    field: RideXmlFieldSelector
+  }
+
+  type RideXmlEdge = {
+    readonly next: Maybe<RideXml>
+    readonly node: RideXml
+    readonly previous: Maybe<RideXml>
+  }
+
+  type RideXmlFieldSelector = {
+    readonly children: InputMaybe<NodeFieldSelector>
+    readonly content: InputMaybe<FieldSelectorEnum>
+    readonly id: InputMaybe<FieldSelectorEnum>
+    readonly internal: InputMaybe<InternalFieldSelector>
+    readonly name: InputMaybe<FieldSelectorEnum>
+    readonly parent: InputMaybe<NodeFieldSelector>
+    readonly xmlChildren: InputMaybe<RideXmlXmlChildrenFieldSelector>
+  }
+
+  type RideXmlFilterInput = {
+    readonly children: InputMaybe<NodeFilterListInput>
+    readonly content: InputMaybe<StringQueryOperatorInput>
+    readonly id: InputMaybe<StringQueryOperatorInput>
+    readonly internal: InputMaybe<InternalFilterInput>
+    readonly name: InputMaybe<StringQueryOperatorInput>
+    readonly parent: InputMaybe<NodeFilterInput>
+    readonly xmlChildren: InputMaybe<RideXmlXmlChildrenFilterListInput>
+  }
+
+  type RideXmlFilterListInput = {
+    readonly elemMatch: InputMaybe<RideXmlFilterInput>
+  }
+
+  type RideXmlGroupConnection = {
+    readonly distinct: ReadonlyArray<Scalars['String']>
+    readonly edges: ReadonlyArray<RideXmlEdge>
+    readonly field: Scalars['String']
+    readonly fieldValue: Maybe<Scalars['String']>
+    readonly group: ReadonlyArray<RideXmlGroupConnection>
+    readonly max: Maybe<Scalars['Float']>
+    readonly min: Maybe<Scalars['Float']>
+    readonly nodes: ReadonlyArray<RideXml>
+    readonly pageInfo: PageInfo
+    readonly sum: Maybe<Scalars['Float']>
+    readonly totalCount: Scalars['Int']
+  }
+
+  type RideXmlGroupConnection_distinctArgs = {
+    field: RideXmlFieldSelector
+  }
+
+  type RideXmlGroupConnection_groupArgs = {
+    field: RideXmlFieldSelector
+    limit: InputMaybe<Scalars['Int']>
+    skip: InputMaybe<Scalars['Int']>
+  }
+
+  type RideXmlGroupConnection_maxArgs = {
+    field: RideXmlFieldSelector
+  }
+
+  type RideXmlGroupConnection_minArgs = {
+    field: RideXmlFieldSelector
+  }
+
+  type RideXmlGroupConnection_sumArgs = {
+    field: RideXmlFieldSelector
+  }
+
+  type RideXmlSortInput = {
+    readonly children: InputMaybe<NodeSortInput>
+    readonly content: InputMaybe<SortOrderEnum>
+    readonly id: InputMaybe<SortOrderEnum>
+    readonly internal: InputMaybe<InternalSortInput>
+    readonly name: InputMaybe<SortOrderEnum>
+    readonly parent: InputMaybe<NodeSortInput>
+    readonly xmlChildren: InputMaybe<RideXmlXmlChildrenSortInput>
+  }
+
+  type RideXmlXmlChildren = {
+    readonly children: Maybe<ReadonlyArray<Maybe<RideXmlXmlChildrenChildren>>>
+    readonly content: Maybe<Scalars['String']>
+    readonly name: Maybe<Scalars['String']>
+  }
+
+  type RideXmlXmlChildrenChildren = {
+    readonly attributes: Maybe<RideXmlXmlChildrenChildrenAttributes>
+    readonly children: Maybe<
+      ReadonlyArray<Maybe<RideXmlXmlChildrenChildrenChildren>>
+    >
+    readonly content: Maybe<Scalars['String']>
+    readonly name: Maybe<Scalars['String']>
+  }
+
+  type RideXmlXmlChildrenChildrenAttributes = {
+    readonly lat: Maybe<Scalars['String']>
+    readonly lon: Maybe<Scalars['String']>
+  }
+
+  type RideXmlXmlChildrenChildrenAttributesFieldSelector = {
+    readonly lat: InputMaybe<FieldSelectorEnum>
+    readonly lon: InputMaybe<FieldSelectorEnum>
+  }
+
+  type RideXmlXmlChildrenChildrenAttributesFilterInput = {
+    readonly lat: InputMaybe<StringQueryOperatorInput>
+    readonly lon: InputMaybe<StringQueryOperatorInput>
+  }
+
+  type RideXmlXmlChildrenChildrenAttributesSortInput = {
+    readonly lat: InputMaybe<SortOrderEnum>
+    readonly lon: InputMaybe<SortOrderEnum>
+  }
+
+  type RideXmlXmlChildrenChildrenChildren = {
+    readonly content: Maybe<Scalars['String']>
+    readonly name: Maybe<Scalars['String']>
+  }
+
+  type RideXmlXmlChildrenChildrenChildrenFieldSelector = {
+    readonly content: InputMaybe<FieldSelectorEnum>
+    readonly name: InputMaybe<FieldSelectorEnum>
+  }
+
+  type RideXmlXmlChildrenChildrenChildrenFilterInput = {
+    readonly content: InputMaybe<StringQueryOperatorInput>
+    readonly name: InputMaybe<StringQueryOperatorInput>
+  }
+
+  type RideXmlXmlChildrenChildrenChildrenFilterListInput = {
+    readonly elemMatch: InputMaybe<RideXmlXmlChildrenChildrenChildrenFilterInput>
+  }
+
+  type RideXmlXmlChildrenChildrenChildrenSortInput = {
+    readonly content: InputMaybe<SortOrderEnum>
+    readonly name: InputMaybe<SortOrderEnum>
+  }
+
+  type RideXmlXmlChildrenChildrenFieldSelector = {
+    readonly attributes: InputMaybe<RideXmlXmlChildrenChildrenAttributesFieldSelector>
+    readonly children: InputMaybe<RideXmlXmlChildrenChildrenChildrenFieldSelector>
+    readonly content: InputMaybe<FieldSelectorEnum>
+    readonly name: InputMaybe<FieldSelectorEnum>
+  }
+
+  type RideXmlXmlChildrenChildrenFilterInput = {
+    readonly attributes: InputMaybe<RideXmlXmlChildrenChildrenAttributesFilterInput>
+    readonly children: InputMaybe<RideXmlXmlChildrenChildrenChildrenFilterListInput>
+    readonly content: InputMaybe<StringQueryOperatorInput>
+    readonly name: InputMaybe<StringQueryOperatorInput>
+  }
+
+  type RideXmlXmlChildrenChildrenFilterListInput = {
+    readonly elemMatch: InputMaybe<RideXmlXmlChildrenChildrenFilterInput>
+  }
+
+  type RideXmlXmlChildrenChildrenSortInput = {
+    readonly attributes: InputMaybe<RideXmlXmlChildrenChildrenAttributesSortInput>
+    readonly children: InputMaybe<RideXmlXmlChildrenChildrenChildrenSortInput>
+    readonly content: InputMaybe<SortOrderEnum>
+    readonly name: InputMaybe<SortOrderEnum>
+  }
+
+  type RideXmlXmlChildrenFieldSelector = {
+    readonly children: InputMaybe<RideXmlXmlChildrenChildrenFieldSelector>
+    readonly content: InputMaybe<FieldSelectorEnum>
+    readonly name: InputMaybe<FieldSelectorEnum>
+  }
+
+  type RideXmlXmlChildrenFilterInput = {
+    readonly children: InputMaybe<RideXmlXmlChildrenChildrenFilterListInput>
+    readonly content: InputMaybe<StringQueryOperatorInput>
+    readonly name: InputMaybe<StringQueryOperatorInput>
+  }
+
+  type RideXmlXmlChildrenFilterListInput = {
+    readonly elemMatch: InputMaybe<RideXmlXmlChildrenFilterInput>
+  }
+
+  type RideXmlXmlChildrenSortInput = {
+    readonly children: InputMaybe<RideXmlXmlChildrenChildrenSortInput>
+    readonly content: InputMaybe<SortOrderEnum>
+    readonly name: InputMaybe<SortOrderEnum>
+  }
+
   type Site = Node & {
     readonly buildTime: Maybe<Scalars['Date']>
     readonly children: ReadonlyArray<Node>
-    readonly graphqlTypegen: Maybe<SiteGraphqlTypegen>
+    readonly graphqlTypegen: Maybe<Scalars['Boolean']>
     readonly host: Maybe<Scalars['String']>
     readonly id: Scalars['ID']
     readonly internal: Internal
-    readonly jsxRuntime: Maybe<Scalars['String']>
     readonly parent: Maybe<Node>
-    readonly pathPrefix: Maybe<Scalars['String']>
-    readonly polyfill: Maybe<Scalars['Boolean']>
     readonly port: Maybe<Scalars['Int']>
     readonly siteMetadata: Maybe<SiteSiteMetadata>
-    readonly trailingSlash: Maybe<Scalars['String']>
   }
 
   type Site_buildTimeArgs = {
@@ -1775,33 +2250,25 @@ declare namespace Queries {
   type SiteFieldSelector = {
     readonly buildTime: InputMaybe<FieldSelectorEnum>
     readonly children: InputMaybe<NodeFieldSelector>
-    readonly graphqlTypegen: InputMaybe<SiteGraphqlTypegenFieldSelector>
+    readonly graphqlTypegen: InputMaybe<FieldSelectorEnum>
     readonly host: InputMaybe<FieldSelectorEnum>
     readonly id: InputMaybe<FieldSelectorEnum>
     readonly internal: InputMaybe<InternalFieldSelector>
-    readonly jsxRuntime: InputMaybe<FieldSelectorEnum>
     readonly parent: InputMaybe<NodeFieldSelector>
-    readonly pathPrefix: InputMaybe<FieldSelectorEnum>
-    readonly polyfill: InputMaybe<FieldSelectorEnum>
     readonly port: InputMaybe<FieldSelectorEnum>
     readonly siteMetadata: InputMaybe<SiteSiteMetadataFieldSelector>
-    readonly trailingSlash: InputMaybe<FieldSelectorEnum>
   }
 
   type SiteFilterInput = {
     readonly buildTime: InputMaybe<DateQueryOperatorInput>
     readonly children: InputMaybe<NodeFilterListInput>
-    readonly graphqlTypegen: InputMaybe<SiteGraphqlTypegenFilterInput>
+    readonly graphqlTypegen: InputMaybe<BooleanQueryOperatorInput>
     readonly host: InputMaybe<StringQueryOperatorInput>
     readonly id: InputMaybe<StringQueryOperatorInput>
     readonly internal: InputMaybe<InternalFilterInput>
-    readonly jsxRuntime: InputMaybe<StringQueryOperatorInput>
     readonly parent: InputMaybe<NodeFilterInput>
-    readonly pathPrefix: InputMaybe<StringQueryOperatorInput>
-    readonly polyfill: InputMaybe<BooleanQueryOperatorInput>
     readonly port: InputMaybe<IntQueryOperatorInput>
     readonly siteMetadata: InputMaybe<SiteSiteMetadataFilterInput>
-    readonly trailingSlash: InputMaybe<StringQueryOperatorInput>
   }
 
   type SiteFunction = Node & {
@@ -1934,26 +2401,6 @@ declare namespace Queries {
     readonly parent: InputMaybe<NodeSortInput>
     readonly pluginName: InputMaybe<SortOrderEnum>
     readonly relativeCompiledFilePath: InputMaybe<SortOrderEnum>
-  }
-
-  type SiteGraphqlTypegen = {
-    readonly generateOnBuild: Maybe<Scalars['Boolean']>
-    readonly typesOutputPath: Maybe<Scalars['String']>
-  }
-
-  type SiteGraphqlTypegenFieldSelector = {
-    readonly generateOnBuild: InputMaybe<FieldSelectorEnum>
-    readonly typesOutputPath: InputMaybe<FieldSelectorEnum>
-  }
-
-  type SiteGraphqlTypegenFilterInput = {
-    readonly generateOnBuild: InputMaybe<BooleanQueryOperatorInput>
-    readonly typesOutputPath: InputMaybe<StringQueryOperatorInput>
-  }
-
-  type SiteGraphqlTypegenSortInput = {
-    readonly generateOnBuild: InputMaybe<SortOrderEnum>
-    readonly typesOutputPath: InputMaybe<SortOrderEnum>
   }
 
   type SiteGroupConnection = {
@@ -2291,17 +2738,13 @@ declare namespace Queries {
   type SiteSortInput = {
     readonly buildTime: InputMaybe<SortOrderEnum>
     readonly children: InputMaybe<NodeSortInput>
-    readonly graphqlTypegen: InputMaybe<SiteGraphqlTypegenSortInput>
+    readonly graphqlTypegen: InputMaybe<SortOrderEnum>
     readonly host: InputMaybe<SortOrderEnum>
     readonly id: InputMaybe<SortOrderEnum>
     readonly internal: InputMaybe<InternalSortInput>
-    readonly jsxRuntime: InputMaybe<SortOrderEnum>
     readonly parent: InputMaybe<NodeSortInput>
-    readonly pathPrefix: InputMaybe<SortOrderEnum>
-    readonly polyfill: InputMaybe<SortOrderEnum>
     readonly port: InputMaybe<SortOrderEnum>
     readonly siteMetadata: InputMaybe<SiteSiteMetadataSortInput>
-    readonly trailingSlash: InputMaybe<SortOrderEnum>
   }
 
   type SortOrderEnum = 'ASC' | 'DESC'
@@ -2313,6 +2756,40 @@ declare namespace Queries {
     readonly ne: InputMaybe<Scalars['String']>
     readonly nin: InputMaybe<ReadonlyArray<InputMaybe<Scalars['String']>>>
     readonly regex: InputMaybe<Scalars['String']>
+  }
+
+  type DividePhotoQueryQueryVariables = Exact<{ [key: string]: never }>
+
+  type DividePhotoQueryQuery = {
+    readonly allFlickrPhoto: {
+      readonly edges: ReadonlyArray<{
+        readonly node: {
+          readonly id: string
+          readonly title: string | null
+          readonly description: string | null
+          readonly tags: string | null
+          readonly datetaken: string | null
+          readonly url_o: string | null
+          readonly width_q: number | null
+          readonly height_q: number | null
+          readonly url_q: string | null
+          readonly width_o: number | null
+          readonly height_o: number | null
+          readonly media: string | null
+          readonly media_status: string | null
+          readonly url_m: string | null
+          readonly url_c: string | null
+          readonly url_z: string | null
+          readonly farm: number | null
+          readonly server: string | null
+          readonly secret: string | null
+          readonly originalsecret: string | null
+          readonly photo_id: string | null
+          readonly latitude: string | null
+          readonly longitude: string | null
+        }
+      }>
+    }
   }
 
   type FlickrImageFragmentFragment = {
@@ -2339,6 +2816,8 @@ declare namespace Queries {
         readonly secret: string | null
         readonly originalsecret: string | null
         readonly photo_id: string | null
+        readonly latitude: string | null
+        readonly longitude: string | null
       }
     }>
   }
@@ -2370,6 +2849,8 @@ declare namespace Queries {
           readonly secret: string | null
           readonly originalsecret: string | null
           readonly photo_id: string | null
+          readonly latitude: string | null
+          readonly longitude: string | null
         }
       }>
     }
