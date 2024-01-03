@@ -9,19 +9,25 @@ export const MAP_HEIGHT = 510
 export const MAP_OFFSET_TOP = 30
 export const MAP_OFFSET_LEFT = 20
 
+const TRACK_COLOR = '#89CFF0'
+
+const INIT_ZOOM = 1.6
+const INIT_LNG = -109.9
+const INIT_LAT = 42.2
+
 mapboxgl.accessToken =
   'pk.eyJ1Ijoic2VwYW5zbSIsImEiOiJjbHE3MDYwcnoweHpzMmpxbGR1dmFiand0In0.57Pw_8KBRchh14a5yBWgeA'
 
 export const GdMap: React.FC = () => {
   const mapContainer = useRef<HTMLDivElement>()
   const map = useRef<Map>()
-  const [lng, setLng] = useState(-109.9)
-  const [lat, setLat] = useState(42.2)
+  const [lng, setLng] = useState(INIT_LNG)
+  const [lat, setLat] = useState(INIT_LAT)
   // const [lng, setLng] = useState(-73.952) // -109.9)
   // const [lat, setLat] = useState(40.749) // 42.2)
-  const [zoom, setZoom] = useState(1.6)
+  const [zoom, setZoom] = useState(INIT_ZOOM)
 
-  const [bindIndex, setBindIndex] = useState(0)
+  const [rideSegIndex, setRideSegIndex] = useState(-1)
 
   const rideData = useRideData()
   // console.log('ride', rideData)
@@ -34,20 +40,52 @@ export const GdMap: React.FC = () => {
   )
   // console.log(tracks)
   const bounds = rideData.allRides.nodes.map((ride) => [
-    ride.track.startingPoint.lon,
-    ride.track.startingPoint.lat,
-    ride.track.endPoint.lon,
-    ride.track.endPoint.lat
+    parseFloat(ride.track.startingPoint.lon),
+    parseFloat(ride.track.startingPoint.lat),
+    parseFloat(ride.track.endPoint.lon),
+    parseFloat(ride.track.endPoint.lat)
   ])
 
-  const setMapBoundry = (index: number) => {
+  const zoomOut = () => {
+    console.log(
+      bounds[0][0],
+      bounds[0][1],
+      bounds[bounds.length - 1][0],
+      bounds[bounds.length - 1][1]
+    )
+    map.current.fitBounds(
+      [
+        bounds[0][0],
+        bounds[0][1],
+        bounds[bounds.length - 1][0],
+        bounds[bounds.length - 1][1]
+      ],
+      {
+        padding: 100,
+        pitch: 20,
+        duration: 2000
+      }
+    )
+    // map.current.setPitch(80)
+    map.current.setFilter('route-layer', null)
+    setRideSegIndex(-1)
+  }
+
+  const zoomToSegIndex = (index: number) => {
     map.current.fitBounds(bounds[index], {
       padding: 20,
       pitch: 50,
-      duration: 3000
+      duration: 2000
     })
     // map.current.setPitch(80)
-    setBindIndex(index)
+    map.current.setFilter('route-layer', [
+      '==',
+      'name',
+      `track-${index}`
+      // true,
+      // false
+    ])
+    setRideSegIndex(index)
   }
 
   useEffect(() => {
@@ -72,10 +110,13 @@ export const GdMap: React.FC = () => {
         data: {
           type: 'FeatureCollection',
           // 'properties': {},
-          features: tracks.map((track) => ({
+          features: tracks.map((track, i) => ({
             geometry: {
               type: 'LineString',
               coordinates: track
+            },
+            properties: {
+              name: `track-${i}`
             }
           }))
         }
@@ -92,7 +133,7 @@ export const GdMap: React.FC = () => {
       map.current.setTerrain({ source: 'mapbox-dem', exaggeration: 1.7 })
 
       map.current.addLayer({
-        id: 'route',
+        id: 'route-gray-layer',
         type: 'line',
         source: 'route',
         layout: {
@@ -100,21 +141,53 @@ export const GdMap: React.FC = () => {
           'line-cap': 'round'
         },
         paint: {
-          'line-color': '#FFBF00',
+          'line-color': '#888',
+          'line-width': 3
+        }
+      })
+
+      map.current.addLayer({
+        id: 'route-layer',
+        type: 'line',
+        source: 'route',
+        layout: {
+          'line-join': 'round',
+          'line-cap': 'round'
+        },
+        paint: {
+          'line-color': TRACK_COLOR,
           'line-width': 3
         }
       })
     })
   })
 
+  const hasPrevSeg = () => rideSegIndex >= 0
+  const hasNextSeg = () => rideSegIndex !== tracks.length - 1
+
   return (
     <MapCrop>
       <div className="map-container" ref={mapContainer} />
-      <button type="button" onClick={() => setMapBoundry(bindIndex - 1)}>
-        prev
+      <button
+        disabled={!hasPrevSeg()}
+        type="button"
+        onClick={() => zoomToSegIndex(rideSegIndex - 1)}
+      >
+        {hasPrevSeg() ? `< Day ${rideSegIndex + 1}` : 'N/A'}
       </button>
-      <button type="button" onClick={() => setMapBoundry(bindIndex + 1)}>
-        next
+      <button
+        disabled={!hasNextSeg()}
+        type="button"
+        onClick={() => zoomToSegIndex(rideSegIndex + 1)}
+      >
+        {hasNextSeg() ? `Day ${rideSegIndex + 2} >` : 'N/A'}
+      </button>
+      <button
+        disabled={rideSegIndex === -1}
+        type="button"
+        onClick={() => zoomOut()}
+      >
+        Entire route
       </button>
     </MapCrop>
   )
