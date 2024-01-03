@@ -141,9 +141,7 @@ const PageWrapper = styled.div`
 `
 
 const MapWrapper = styled.div`
-  position: relative;
-  width: 500px;
-  height: 900px;
+  width: 100%;
 `
 /*
 const ImageWrapper = styled.div`

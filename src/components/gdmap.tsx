@@ -3,6 +3,7 @@ import styled from 'styled-components'
 // eslint-disable-next-line import/no-webpack-loader-syntax,
 import mapboxgl, { Map } from 'mapbox-gl'
 import { useRideData } from '../hooks/useRideData'
+import 'mapbox-gl/dist/mapbox-gl.css'
 
 export const MAP_WIDTH = 200
 export const MAP_HEIGHT = 510
@@ -11,7 +12,7 @@ export const MAP_OFFSET_LEFT = 20
 
 const TRACK_COLOR = '#89CFF0'
 
-const INIT_ZOOM = 1.6
+const INIT_ZOOM = 2.2
 const INIT_LNG = -109.9
 const INIT_LAT = 42.2
 
@@ -130,7 +131,7 @@ export const GdMap: React.FC = () => {
         tileSize: 512,
         maxzoom: 14
       })
-      map.current.setTerrain({ source: 'mapbox-dem', exaggeration: 1.7 })
+      map.current.setTerrain({ source: 'mapbox-dem', exaggeration: 2 })
 
       map.current.addLayer({
         id: 'route-gray-layer',
@@ -167,30 +168,47 @@ export const GdMap: React.FC = () => {
 
   return (
     <MapCrop>
-      <div className="map-container" ref={mapContainer} />
-      <button
+      <div
+        className="map-container"
+        style={{ height: '60vh', width: '100%' }}
+        ref={mapContainer}
+      />
+      <NavButton
         disabled={!hasPrevSeg()}
         type="button"
         onClick={() => zoomToSegIndex(rideSegIndex - 1)}
       >
-        {hasPrevSeg() ? `< Day ${rideSegIndex + 1}` : 'N/A'}
-      </button>
-      <button
-        disabled={!hasNextSeg()}
-        type="button"
-        onClick={() => zoomToSegIndex(rideSegIndex + 1)}
-      >
-        {hasNextSeg() ? `Day ${rideSegIndex + 2} >` : 'N/A'}
-      </button>
-      <button
+        {hasPrevSeg() ? `< Day ${rideSegIndex + 1}` : '<'}
+      </NavButton>
+      <NavButton
         disabled={rideSegIndex === -1}
         type="button"
         onClick={() => zoomOut()}
       >
         Entire route
-      </button>
+      </NavButton>
+      <NavButton
+        disabled={!hasNextSeg()}
+        type="button"
+        onClick={() => zoomToSegIndex(rideSegIndex + 1)}
+      >
+        {hasNextSeg() ? `Day ${rideSegIndex + 2} >` : '>'}
+      </NavButton>
     </MapCrop>
   )
 }
 
-const MapCrop = styled.div``
+const NavButton = styled.button`
+  border: 1px solid #aaa;
+  background-color: #fff;
+  font-size: 1em;
+  font-family: arial open-sans;
+  margin-right: 0px;
+  width: 33.3%;
+  cursor: pointer;
+  margin-top: 5px;
+`
+
+const MapCrop = styled.div`
+  height: 900px;
+`
