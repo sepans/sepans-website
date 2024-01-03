@@ -1,6 +1,9 @@
+/*
 // @ts-ignore
 // import  * as fit  from '@garmin/fitsdk'
 
+// import from '@garmin/fitsdk' doesn't work possibily because
+// of esm exports in fitsdk. ./node_modoles works locally but not on netlifly
 import { Stream, Decoder } from './node_modules/@garmin/fitsdk'
 // import('@garmin/fitsdk').then(fit => {
 //     // console.log('import fit', fit)
@@ -73,3 +76,4 @@ async function onCreateNode({
 exports.onCreateNode = onCreateNode
 
 exports.shouldOnCreateNode = shouldOnCreateNode
+*/
