@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react'
 import styled from 'styled-components'
 // eslint-disable-next-line import/no-webpack-loader-syntax,
 import mapboxgl, { Map } from 'mapbox-gl'
+import { useRideData } from '../hooks/useRideData'
 
 export const MAP_WIDTH = 200
 export const MAP_HEIGHT = 510
@@ -16,26 +17,105 @@ export const GdMap: React.FC = () => {
   const map = useRef<Map>()
   const [lng, setLng] = useState(-109.9)
   const [lat, setLat] = useState(42.2)
-  const [zoom, setZoom] = useState(1.8)
+  // const [lng, setLng] = useState(-73.952) // -109.9)
+  // const [lat, setLat] = useState(40.749) // 42.2)
+  const [zoom, setZoom] = useState(1.6)
+
+  const [bindIndex, setBindIndex] = useState(0)
+
+  const rideData = useRideData()
+  // console.log('ride', rideData)
+
+  const tracks = rideData.allRides.nodes.map((ride) =>
+    ride.track.points?.map((point) => [
+      parseFloat(point.lon),
+      parseFloat(point.lat)
+    ])
+  )
+  // console.log(tracks)
+  const bounds = rideData.allRides.nodes.map((ride) => [
+    ride.track.startingPoint.lon,
+    ride.track.startingPoint.lat,
+    ride.track.endPoint.lon,
+    ride.track.endPoint.lat
+  ])
+
+  const setMapBoundry = (index: number) => {
+    map.current.fitBounds(bounds[index], {
+      padding: 20,
+      pitch: 50,
+      duration: 3000
+    })
+    // map.current.setPitch(80)
+    setBindIndex(index)
+  }
 
   useEffect(() => {
     if (map.current) return
     map.current = new mapboxgl.Map({
       container: mapContainer.current || '',
-      style: 'mapbox://styles/mapbox/streets-v12',
+      style: 'mapbox://styles/mapbox/satellite-streets-v12',
       center: [lng, lat],
-      zoom
+      zoom,
+      pitch: 20
+      // bearing: -180,
     })
     map.current.on('move', () => {
       setLng(map.current.getCenter().lng.toFixed(4))
       setLat(map.current.getCenter().lat.toFixed(4))
       setZoom(map.current.getZoom().toFixed(2))
     })
+
+    map.current.on('load', () => {
+      const trackSource = {
+        type: 'geojson',
+        data: {
+          type: 'FeatureCollection',
+          // 'properties': {},
+          features: tracks.map((track) => ({
+            geometry: {
+              type: 'LineString',
+              coordinates: track
+            }
+          }))
+        }
+      }
+      // console.log(trackSource)
+      map.current.addSource(`route`, trackSource)
+
+      map.current.addSource('mapbox-dem', {
+        type: 'raster-dem',
+        url: 'mapbox://mapbox.mapbox-terrain-dem-v1',
+        tileSize: 512,
+        maxzoom: 14
+      })
+      map.current.setTerrain({ source: 'mapbox-dem', exaggeration: 1.7 })
+
+      map.current.addLayer({
+        id: 'route',
+        type: 'line',
+        source: 'route',
+        layout: {
+          'line-join': 'round',
+          'line-cap': 'round'
+        },
+        paint: {
+          'line-color': '#FFBF00',
+          'line-width': 3
+        }
+      })
+    })
   })
 
   return (
     <MapCrop>
       <div className="map-container" ref={mapContainer} />
+      <button type="button" onClick={() => setMapBoundry(bindIndex - 1)}>
+        prev
+      </button>
+      <button type="button" onClick={() => setMapBoundry(bindIndex + 1)}>
+        next
+      </button>
     </MapCrop>
   )
 }

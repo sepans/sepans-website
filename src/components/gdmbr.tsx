@@ -1,15 +1,15 @@
 /* eslint-disable import/no-unresolved */
 /* eslint-disable react/jsx-props-no-spreading */
-import React, { useState } from 'react'
+import React from 'react'
 import styled from 'styled-components'
-import Lightbox from 'yet-another-react-lightbox'
-import { geoAlbersUsa } from 'd3-geo'
+// import Lightbox from 'yet-another-react-lightbox'
+// import { geoAlbersUsa } from 'd3-geo'
 import { useGreatDivideImages } from '../hooks/useGreatDivideImages'
 
 import 'yet-another-react-lightbox/styles.css'
-import { GdMap, MAP_OFFSET_LEFT, MAP_OFFSET_TOP } from './gdmap'
+import { GdMap } from './gdmap'
 
-const PHOTO_WIDTH = 100
+// const PHOTO_WIDTH = 100
 
 export const Gdmbr: React.FC = () => {
   const photos = useGreatDivideImages()
@@ -30,14 +30,13 @@ interface ImageGroupProps {
   group: ImageGroupsType
 }
 
-const ImageGroup: React.FC<ImageGroupProps> = (props) => {
-  const { group } = props
-  const [lightboxIndex, setLightboxIndex] = useState<number>(-1)
+const ImageGroup: React.FC<ImageGroupProps> = () => (
+  // const { group } = props
+  // const [lightboxIndex, setLightboxIndex] = useState<number>(-1)
 
-  return (
-    <>
-      <MapWrapper>
-        <PointerWrapper>
+  <>
+    <MapWrapper>
+      {/* <PointerWrapper>
           {group.map((photo, i) => (
             // eslint-disable-next-line react/jsx-props-no-spreading
 
@@ -49,11 +48,11 @@ const ImageGroup: React.FC<ImageGroupProps> = (props) => {
               {...photo}
             />
           ))}
-        </PointerWrapper>
-        <GdMap />
-      </MapWrapper>
+        </PointerWrapper> */}
+      <GdMap />
+    </MapWrapper>
 
-      <ImageWrapper>
+    {/* <ImageWrapper>
         {group.map((photo, i) => (
           // eslint-disable-next-line react/jsx-props-no-spreading
           <LinkedImage
@@ -70,10 +69,11 @@ const ImageGroup: React.FC<ImageGroupProps> = (props) => {
         close={() => setLightboxIndex(-1)}
         index={lightboxIndex}
         slides={group.map((photo) => ({ src: photo.imageSrc }))}
-      />
-    </>
-  )
-}
+      /> */}
+  </>
+)
+
+/*
 
 type ImageProps = ImageGroupsType[0]
 
@@ -82,6 +82,7 @@ interface LinkedImageProps extends ImageProps {
   click: (index: any) => void
   albumIndex?: number
 }
+
 
 const ImagePointer: React.FC<LinkedImageProps> = (props) => {
   const { albumIndex, click, latitude, longitude } = props
@@ -102,6 +103,7 @@ const ImagePointer: React.FC<LinkedImageProps> = (props) => {
     </>
   )
 }
+
 
 const LinkedImage: React.FC<LinkedImageProps> = (props) => {
   const {
@@ -128,16 +130,22 @@ const LinkedImage: React.FC<LinkedImageProps> = (props) => {
         >
           <img alt={description} width={imageWidth} src={thumbnailSrc} />
         </ImageButton>
-      </PhotoWrapper>
-    </>
-  )
-}
-
+        </PhotoWrapper>
+        </>
+        )
+      }
+*/
 const PageWrapper = styled.div`
   width: 100%;
   display: flex;
 `
 
+const MapWrapper = styled.div`
+  position: relative;
+  width: 500px;
+  height: 900px;
+`
+/*
 const ImageWrapper = styled.div`
   border: 1px solid red;
   width: 100px;
@@ -153,10 +161,6 @@ const PhotoWrapper = styled.div`
   }
 `
 
-const MapWrapper = styled.div`
-  position: relative;
-  width: 300px;
-`
 
 const PointerWrapper = styled.div`
   position: absolute;
@@ -165,7 +169,7 @@ const PointerWrapper = styled.div`
 
 const PhotoDot = styled.div`
   position: absolute;
-  width: 5px; /*${PHOTO_WIDTH}px;*/
+  width: 5px; 
   height: 5px;
   border-radius: 50%;
   background-color: black;
@@ -179,3 +183,4 @@ const ImageButton = styled.button`
   cursor: pointer;
   position: absolute;
 `
+*/
