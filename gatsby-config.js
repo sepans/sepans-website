@@ -11,11 +11,20 @@ module.exports = {
   graphqlTypegen: true,
   plugins: [
     'gatsby-plugin-react-helmet',
+    `gatsby-transformer-gpx`,
+    `gatsby-transformer-fit`,
     {
       resolve: 'gatsby-source-filesystem',
       options: {
         name: 'images',
         path: `${__dirname}/src/images`
+      }
+    },
+    {
+      resolve: 'gatsby-source-filesystem',
+      options: {
+        name: 'data',
+        path: `${__dirname}/static/data`
       }
     },
     // "gatsby-transformer-sharp",

@@ -21,6 +21,8 @@ export const processFlickrImageData = (data: Queries.PhotoQueryQuery) =>
         dateTaken: node.datetaken,
         label,
         media: node.media,
+        longitude: node.longitude,
+        latitude: node.latitude,
         videoUrl: `https://www.flickr.com/apps/video/stewart.swf?v=2968162862&photo_id=${node.photo_id}&photo_secret=${node.secret}`
       }
     })

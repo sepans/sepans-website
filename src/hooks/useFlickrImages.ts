@@ -6,7 +6,7 @@ import { processFlickrImageData } from './shared/ProcessFlickrImageData'
 export const useFlickrImages = () => {
   const generalAlbumQuery = graphql`
     query PhotoQuery {
-      allFlickrPhoto(limit: 150, filter: { tags: { ne: "gdmbr" } }) {
+      allFlickrPhoto(limit: 200, filter: { tags: { ne: "gdmbr" } }) {
         ...FlickrImageFragment
       }
     }

@@ -26,6 +26,8 @@ export const flickrImageFragment = graphql`
         secret
         originalsecret
         photo_id
+        latitude
+        longitude
       }
     }
   }
