@@ -29,6 +29,452 @@ type Scalars = {
   JSON: Record<string, unknown>;
 };
 
+type ActivitiesCsv = Node & {
+  readonly Activity_Count: Maybe<Scalars['String']>;
+  readonly Activity_Date: Maybe<Scalars['String']>;
+  readonly Activity_Description: Maybe<Scalars['String']>;
+  readonly Activity_Gear: Maybe<Scalars['String']>;
+  readonly Activity_ID: Maybe<Scalars['String']>;
+  readonly Activity_Name: Maybe<Scalars['String']>;
+  readonly Activity_Private_Note: Maybe<Scalars['String']>;
+  readonly Activity_Type: Maybe<Scalars['String']>;
+  readonly Apparent_Temperature: Maybe<Scalars['String']>;
+  readonly Athlete_Weight: Maybe<Scalars['String']>;
+  readonly Average_Cadence: Maybe<Scalars['String']>;
+  readonly Average_Elapsed_Speed: Maybe<Scalars['String']>;
+  readonly Average_Flow: Maybe<Scalars['String']>;
+  readonly Average_Grade: Maybe<Scalars['String']>;
+  readonly Average_Heart_Rate: Maybe<Scalars['String']>;
+  readonly Average_Negative_Grade: Maybe<Scalars['String']>;
+  readonly Average_Positive_Grade: Maybe<Scalars['String']>;
+  readonly Average_Speed: Maybe<Scalars['String']>;
+  readonly Average_Temperature: Maybe<Scalars['String']>;
+  readonly Average_Watts: Maybe<Scalars['String']>;
+  readonly Bike: Maybe<Scalars['String']>;
+  readonly Bike_Weight: Maybe<Scalars['String']>;
+  readonly Calories: Maybe<Scalars['String']>;
+  readonly Cloud_Cover: Maybe<Scalars['String']>;
+  readonly Commute: Maybe<Scalars['String']>;
+  readonly Dewpoint: Maybe<Scalars['String']>;
+  readonly Dirt_Distance: Maybe<Scalars['String']>;
+  readonly Distance: Maybe<Scalars['String']>;
+  readonly Downhill_Time: Maybe<Scalars['String']>;
+  readonly Elapsed_Time: Maybe<Scalars['String']>;
+  readonly Elevation_Gain: Maybe<Scalars['String']>;
+  readonly Elevation_High: Maybe<Scalars['String']>;
+  readonly Elevation_Loss: Maybe<Scalars['String']>;
+  readonly Elevation_Low: Maybe<Scalars['String']>;
+  readonly Filename: Maybe<Scalars['String']>;
+  readonly Flagged: Maybe<Scalars['String']>;
+  readonly From_Upload: Maybe<Scalars['String']>;
+  readonly Gear: Maybe<Scalars['String']>;
+  readonly Grade_Adjusted_Distance: Maybe<Scalars['String']>;
+  readonly Humidity: Maybe<Scalars['String']>;
+  readonly Jump_Count: Maybe<Scalars['String']>;
+  readonly Max_Cadence: Maybe<Scalars['String']>;
+  readonly Max_Grade: Maybe<Scalars['String']>;
+  readonly Max_Heart_Rate: Maybe<Scalars['String']>;
+  readonly Max_Speed: Maybe<Scalars['String']>;
+  readonly Max_Temperature: Maybe<Scalars['String']>;
+  readonly Max_Watts: Maybe<Scalars['String']>;
+  readonly Media: Maybe<Scalars['String']>;
+  readonly Moon_Phase: Maybe<Scalars['String']>;
+  readonly Moving_Time: Maybe<Scalars['String']>;
+  readonly Newly_Explored_Dirt_Distance: Maybe<Scalars['String']>;
+  readonly Newly_Explored_Distance: Maybe<Scalars['String']>;
+  readonly Number_of_Runs: Maybe<Scalars['String']>;
+  readonly Other_Time: Maybe<Scalars['String']>;
+  readonly Perceived_Exertion: Maybe<Scalars['String']>;
+  readonly Perceived_Relative_Effort: Maybe<Scalars['String']>;
+  readonly Power_Count: Maybe<Scalars['String']>;
+  readonly Precipitation_Intensity: Maybe<Scalars['String']>;
+  readonly Precipitation_Probability: Maybe<Scalars['String']>;
+  readonly Precipitation_Type: Maybe<Scalars['String']>;
+  readonly Prefer_Perceived_Exertion: Maybe<Scalars['String']>;
+  readonly Relative_Effort: Maybe<Scalars['String']>;
+  readonly Start_Time: Maybe<Scalars['String']>;
+  readonly Sunrise_Time: Maybe<Scalars['String']>;
+  readonly Sunset_Time: Maybe<Scalars['String']>;
+  readonly Total_Grit: Maybe<Scalars['String']>;
+  readonly Total_Steps: Maybe<Scalars['String']>;
+  readonly Total_Weight_Lifted: Maybe<Scalars['String']>;
+  readonly Total_Work: Maybe<Scalars['String']>;
+  readonly Type: Maybe<Scalars['String']>;
+  readonly UV_Index: Maybe<Scalars['String']>;
+  readonly Uphill_Time: Maybe<Scalars['String']>;
+  readonly Weather_Condition: Maybe<Scalars['String']>;
+  readonly Weather_Observation_Time: Maybe<Scalars['String']>;
+  readonly Weather_Ozone: Maybe<Scalars['String']>;
+  readonly Weather_Pressure: Maybe<Scalars['String']>;
+  readonly Weather_Temperature: Maybe<Scalars['String']>;
+  readonly Weather_Visibility: Maybe<Scalars['String']>;
+  readonly Weighted_Average_Power: Maybe<Scalars['String']>;
+  readonly Wind_Bearing: Maybe<Scalars['String']>;
+  readonly Wind_Gust: Maybe<Scalars['String']>;
+  readonly Wind_Speed: Maybe<Scalars['String']>;
+  readonly children: ReadonlyArray<Node>;
+  readonly id: Scalars['ID'];
+  readonly internal: Internal;
+  readonly parent: Maybe<Node>;
+};
+
+type ActivitiesCsvConnection = {
+  readonly distinct: ReadonlyArray<Scalars['String']>;
+  readonly edges: ReadonlyArray<ActivitiesCsvEdge>;
+  readonly group: ReadonlyArray<ActivitiesCsvGroupConnection>;
+  readonly max: Maybe<Scalars['Float']>;
+  readonly min: Maybe<Scalars['Float']>;
+  readonly nodes: ReadonlyArray<ActivitiesCsv>;
+  readonly pageInfo: PageInfo;
+  readonly sum: Maybe<Scalars['Float']>;
+  readonly totalCount: Scalars['Int'];
+};
+
+
+type ActivitiesCsvConnection_distinctArgs = {
+  field: ActivitiesCsvFieldSelector;
+};
+
+
+type ActivitiesCsvConnection_groupArgs = {
+  field: ActivitiesCsvFieldSelector;
+  limit: InputMaybe<Scalars['Int']>;
+  skip: InputMaybe<Scalars['Int']>;
+};
+
+
+type ActivitiesCsvConnection_maxArgs = {
+  field: ActivitiesCsvFieldSelector;
+};
+
+
+type ActivitiesCsvConnection_minArgs = {
+  field: ActivitiesCsvFieldSelector;
+};
+
+
+type ActivitiesCsvConnection_sumArgs = {
+  field: ActivitiesCsvFieldSelector;
+};
+
+type ActivitiesCsvEdge = {
+  readonly next: Maybe<ActivitiesCsv>;
+  readonly node: ActivitiesCsv;
+  readonly previous: Maybe<ActivitiesCsv>;
+};
+
+type ActivitiesCsvFieldSelector = {
+  readonly Activity_Count: InputMaybe<FieldSelectorEnum>;
+  readonly Activity_Date: InputMaybe<FieldSelectorEnum>;
+  readonly Activity_Description: InputMaybe<FieldSelectorEnum>;
+  readonly Activity_Gear: InputMaybe<FieldSelectorEnum>;
+  readonly Activity_ID: InputMaybe<FieldSelectorEnum>;
+  readonly Activity_Name: InputMaybe<FieldSelectorEnum>;
+  readonly Activity_Private_Note: InputMaybe<FieldSelectorEnum>;
+  readonly Activity_Type: InputMaybe<FieldSelectorEnum>;
+  readonly Apparent_Temperature: InputMaybe<FieldSelectorEnum>;
+  readonly Athlete_Weight: InputMaybe<FieldSelectorEnum>;
+  readonly Average_Cadence: InputMaybe<FieldSelectorEnum>;
+  readonly Average_Elapsed_Speed: InputMaybe<FieldSelectorEnum>;
+  readonly Average_Flow: InputMaybe<FieldSelectorEnum>;
+  readonly Average_Grade: InputMaybe<FieldSelectorEnum>;
+  readonly Average_Heart_Rate: InputMaybe<FieldSelectorEnum>;
+  readonly Average_Negative_Grade: InputMaybe<FieldSelectorEnum>;
+  readonly Average_Positive_Grade: InputMaybe<FieldSelectorEnum>;
+  readonly Average_Speed: InputMaybe<FieldSelectorEnum>;
+  readonly Average_Temperature: InputMaybe<FieldSelectorEnum>;
+  readonly Average_Watts: InputMaybe<FieldSelectorEnum>;
+  readonly Bike: InputMaybe<FieldSelectorEnum>;
+  readonly Bike_Weight: InputMaybe<FieldSelectorEnum>;
+  readonly Calories: InputMaybe<FieldSelectorEnum>;
+  readonly Cloud_Cover: InputMaybe<FieldSelectorEnum>;
+  readonly Commute: InputMaybe<FieldSelectorEnum>;
+  readonly Dewpoint: InputMaybe<FieldSelectorEnum>;
+  readonly Dirt_Distance: InputMaybe<FieldSelectorEnum>;
+  readonly Distance: InputMaybe<FieldSelectorEnum>;
+  readonly Downhill_Time: InputMaybe<FieldSelectorEnum>;
+  readonly Elapsed_Time: InputMaybe<FieldSelectorEnum>;
+  readonly Elevation_Gain: InputMaybe<FieldSelectorEnum>;
+  readonly Elevation_High: InputMaybe<FieldSelectorEnum>;
+  readonly Elevation_Loss: InputMaybe<FieldSelectorEnum>;
+  readonly Elevation_Low: InputMaybe<FieldSelectorEnum>;
+  readonly Filename: InputMaybe<FieldSelectorEnum>;
+  readonly Flagged: InputMaybe<FieldSelectorEnum>;
+  readonly From_Upload: InputMaybe<FieldSelectorEnum>;
+  readonly Gear: InputMaybe<FieldSelectorEnum>;
+  readonly Grade_Adjusted_Distance: InputMaybe<FieldSelectorEnum>;
+  readonly Humidity: InputMaybe<FieldSelectorEnum>;
+  readonly Jump_Count: InputMaybe<FieldSelectorEnum>;
+  readonly Max_Cadence: InputMaybe<FieldSelectorEnum>;
+  readonly Max_Grade: InputMaybe<FieldSelectorEnum>;
+  readonly Max_Heart_Rate: InputMaybe<FieldSelectorEnum>;
+  readonly Max_Speed: InputMaybe<FieldSelectorEnum>;
+  readonly Max_Temperature: InputMaybe<FieldSelectorEnum>;
+  readonly Max_Watts: InputMaybe<FieldSelectorEnum>;
+  readonly Media: InputMaybe<FieldSelectorEnum>;
+  readonly Moon_Phase: InputMaybe<FieldSelectorEnum>;
+  readonly Moving_Time: InputMaybe<FieldSelectorEnum>;
+  readonly Newly_Explored_Dirt_Distance: InputMaybe<FieldSelectorEnum>;
+  readonly Newly_Explored_Distance: InputMaybe<FieldSelectorEnum>;
+  readonly Number_of_Runs: InputMaybe<FieldSelectorEnum>;
+  readonly Other_Time: InputMaybe<FieldSelectorEnum>;
+  readonly Perceived_Exertion: InputMaybe<FieldSelectorEnum>;
+  readonly Perceived_Relative_Effort: InputMaybe<FieldSelectorEnum>;
+  readonly Power_Count: InputMaybe<FieldSelectorEnum>;
+  readonly Precipitation_Intensity: InputMaybe<FieldSelectorEnum>;
+  readonly Precipitation_Probability: InputMaybe<FieldSelectorEnum>;
+  readonly Precipitation_Type: InputMaybe<FieldSelectorEnum>;
+  readonly Prefer_Perceived_Exertion: InputMaybe<FieldSelectorEnum>;
+  readonly Relative_Effort: InputMaybe<FieldSelectorEnum>;
+  readonly Start_Time: InputMaybe<FieldSelectorEnum>;
+  readonly Sunrise_Time: InputMaybe<FieldSelectorEnum>;
+  readonly Sunset_Time: InputMaybe<FieldSelectorEnum>;
+  readonly Total_Grit: InputMaybe<FieldSelectorEnum>;
+  readonly Total_Steps: InputMaybe<FieldSelectorEnum>;
+  readonly Total_Weight_Lifted: InputMaybe<FieldSelectorEnum>;
+  readonly Total_Work: InputMaybe<FieldSelectorEnum>;
+  readonly Type: InputMaybe<FieldSelectorEnum>;
+  readonly UV_Index: InputMaybe<FieldSelectorEnum>;
+  readonly Uphill_Time: InputMaybe<FieldSelectorEnum>;
+  readonly Weather_Condition: InputMaybe<FieldSelectorEnum>;
+  readonly Weather_Observation_Time: InputMaybe<FieldSelectorEnum>;
+  readonly Weather_Ozone: InputMaybe<FieldSelectorEnum>;
+  readonly Weather_Pressure: InputMaybe<FieldSelectorEnum>;
+  readonly Weather_Temperature: InputMaybe<FieldSelectorEnum>;
+  readonly Weather_Visibility: InputMaybe<FieldSelectorEnum>;
+  readonly Weighted_Average_Power: InputMaybe<FieldSelectorEnum>;
+  readonly Wind_Bearing: InputMaybe<FieldSelectorEnum>;
+  readonly Wind_Gust: InputMaybe<FieldSelectorEnum>;
+  readonly Wind_Speed: InputMaybe<FieldSelectorEnum>;
+  readonly children: InputMaybe<NodeFieldSelector>;
+  readonly id: InputMaybe<FieldSelectorEnum>;
+  readonly internal: InputMaybe<InternalFieldSelector>;
+  readonly parent: InputMaybe<NodeFieldSelector>;
+};
+
+type ActivitiesCsvFilterInput = {
+  readonly Activity_Count: InputMaybe<StringQueryOperatorInput>;
+  readonly Activity_Date: InputMaybe<StringQueryOperatorInput>;
+  readonly Activity_Description: InputMaybe<StringQueryOperatorInput>;
+  readonly Activity_Gear: InputMaybe<StringQueryOperatorInput>;
+  readonly Activity_ID: InputMaybe<StringQueryOperatorInput>;
+  readonly Activity_Name: InputMaybe<StringQueryOperatorInput>;
+  readonly Activity_Private_Note: InputMaybe<StringQueryOperatorInput>;
+  readonly Activity_Type: InputMaybe<StringQueryOperatorInput>;
+  readonly Apparent_Temperature: InputMaybe<StringQueryOperatorInput>;
+  readonly Athlete_Weight: InputMaybe<StringQueryOperatorInput>;
+  readonly Average_Cadence: InputMaybe<StringQueryOperatorInput>;
+  readonly Average_Elapsed_Speed: InputMaybe<StringQueryOperatorInput>;
+  readonly Average_Flow: InputMaybe<StringQueryOperatorInput>;
+  readonly Average_Grade: InputMaybe<StringQueryOperatorInput>;
+  readonly Average_Heart_Rate: InputMaybe<StringQueryOperatorInput>;
+  readonly Average_Negative_Grade: InputMaybe<StringQueryOperatorInput>;
+  readonly Average_Positive_Grade: InputMaybe<StringQueryOperatorInput>;
+  readonly Average_Speed: InputMaybe<StringQueryOperatorInput>;
+  readonly Average_Temperature: InputMaybe<StringQueryOperatorInput>;
+  readonly Average_Watts: InputMaybe<StringQueryOperatorInput>;
+  readonly Bike: InputMaybe<StringQueryOperatorInput>;
+  readonly Bike_Weight: InputMaybe<StringQueryOperatorInput>;
+  readonly Calories: InputMaybe<StringQueryOperatorInput>;
+  readonly Cloud_Cover: InputMaybe<StringQueryOperatorInput>;
+  readonly Commute: InputMaybe<StringQueryOperatorInput>;
+  readonly Dewpoint: InputMaybe<StringQueryOperatorInput>;
+  readonly Dirt_Distance: InputMaybe<StringQueryOperatorInput>;
+  readonly Distance: InputMaybe<StringQueryOperatorInput>;
+  readonly Downhill_Time: InputMaybe<StringQueryOperatorInput>;
+  readonly Elapsed_Time: InputMaybe<StringQueryOperatorInput>;
+  readonly Elevation_Gain: InputMaybe<StringQueryOperatorInput>;
+  readonly Elevation_High: InputMaybe<StringQueryOperatorInput>;
+  readonly Elevation_Loss: InputMaybe<StringQueryOperatorInput>;
+  readonly Elevation_Low: InputMaybe<StringQueryOperatorInput>;
+  readonly Filename: InputMaybe<StringQueryOperatorInput>;
+  readonly Flagged: InputMaybe<StringQueryOperatorInput>;
+  readonly From_Upload: InputMaybe<StringQueryOperatorInput>;
+  readonly Gear: InputMaybe<StringQueryOperatorInput>;
+  readonly Grade_Adjusted_Distance: InputMaybe<StringQueryOperatorInput>;
+  readonly Humidity: InputMaybe<StringQueryOperatorInput>;
+  readonly Jump_Count: InputMaybe<StringQueryOperatorInput>;
+  readonly Max_Cadence: InputMaybe<StringQueryOperatorInput>;
+  readonly Max_Grade: InputMaybe<StringQueryOperatorInput>;
+  readonly Max_Heart_Rate: InputMaybe<StringQueryOperatorInput>;
+  readonly Max_Speed: InputMaybe<StringQueryOperatorInput>;
+  readonly Max_Temperature: InputMaybe<StringQueryOperatorInput>;
+  readonly Max_Watts: InputMaybe<StringQueryOperatorInput>;
+  readonly Media: InputMaybe<StringQueryOperatorInput>;
+  readonly Moon_Phase: InputMaybe<StringQueryOperatorInput>;
+  readonly Moving_Time: InputMaybe<StringQueryOperatorInput>;
+  readonly Newly_Explored_Dirt_Distance: InputMaybe<StringQueryOperatorInput>;
+  readonly Newly_Explored_Distance: InputMaybe<StringQueryOperatorInput>;
+  readonly Number_of_Runs: InputMaybe<StringQueryOperatorInput>;
+  readonly Other_Time: InputMaybe<StringQueryOperatorInput>;
+  readonly Perceived_Exertion: InputMaybe<StringQueryOperatorInput>;
+  readonly Perceived_Relative_Effort: InputMaybe<StringQueryOperatorInput>;
+  readonly Power_Count: InputMaybe<StringQueryOperatorInput>;
+  readonly Precipitation_Intensity: InputMaybe<StringQueryOperatorInput>;
+  readonly Precipitation_Probability: InputMaybe<StringQueryOperatorInput>;
+  readonly Precipitation_Type: InputMaybe<StringQueryOperatorInput>;
+  readonly Prefer_Perceived_Exertion: InputMaybe<StringQueryOperatorInput>;
+  readonly Relative_Effort: InputMaybe<StringQueryOperatorInput>;
+  readonly Start_Time: InputMaybe<StringQueryOperatorInput>;
+  readonly Sunrise_Time: InputMaybe<StringQueryOperatorInput>;
+  readonly Sunset_Time: InputMaybe<StringQueryOperatorInput>;
+  readonly Total_Grit: InputMaybe<StringQueryOperatorInput>;
+  readonly Total_Steps: InputMaybe<StringQueryOperatorInput>;
+  readonly Total_Weight_Lifted: InputMaybe<StringQueryOperatorInput>;
+  readonly Total_Work: InputMaybe<StringQueryOperatorInput>;
+  readonly Type: InputMaybe<StringQueryOperatorInput>;
+  readonly UV_Index: InputMaybe<StringQueryOperatorInput>;
+  readonly Uphill_Time: InputMaybe<StringQueryOperatorInput>;
+  readonly Weather_Condition: InputMaybe<StringQueryOperatorInput>;
+  readonly Weather_Observation_Time: InputMaybe<StringQueryOperatorInput>;
+  readonly Weather_Ozone: InputMaybe<StringQueryOperatorInput>;
+  readonly Weather_Pressure: InputMaybe<StringQueryOperatorInput>;
+  readonly Weather_Temperature: InputMaybe<StringQueryOperatorInput>;
+  readonly Weather_Visibility: InputMaybe<StringQueryOperatorInput>;
+  readonly Weighted_Average_Power: InputMaybe<StringQueryOperatorInput>;
+  readonly Wind_Bearing: InputMaybe<StringQueryOperatorInput>;
+  readonly Wind_Gust: InputMaybe<StringQueryOperatorInput>;
+  readonly Wind_Speed: InputMaybe<StringQueryOperatorInput>;
+  readonly children: InputMaybe<NodeFilterListInput>;
+  readonly id: InputMaybe<StringQueryOperatorInput>;
+  readonly internal: InputMaybe<InternalFilterInput>;
+  readonly parent: InputMaybe<NodeFilterInput>;
+};
+
+type ActivitiesCsvFilterListInput = {
+  readonly elemMatch: InputMaybe<ActivitiesCsvFilterInput>;
+};
+
+type ActivitiesCsvGroupConnection = {
+  readonly distinct: ReadonlyArray<Scalars['String']>;
+  readonly edges: ReadonlyArray<ActivitiesCsvEdge>;
+  readonly field: Scalars['String'];
+  readonly fieldValue: Maybe<Scalars['String']>;
+  readonly group: ReadonlyArray<ActivitiesCsvGroupConnection>;
+  readonly max: Maybe<Scalars['Float']>;
+  readonly min: Maybe<Scalars['Float']>;
+  readonly nodes: ReadonlyArray<ActivitiesCsv>;
+  readonly pageInfo: PageInfo;
+  readonly sum: Maybe<Scalars['Float']>;
+  readonly totalCount: Scalars['Int'];
+};
+
+
+type ActivitiesCsvGroupConnection_distinctArgs = {
+  field: ActivitiesCsvFieldSelector;
+};
+
+
+type ActivitiesCsvGroupConnection_groupArgs = {
+  field: ActivitiesCsvFieldSelector;
+  limit: InputMaybe<Scalars['Int']>;
+  skip: InputMaybe<Scalars['Int']>;
+};
+
+
+type ActivitiesCsvGroupConnection_maxArgs = {
+  field: ActivitiesCsvFieldSelector;
+};
+
+
+type ActivitiesCsvGroupConnection_minArgs = {
+  field: ActivitiesCsvFieldSelector;
+};
+
+
+type ActivitiesCsvGroupConnection_sumArgs = {
+  field: ActivitiesCsvFieldSelector;
+};
+
+type ActivitiesCsvSortInput = {
+  readonly Activity_Count: InputMaybe<SortOrderEnum>;
+  readonly Activity_Date: InputMaybe<SortOrderEnum>;
+  readonly Activity_Description: InputMaybe<SortOrderEnum>;
+  readonly Activity_Gear: InputMaybe<SortOrderEnum>;
+  readonly Activity_ID: InputMaybe<SortOrderEnum>;
+  readonly Activity_Name: InputMaybe<SortOrderEnum>;
+  readonly Activity_Private_Note: InputMaybe<SortOrderEnum>;
+  readonly Activity_Type: InputMaybe<SortOrderEnum>;
+  readonly Apparent_Temperature: InputMaybe<SortOrderEnum>;
+  readonly Athlete_Weight: InputMaybe<SortOrderEnum>;
+  readonly Average_Cadence: InputMaybe<SortOrderEnum>;
+  readonly Average_Elapsed_Speed: InputMaybe<SortOrderEnum>;
+  readonly Average_Flow: InputMaybe<SortOrderEnum>;
+  readonly Average_Grade: InputMaybe<SortOrderEnum>;
+  readonly Average_Heart_Rate: InputMaybe<SortOrderEnum>;
+  readonly Average_Negative_Grade: InputMaybe<SortOrderEnum>;
+  readonly Average_Positive_Grade: InputMaybe<SortOrderEnum>;
+  readonly Average_Speed: InputMaybe<SortOrderEnum>;
+  readonly Average_Temperature: InputMaybe<SortOrderEnum>;
+  readonly Average_Watts: InputMaybe<SortOrderEnum>;
+  readonly Bike: InputMaybe<SortOrderEnum>;
+  readonly Bike_Weight: InputMaybe<SortOrderEnum>;
+  readonly Calories: InputMaybe<SortOrderEnum>;
+  readonly Cloud_Cover: InputMaybe<SortOrderEnum>;
+  readonly Commute: InputMaybe<SortOrderEnum>;
+  readonly Dewpoint: InputMaybe<SortOrderEnum>;
+  readonly Dirt_Distance: InputMaybe<SortOrderEnum>;
+  readonly Distance: InputMaybe<SortOrderEnum>;
+  readonly Downhill_Time: InputMaybe<SortOrderEnum>;
+  readonly Elapsed_Time: InputMaybe<SortOrderEnum>;
+  readonly Elevation_Gain: InputMaybe<SortOrderEnum>;
+  readonly Elevation_High: InputMaybe<SortOrderEnum>;
+  readonly Elevation_Loss: InputMaybe<SortOrderEnum>;
+  readonly Elevation_Low: InputMaybe<SortOrderEnum>;
+  readonly Filename: InputMaybe<SortOrderEnum>;
+  readonly Flagged: InputMaybe<SortOrderEnum>;
+  readonly From_Upload: InputMaybe<SortOrderEnum>;
+  readonly Gear: InputMaybe<SortOrderEnum>;
+  readonly Grade_Adjusted_Distance: InputMaybe<SortOrderEnum>;
+  readonly Humidity: InputMaybe<SortOrderEnum>;
+  readonly Jump_Count: InputMaybe<SortOrderEnum>;
+  readonly Max_Cadence: InputMaybe<SortOrderEnum>;
+  readonly Max_Grade: InputMaybe<SortOrderEnum>;
+  readonly Max_Heart_Rate: InputMaybe<SortOrderEnum>;
+  readonly Max_Speed: InputMaybe<SortOrderEnum>;
+  readonly Max_Temperature: InputMaybe<SortOrderEnum>;
+  readonly Max_Watts: InputMaybe<SortOrderEnum>;
+  readonly Media: InputMaybe<SortOrderEnum>;
+  readonly Moon_Phase: InputMaybe<SortOrderEnum>;
+  readonly Moving_Time: InputMaybe<SortOrderEnum>;
+  readonly Newly_Explored_Dirt_Distance: InputMaybe<SortOrderEnum>;
+  readonly Newly_Explored_Distance: InputMaybe<SortOrderEnum>;
+  readonly Number_of_Runs: InputMaybe<SortOrderEnum>;
+  readonly Other_Time: InputMaybe<SortOrderEnum>;
+  readonly Perceived_Exertion: InputMaybe<SortOrderEnum>;
+  readonly Perceived_Relative_Effort: InputMaybe<SortOrderEnum>;
+  readonly Power_Count: InputMaybe<SortOrderEnum>;
+  readonly Precipitation_Intensity: InputMaybe<SortOrderEnum>;
+  readonly Precipitation_Probability: InputMaybe<SortOrderEnum>;
+  readonly Precipitation_Type: InputMaybe<SortOrderEnum>;
+  readonly Prefer_Perceived_Exertion: InputMaybe<SortOrderEnum>;
+  readonly Relative_Effort: InputMaybe<SortOrderEnum>;
+  readonly Start_Time: InputMaybe<SortOrderEnum>;
+  readonly Sunrise_Time: InputMaybe<SortOrderEnum>;
+  readonly Sunset_Time: InputMaybe<SortOrderEnum>;
+  readonly Total_Grit: InputMaybe<SortOrderEnum>;
+  readonly Total_Steps: InputMaybe<SortOrderEnum>;
+  readonly Total_Weight_Lifted: InputMaybe<SortOrderEnum>;
+  readonly Total_Work: InputMaybe<SortOrderEnum>;
+  readonly Type: InputMaybe<SortOrderEnum>;
+  readonly UV_Index: InputMaybe<SortOrderEnum>;
+  readonly Uphill_Time: InputMaybe<SortOrderEnum>;
+  readonly Weather_Condition: InputMaybe<SortOrderEnum>;
+  readonly Weather_Observation_Time: InputMaybe<SortOrderEnum>;
+  readonly Weather_Ozone: InputMaybe<SortOrderEnum>;
+  readonly Weather_Pressure: InputMaybe<SortOrderEnum>;
+  readonly Weather_Temperature: InputMaybe<SortOrderEnum>;
+  readonly Weather_Visibility: InputMaybe<SortOrderEnum>;
+  readonly Weighted_Average_Power: InputMaybe<SortOrderEnum>;
+  readonly Wind_Bearing: InputMaybe<SortOrderEnum>;
+  readonly Wind_Gust: InputMaybe<SortOrderEnum>;
+  readonly Wind_Speed: InputMaybe<SortOrderEnum>;
+  readonly children: InputMaybe<NodeSortInput>;
+  readonly id: InputMaybe<SortOrderEnum>;
+  readonly internal: InputMaybe<InternalSortInput>;
+  readonly parent: InputMaybe<NodeSortInput>;
+};
+
 type BooleanQueryOperatorInput = {
   readonly eq: InputMaybe<Scalars['Boolean']>;
   readonly in: InputMaybe<ReadonlyArray<InputMaybe<Scalars['Boolean']>>>;
@@ -360,9 +806,13 @@ type File = Node & {
   readonly blksize: Maybe<Scalars['Int']>;
   readonly blocks: Maybe<Scalars['Int']>;
   readonly changeTime: Scalars['Date'];
+  /** Returns the first child node of type ActivitiesCsv or null if there are no children of given type on this node */
+  readonly childActivitiesCsv: Maybe<ActivitiesCsv>;
   /** Returns the first child node of type Mdx or null if there are no children of given type on this node */
   readonly childMdx: Maybe<Mdx>;
   readonly children: ReadonlyArray<Node>;
+  /** Returns all children nodes filtered by type ActivitiesCsv */
+  readonly childrenActivitiesCsv: Maybe<ReadonlyArray<Maybe<ActivitiesCsv>>>;
   /** Returns all children nodes filtered by type Mdx */
   readonly childrenMdx: Maybe<ReadonlyArray<Maybe<Mdx>>>;
   readonly ctime: Scalars['Date'];
@@ -507,8 +957,10 @@ type FileFieldSelector = {
   readonly blksize: InputMaybe<FieldSelectorEnum>;
   readonly blocks: InputMaybe<FieldSelectorEnum>;
   readonly changeTime: InputMaybe<FieldSelectorEnum>;
+  readonly childActivitiesCsv: InputMaybe<ActivitiesCsvFieldSelector>;
   readonly childMdx: InputMaybe<MdxFieldSelector>;
   readonly children: InputMaybe<NodeFieldSelector>;
+  readonly childrenActivitiesCsv: InputMaybe<ActivitiesCsvFieldSelector>;
   readonly childrenMdx: InputMaybe<MdxFieldSelector>;
   readonly ctime: InputMaybe<FieldSelectorEnum>;
   readonly ctimeMs: InputMaybe<FieldSelectorEnum>;
@@ -550,8 +1002,10 @@ type FileFilterInput = {
   readonly blksize: InputMaybe<IntQueryOperatorInput>;
   readonly blocks: InputMaybe<IntQueryOperatorInput>;
   readonly changeTime: InputMaybe<DateQueryOperatorInput>;
+  readonly childActivitiesCsv: InputMaybe<ActivitiesCsvFilterInput>;
   readonly childMdx: InputMaybe<MdxFilterInput>;
   readonly children: InputMaybe<NodeFilterListInput>;
+  readonly childrenActivitiesCsv: InputMaybe<ActivitiesCsvFilterListInput>;
   readonly childrenMdx: InputMaybe<MdxFilterListInput>;
   readonly ctime: InputMaybe<DateQueryOperatorInput>;
   readonly ctimeMs: InputMaybe<FloatQueryOperatorInput>;
@@ -634,8 +1088,10 @@ type FileSortInput = {
   readonly blksize: InputMaybe<SortOrderEnum>;
   readonly blocks: InputMaybe<SortOrderEnum>;
   readonly changeTime: InputMaybe<SortOrderEnum>;
+  readonly childActivitiesCsv: InputMaybe<ActivitiesCsvSortInput>;
   readonly childMdx: InputMaybe<MdxSortInput>;
   readonly children: InputMaybe<NodeSortInput>;
+  readonly childrenActivitiesCsv: InputMaybe<ActivitiesCsvSortInput>;
   readonly childrenMdx: InputMaybe<MdxSortInput>;
   readonly ctime: InputMaybe<SortOrderEnum>;
   readonly ctimeMs: InputMaybe<SortOrderEnum>;
@@ -1370,6 +1826,8 @@ type PageInfo = {
 };
 
 type Query = {
+  readonly activitiesCsv: Maybe<ActivitiesCsv>;
+  readonly allActivitiesCsv: ActivitiesCsvConnection;
   readonly allDirectory: DirectoryConnection;
   readonly allFile: FileConnection;
   readonly allFlickrPhoto: FlickrPhotoConnection;
@@ -1390,6 +1848,104 @@ type Query = {
   readonly siteFunction: Maybe<SiteFunction>;
   readonly sitePage: Maybe<SitePage>;
   readonly sitePlugin: Maybe<SitePlugin>;
+};
+
+
+type Query_activitiesCsvArgs = {
+  Activity_Count: InputMaybe<StringQueryOperatorInput>;
+  Activity_Date: InputMaybe<StringQueryOperatorInput>;
+  Activity_Description: InputMaybe<StringQueryOperatorInput>;
+  Activity_Gear: InputMaybe<StringQueryOperatorInput>;
+  Activity_ID: InputMaybe<StringQueryOperatorInput>;
+  Activity_Name: InputMaybe<StringQueryOperatorInput>;
+  Activity_Private_Note: InputMaybe<StringQueryOperatorInput>;
+  Activity_Type: InputMaybe<StringQueryOperatorInput>;
+  Apparent_Temperature: InputMaybe<StringQueryOperatorInput>;
+  Athlete_Weight: InputMaybe<StringQueryOperatorInput>;
+  Average_Cadence: InputMaybe<StringQueryOperatorInput>;
+  Average_Elapsed_Speed: InputMaybe<StringQueryOperatorInput>;
+  Average_Flow: InputMaybe<StringQueryOperatorInput>;
+  Average_Grade: InputMaybe<StringQueryOperatorInput>;
+  Average_Heart_Rate: InputMaybe<StringQueryOperatorInput>;
+  Average_Negative_Grade: InputMaybe<StringQueryOperatorInput>;
+  Average_Positive_Grade: InputMaybe<StringQueryOperatorInput>;
+  Average_Speed: InputMaybe<StringQueryOperatorInput>;
+  Average_Temperature: InputMaybe<StringQueryOperatorInput>;
+  Average_Watts: InputMaybe<StringQueryOperatorInput>;
+  Bike: InputMaybe<StringQueryOperatorInput>;
+  Bike_Weight: InputMaybe<StringQueryOperatorInput>;
+  Calories: InputMaybe<StringQueryOperatorInput>;
+  Cloud_Cover: InputMaybe<StringQueryOperatorInput>;
+  Commute: InputMaybe<StringQueryOperatorInput>;
+  Dewpoint: InputMaybe<StringQueryOperatorInput>;
+  Dirt_Distance: InputMaybe<StringQueryOperatorInput>;
+  Distance: InputMaybe<StringQueryOperatorInput>;
+  Downhill_Time: InputMaybe<StringQueryOperatorInput>;
+  Elapsed_Time: InputMaybe<StringQueryOperatorInput>;
+  Elevation_Gain: InputMaybe<StringQueryOperatorInput>;
+  Elevation_High: InputMaybe<StringQueryOperatorInput>;
+  Elevation_Loss: InputMaybe<StringQueryOperatorInput>;
+  Elevation_Low: InputMaybe<StringQueryOperatorInput>;
+  Filename: InputMaybe<StringQueryOperatorInput>;
+  Flagged: InputMaybe<StringQueryOperatorInput>;
+  From_Upload: InputMaybe<StringQueryOperatorInput>;
+  Gear: InputMaybe<StringQueryOperatorInput>;
+  Grade_Adjusted_Distance: InputMaybe<StringQueryOperatorInput>;
+  Humidity: InputMaybe<StringQueryOperatorInput>;
+  Jump_Count: InputMaybe<StringQueryOperatorInput>;
+  Max_Cadence: InputMaybe<StringQueryOperatorInput>;
+  Max_Grade: InputMaybe<StringQueryOperatorInput>;
+  Max_Heart_Rate: InputMaybe<StringQueryOperatorInput>;
+  Max_Speed: InputMaybe<StringQueryOperatorInput>;
+  Max_Temperature: InputMaybe<StringQueryOperatorInput>;
+  Max_Watts: InputMaybe<StringQueryOperatorInput>;
+  Media: InputMaybe<StringQueryOperatorInput>;
+  Moon_Phase: InputMaybe<StringQueryOperatorInput>;
+  Moving_Time: InputMaybe<StringQueryOperatorInput>;
+  Newly_Explored_Dirt_Distance: InputMaybe<StringQueryOperatorInput>;
+  Newly_Explored_Distance: InputMaybe<StringQueryOperatorInput>;
+  Number_of_Runs: InputMaybe<StringQueryOperatorInput>;
+  Other_Time: InputMaybe<StringQueryOperatorInput>;
+  Perceived_Exertion: InputMaybe<StringQueryOperatorInput>;
+  Perceived_Relative_Effort: InputMaybe<StringQueryOperatorInput>;
+  Power_Count: InputMaybe<StringQueryOperatorInput>;
+  Precipitation_Intensity: InputMaybe<StringQueryOperatorInput>;
+  Precipitation_Probability: InputMaybe<StringQueryOperatorInput>;
+  Precipitation_Type: InputMaybe<StringQueryOperatorInput>;
+  Prefer_Perceived_Exertion: InputMaybe<StringQueryOperatorInput>;
+  Relative_Effort: InputMaybe<StringQueryOperatorInput>;
+  Start_Time: InputMaybe<StringQueryOperatorInput>;
+  Sunrise_Time: InputMaybe<StringQueryOperatorInput>;
+  Sunset_Time: InputMaybe<StringQueryOperatorInput>;
+  Total_Grit: InputMaybe<StringQueryOperatorInput>;
+  Total_Steps: InputMaybe<StringQueryOperatorInput>;
+  Total_Weight_Lifted: InputMaybe<StringQueryOperatorInput>;
+  Total_Work: InputMaybe<StringQueryOperatorInput>;
+  Type: InputMaybe<StringQueryOperatorInput>;
+  UV_Index: InputMaybe<StringQueryOperatorInput>;
+  Uphill_Time: InputMaybe<StringQueryOperatorInput>;
+  Weather_Condition: InputMaybe<StringQueryOperatorInput>;
+  Weather_Observation_Time: InputMaybe<StringQueryOperatorInput>;
+  Weather_Ozone: InputMaybe<StringQueryOperatorInput>;
+  Weather_Pressure: InputMaybe<StringQueryOperatorInput>;
+  Weather_Temperature: InputMaybe<StringQueryOperatorInput>;
+  Weather_Visibility: InputMaybe<StringQueryOperatorInput>;
+  Weighted_Average_Power: InputMaybe<StringQueryOperatorInput>;
+  Wind_Bearing: InputMaybe<StringQueryOperatorInput>;
+  Wind_Gust: InputMaybe<StringQueryOperatorInput>;
+  Wind_Speed: InputMaybe<StringQueryOperatorInput>;
+  children: InputMaybe<NodeFilterListInput>;
+  id: InputMaybe<StringQueryOperatorInput>;
+  internal: InputMaybe<InternalFilterInput>;
+  parent: InputMaybe<NodeFilterInput>;
+};
+
+
+type Query_allActivitiesCsvArgs = {
+  filter: InputMaybe<ActivitiesCsvFilterInput>;
+  limit: InputMaybe<Scalars['Int']>;
+  skip: InputMaybe<Scalars['Int']>;
+  sort: InputMaybe<ReadonlyArray<InputMaybe<ActivitiesCsvSortInput>>>;
 };
 
 
@@ -1524,8 +2080,10 @@ type Query_fileArgs = {
   blksize: InputMaybe<IntQueryOperatorInput>;
   blocks: InputMaybe<IntQueryOperatorInput>;
   changeTime: InputMaybe<DateQueryOperatorInput>;
+  childActivitiesCsv: InputMaybe<ActivitiesCsvFilterInput>;
   childMdx: InputMaybe<MdxFilterInput>;
   children: InputMaybe<NodeFilterListInput>;
+  childrenActivitiesCsv: InputMaybe<ActivitiesCsvFilterListInput>;
   childrenMdx: InputMaybe<MdxFilterListInput>;
   ctime: InputMaybe<DateQueryOperatorInput>;
   ctimeMs: InputMaybe<FloatQueryOperatorInput>;
@@ -1648,7 +2206,6 @@ type Query_ridesArgs = {
   internal: InputMaybe<InternalFilterInput>;
   name: InputMaybe<StringQueryOperatorInput>;
   parent: InputMaybe<NodeFilterInput>;
-  time: InputMaybe<DateQueryOperatorInput>;
   track: InputMaybe<RidesTrackFilterInput>;
 };
 
@@ -1731,16 +2288,7 @@ type Rides = Node & {
   readonly internal: Internal;
   readonly name: Maybe<Scalars['String']>;
   readonly parent: Maybe<Node>;
-  readonly time: Maybe<Scalars['Date']>;
   readonly track: Maybe<RidesTrack>;
-};
-
-
-type Rides_timeArgs = {
-  difference: InputMaybe<Scalars['String']>;
-  formatString: InputMaybe<Scalars['String']>;
-  fromNow: InputMaybe<Scalars['Boolean']>;
-  locale: InputMaybe<Scalars['String']>;
 };
 
 type RidesConnection = {
@@ -1794,7 +2342,6 @@ type RidesFieldSelector = {
   readonly internal: InputMaybe<InternalFieldSelector>;
   readonly name: InputMaybe<FieldSelectorEnum>;
   readonly parent: InputMaybe<NodeFieldSelector>;
-  readonly time: InputMaybe<FieldSelectorEnum>;
   readonly track: InputMaybe<RidesTrackFieldSelector>;
 };
 
@@ -1804,7 +2351,6 @@ type RidesFilterInput = {
   readonly internal: InputMaybe<InternalFilterInput>;
   readonly name: InputMaybe<StringQueryOperatorInput>;
   readonly parent: InputMaybe<NodeFilterInput>;
-  readonly time: InputMaybe<DateQueryOperatorInput>;
   readonly track: InputMaybe<RidesTrackFilterInput>;
 };
 
@@ -1855,86 +2401,51 @@ type RidesSortInput = {
   readonly internal: InputMaybe<InternalSortInput>;
   readonly name: InputMaybe<SortOrderEnum>;
   readonly parent: InputMaybe<NodeSortInput>;
-  readonly time: InputMaybe<SortOrderEnum>;
   readonly track: InputMaybe<RidesTrackSortInput>;
 };
 
 type RidesTrack = {
   readonly endPoint: Maybe<RidesTrackEndPoint>;
-  readonly endTime: Maybe<Scalars['Date']>;
   readonly name: Maybe<Scalars['String']>;
   readonly points: Maybe<ReadonlyArray<Maybe<RidesTrackPoints>>>;
-  readonly startTime: Maybe<Scalars['Date']>;
   readonly startingPoint: Maybe<RidesTrackStartingPoint>;
-};
-
-
-type RidesTrack_endTimeArgs = {
-  difference: InputMaybe<Scalars['String']>;
-  formatString: InputMaybe<Scalars['String']>;
-  fromNow: InputMaybe<Scalars['Boolean']>;
-  locale: InputMaybe<Scalars['String']>;
-};
-
-
-type RidesTrack_startTimeArgs = {
-  difference: InputMaybe<Scalars['String']>;
-  formatString: InputMaybe<Scalars['String']>;
-  fromNow: InputMaybe<Scalars['Boolean']>;
-  locale: InputMaybe<Scalars['String']>;
 };
 
 type RidesTrackEndPoint = {
   readonly ele: Maybe<Scalars['String']>;
   readonly lat: Maybe<Scalars['String']>;
   readonly lon: Maybe<Scalars['String']>;
-  readonly time: Maybe<Scalars['Date']>;
-};
-
-
-type RidesTrackEndPoint_timeArgs = {
-  difference: InputMaybe<Scalars['String']>;
-  formatString: InputMaybe<Scalars['String']>;
-  fromNow: InputMaybe<Scalars['Boolean']>;
-  locale: InputMaybe<Scalars['String']>;
 };
 
 type RidesTrackEndPointFieldSelector = {
   readonly ele: InputMaybe<FieldSelectorEnum>;
   readonly lat: InputMaybe<FieldSelectorEnum>;
   readonly lon: InputMaybe<FieldSelectorEnum>;
-  readonly time: InputMaybe<FieldSelectorEnum>;
 };
 
 type RidesTrackEndPointFilterInput = {
   readonly ele: InputMaybe<StringQueryOperatorInput>;
   readonly lat: InputMaybe<StringQueryOperatorInput>;
   readonly lon: InputMaybe<StringQueryOperatorInput>;
-  readonly time: InputMaybe<DateQueryOperatorInput>;
 };
 
 type RidesTrackEndPointSortInput = {
   readonly ele: InputMaybe<SortOrderEnum>;
   readonly lat: InputMaybe<SortOrderEnum>;
   readonly lon: InputMaybe<SortOrderEnum>;
-  readonly time: InputMaybe<SortOrderEnum>;
 };
 
 type RidesTrackFieldSelector = {
   readonly endPoint: InputMaybe<RidesTrackEndPointFieldSelector>;
-  readonly endTime: InputMaybe<FieldSelectorEnum>;
   readonly name: InputMaybe<FieldSelectorEnum>;
   readonly points: InputMaybe<RidesTrackPointsFieldSelector>;
-  readonly startTime: InputMaybe<FieldSelectorEnum>;
   readonly startingPoint: InputMaybe<RidesTrackStartingPointFieldSelector>;
 };
 
 type RidesTrackFilterInput = {
   readonly endPoint: InputMaybe<RidesTrackEndPointFilterInput>;
-  readonly endTime: InputMaybe<DateQueryOperatorInput>;
   readonly name: InputMaybe<StringQueryOperatorInput>;
   readonly points: InputMaybe<RidesTrackPointsFilterListInput>;
-  readonly startTime: InputMaybe<DateQueryOperatorInput>;
   readonly startingPoint: InputMaybe<RidesTrackStartingPointFilterInput>;
 };
 
@@ -1942,29 +2453,18 @@ type RidesTrackPoints = {
   readonly ele: Maybe<Scalars['String']>;
   readonly lat: Maybe<Scalars['String']>;
   readonly lon: Maybe<Scalars['String']>;
-  readonly time: Maybe<Scalars['Date']>;
-};
-
-
-type RidesTrackPoints_timeArgs = {
-  difference: InputMaybe<Scalars['String']>;
-  formatString: InputMaybe<Scalars['String']>;
-  fromNow: InputMaybe<Scalars['Boolean']>;
-  locale: InputMaybe<Scalars['String']>;
 };
 
 type RidesTrackPointsFieldSelector = {
   readonly ele: InputMaybe<FieldSelectorEnum>;
   readonly lat: InputMaybe<FieldSelectorEnum>;
   readonly lon: InputMaybe<FieldSelectorEnum>;
-  readonly time: InputMaybe<FieldSelectorEnum>;
 };
 
 type RidesTrackPointsFilterInput = {
   readonly ele: InputMaybe<StringQueryOperatorInput>;
   readonly lat: InputMaybe<StringQueryOperatorInput>;
   readonly lon: InputMaybe<StringQueryOperatorInput>;
-  readonly time: InputMaybe<DateQueryOperatorInput>;
 };
 
 type RidesTrackPointsFilterListInput = {
@@ -1975,15 +2475,12 @@ type RidesTrackPointsSortInput = {
   readonly ele: InputMaybe<SortOrderEnum>;
   readonly lat: InputMaybe<SortOrderEnum>;
   readonly lon: InputMaybe<SortOrderEnum>;
-  readonly time: InputMaybe<SortOrderEnum>;
 };
 
 type RidesTrackSortInput = {
   readonly endPoint: InputMaybe<RidesTrackEndPointSortInput>;
-  readonly endTime: InputMaybe<SortOrderEnum>;
   readonly name: InputMaybe<SortOrderEnum>;
   readonly points: InputMaybe<RidesTrackPointsSortInput>;
-  readonly startTime: InputMaybe<SortOrderEnum>;
   readonly startingPoint: InputMaybe<RidesTrackStartingPointSortInput>;
 };
 
@@ -1991,36 +2488,24 @@ type RidesTrackStartingPoint = {
   readonly ele: Maybe<Scalars['String']>;
   readonly lat: Maybe<Scalars['String']>;
   readonly lon: Maybe<Scalars['String']>;
-  readonly time: Maybe<Scalars['Date']>;
-};
-
-
-type RidesTrackStartingPoint_timeArgs = {
-  difference: InputMaybe<Scalars['String']>;
-  formatString: InputMaybe<Scalars['String']>;
-  fromNow: InputMaybe<Scalars['Boolean']>;
-  locale: InputMaybe<Scalars['String']>;
 };
 
 type RidesTrackStartingPointFieldSelector = {
   readonly ele: InputMaybe<FieldSelectorEnum>;
   readonly lat: InputMaybe<FieldSelectorEnum>;
   readonly lon: InputMaybe<FieldSelectorEnum>;
-  readonly time: InputMaybe<FieldSelectorEnum>;
 };
 
 type RidesTrackStartingPointFilterInput = {
   readonly ele: InputMaybe<StringQueryOperatorInput>;
   readonly lat: InputMaybe<StringQueryOperatorInput>;
   readonly lon: InputMaybe<StringQueryOperatorInput>;
-  readonly time: InputMaybe<DateQueryOperatorInput>;
 };
 
 type RidesTrackStartingPointSortInput = {
   readonly ele: InputMaybe<SortOrderEnum>;
   readonly lat: InputMaybe<SortOrderEnum>;
   readonly lon: InputMaybe<SortOrderEnum>;
-  readonly time: InputMaybe<SortOrderEnum>;
 };
 
 type Site = Node & {
@@ -2801,6 +3286,11 @@ type StringQueryOperatorInput = {
   readonly nin: InputMaybe<ReadonlyArray<InputMaybe<Scalars['String']>>>;
   readonly regex: InputMaybe<Scalars['String']>;
 };
+
+type activitiesQueryQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+type activitiesQueryQuery = { readonly allActivitiesCsv: { readonly nodes: ReadonlyArray<{ readonly Activity_ID: string | null, readonly Activity_Name: string | null, readonly Activity_Date: string | null, readonly Moving_Time: string | null, readonly Distance: string | null, readonly Average_Speed: string | null, readonly Average_Watts: string | null, readonly Weighted_Average_Power: string | null, readonly Weather_Condition: string | null, readonly Elevation_Gain: string | null, readonly Max_Grade: string | null, readonly Calories: string | null, readonly Average_Temperature: string | null }> } };
 
 type DividePhotoQueryQueryVariables = Exact<{ [key: string]: never; }>;
 

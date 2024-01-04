@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import { GdStats } from './gdstats'
 
 interface GdNavProps {
   rideSegIndex: number
@@ -22,7 +23,7 @@ export const GdNav: React.FC<GdNavProps> = (props) => {
       >
         {'<'}
       </NavButton>
-      <Stats>
+      <StatsDiv>
         <ZoomOutButton
           disabled={rideSegIndex === -1}
           type="button"
@@ -30,12 +31,8 @@ export const GdNav: React.FC<GdNavProps> = (props) => {
         >
           view entire route
         </ZoomOutButton>
-        <Title>
-          {rideSegIndex === -1
-            ? 'Great Divide Tour (2023)'
-            : `Day ${rideSegIndex + 1}`}
-        </Title>
-      </Stats>
+        <GdStats rideSegIndex={rideSegIndex} />
+      </StatsDiv>
       <NavButton
         disabled={!hasNextSeg()}
         type="button"
@@ -59,21 +56,17 @@ const NavButton = styled.button`
   font-size: 1em;
   height: 6em;
   padding: 0 0.75em;
-
   cursor: pointer;
+  :disabled {
+    border: 1px solid #aaa;
+  }
 `
 
-const Stats = styled.div`
+const StatsDiv = styled.div`
   display: flex;
   flex-grow: 1;
   flex-direction: column;
-  margin: 0 5px;
-`
-
-const Title = styled.h1`
-  margin-top: 10px;
-  font-size: 1.1em;
-  text-align: center;
+  margin: 0 10px;
 `
 
 const ZoomOutButton = styled.button`

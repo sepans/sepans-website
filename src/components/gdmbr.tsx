@@ -11,7 +11,7 @@ import { GdMap } from './gdmap'
 import { GdNav } from './gdnav'
 import { useRideTracks } from '../hooks/useRideTracks'
 
-const PHOTO_WIDTH = 60
+const PHOTO_WIDTH = 80
 
 export const Gdmbr: React.FC = () => {
   const photos = useGreatDivideImages()
@@ -185,6 +185,7 @@ const ImageWrapper = styled.div`
   overflow-y: hidden;
   width: 100%;
   margin: 5px 0;
+  max-width: 85vmin; /* for entire route page there should be a better way  */
 `
 
 const PhotoWrapper = styled.div`

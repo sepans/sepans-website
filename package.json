@@ -27,6 +27,7 @@
     "gatsby-plugin-typescript": "^5.0.0",
     "gatsby-source-filesystem": "^5.0.0",
     "gatsby-source-flickr": "^0.0.5",
+    "gatsby-transformer-csv": "^5.13.0",
     "gatsby-transformer-xml": "^5.13.0",
     "lodash": "^4.17.21",
     "mapbox-gl": "^3.0.1",

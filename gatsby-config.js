@@ -13,6 +13,7 @@ module.exports = {
     'gatsby-plugin-react-helmet',
     `gatsby-transformer-gpx`,
     `gatsby-transformer-fit`,
+    `gatsby-transformer-csv`,
     {
       resolve: 'gatsby-source-filesystem',
       options: {
