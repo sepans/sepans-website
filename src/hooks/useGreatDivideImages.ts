@@ -4,7 +4,7 @@ import { processFlickrImageData } from './shared/ProcessFlickrImageData'
 export const useGreatDivideImages = () => {
   const generalAlbumQuery = graphql`
     query DividePhotoQuery {
-      allFlickrPhoto(limit: 150, filter: { tags: { eq: "gdmbr" } }) {
+      allFlickrPhoto(limit: 200, filter: { tags: { eq: "gdmbr" } }) {
         ...FlickrImageFragment
       }
     }
