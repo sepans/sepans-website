@@ -50,18 +50,23 @@ const ImageGroup: React.FC<ImageGroupProps> = (props) => {
   const displayPhotos =
     rideSegIndex === -1
       ? group.filter((photo, i) => i > Math.random() * 100)
-      : group.filter((photo) => {
-          const bound = bounds[rideSegIndex]
-          const lat = Math.abs(parseFloat(photo.latitude))
-          const lon = Math.abs(parseFloat(photo.longitude))
+      : group
+          .filter((photo) => {
+            const bound = bounds[rideSegIndex]
+            const lat = Math.abs(parseFloat(photo.latitude))
+            const lon = Math.abs(parseFloat(photo.longitude))
 
-          return (
-            lon < Math.abs(bound[0]) * (1 + GEO_THRESH) &&
-            lat < Math.abs(bound[3]) * (1 + GEO_THRESH) &&
-            lon > Math.abs(bound[2]) * (1 - GEO_THRESH) &&
-            lat > Math.abs(bound[1]) * (1 - GEO_THRESH)
+            return (
+              lon < Math.abs(bound[0]) * (1 + GEO_THRESH) &&
+              lat < Math.abs(bound[3]) * (1 + GEO_THRESH) &&
+              lon > Math.abs(bound[2]) * (1 - GEO_THRESH) &&
+              lat > Math.abs(bound[1]) * (1 - GEO_THRESH)
+            )
+          })
+          .sort(
+            (a, b) =>
+              new Date(a.dateTaken).getTime() - new Date(b.dateTaken).getTime()
           )
-        })
 
   const lightboxStyles = {
     container: { backgroundColor: 'rgba(0, 0, 0, .8)' }
