@@ -29,7 +29,7 @@ export const GdMap: React.FC<GdMapProps> = (props) => {
   const mapContainer = useRef<HTMLDivElement>()
   const map = useRef<Map>()
 
-  const { rideSegIndex, setRideSegIndex } = props
+  const { rideSegIndex } = props
 
   // we don't need to keep track of map location/zoom state
   // const [lng, setLng] = useState(INIT_LNG)
@@ -39,7 +39,7 @@ export const GdMap: React.FC<GdMapProps> = (props) => {
   const { tracks, bounds } = useRideTracks()
 
   const zoomOut = () => {
-    map.current.fitBounds(
+    map?.current?.fitBounds(
       [
         bounds[0][0],
         bounds[0][1],
@@ -53,9 +53,17 @@ export const GdMap: React.FC<GdMapProps> = (props) => {
       }
     )
     // map.current.setPitch(80)
-    map.current.setFilter('route-layer', null)
-    setRideSegIndex(-1)
+    map?.current?.setFilter('route-layer', null)
+    // setRideSegIndex(-1)
   }
+
+  useEffect(() => {
+    if (rideSegIndex === -1) {
+      zoomOut()
+    } else {
+      zoomToSegIndex(rideSegIndex)
+    }
+  }, [rideSegIndex])
 
   const zoomToSegIndex = (index: number) => {
     map.current.fitBounds(bounds[index], {
@@ -71,7 +79,7 @@ export const GdMap: React.FC<GdMapProps> = (props) => {
       // true,
       // false
     ])
-    setRideSegIndex(index)
+    // setRideSegIndex(index)
   }
 
   useEffect(() => {
@@ -116,6 +124,7 @@ export const GdMap: React.FC<GdMapProps> = (props) => {
       })
       map.current.setTerrain({ source: 'mapbox-dem', exaggeration: 2 })
 
+      // to have the non-highlighted part of map visible
       map.current.addLayer({
         id: 'route-gray-layer',
         type: 'line',
@@ -125,7 +134,7 @@ export const GdMap: React.FC<GdMapProps> = (props) => {
           'line-cap': 'round'
         },
         paint: {
-          'line-color': '#888',
+          'line-color': '#AAA',
           'line-width': 3
         }
       })
@@ -146,50 +155,15 @@ export const GdMap: React.FC<GdMapProps> = (props) => {
     })
   })
 
-  const hasPrevSeg = () => rideSegIndex >= 0
-  const hasNextSeg = () => rideSegIndex !== tracks.length - 1
-
   return (
     <MapCrop>
       <div
         className="map-container"
-        style={{ height: '60vh', width: '100%' }}
+        style={{ height: '40vh', width: '100%' }}
         ref={mapContainer}
       />
-      <NavButton
-        disabled={!hasPrevSeg()}
-        type="button"
-        onClick={() => zoomToSegIndex(rideSegIndex - 1)}
-      >
-        {hasPrevSeg() ? `< Day ${rideSegIndex + 1}` : '<'}
-      </NavButton>
-      <NavButton
-        disabled={rideSegIndex === -1}
-        type="button"
-        onClick={() => zoomOut()}
-      >
-        Entire route
-      </NavButton>
-      <NavButton
-        disabled={!hasNextSeg()}
-        type="button"
-        onClick={() => zoomToSegIndex(rideSegIndex + 1)}
-      >
-        {hasNextSeg() ? `Day ${rideSegIndex + 2} >` : '>'}
-      </NavButton>
     </MapCrop>
   )
 }
-
-const NavButton = styled.button`
-  border: 1px solid #aaa;
-  background-color: #fff;
-  font-size: 1em;
-  font-family: arial open-sans;
-  margin-right: 0px;
-  width: 33.3%;
-  cursor: pointer;
-  margin-top: 5px;
-`
 
 const MapCrop = styled.div``

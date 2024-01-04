@@ -8,18 +8,20 @@ import { useGreatDivideImages } from '../hooks/useGreatDivideImages'
 
 import 'yet-another-react-lightbox/styles.css'
 import { GdMap } from './gdmap'
+import { GdNav } from './gdnav'
 import { useRideTracks } from '../hooks/useRideTracks'
 
-const PHOTO_WIDTH = 50
+const PHOTO_WIDTH = 60
 
 export const Gdmbr: React.FC = () => {
   const photos = useGreatDivideImages()
 
   const [rideSegIndex, setRideSegIndex] = useState(-1)
 
+  const { tracks } = useRideTracks()
+
   return (
     <>
-      <h4>Great Divide Route 2023</h4>
       <PageWrapper>
         <MapWrapper>
           <GdMap
@@ -27,6 +29,11 @@ export const Gdmbr: React.FC = () => {
             setRideSegIndex={setRideSegIndex}
           />
         </MapWrapper>
+        <GdNav
+          rideSegIndex={rideSegIndex}
+          setRideSegIndex={setRideSegIndex}
+          numberOfTracks={tracks.length}
+        />
         <ImageGroup group={photos} rideSegIndex={rideSegIndex} />
       </PageWrapper>
     </>
@@ -69,7 +76,8 @@ const ImageGroup: React.FC<ImageGroupProps> = (props) => {
           )
 
   const lightboxStyles = {
-    container: { backgroundColor: 'rgba(0, 0, 0, .8)' }
+    container: { backgroundColor: 'rgba(0, 0, 0, .8)' },
+    slide: { alignContent: 'end' }
   }
 
   return (
@@ -172,9 +180,9 @@ const ImageWrapper = styled.div`
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
-  height: 50px;
+  height: ${PHOTO_WIDTH}px;
   overflow-x: scroll;
-  overlow-y: hidden;
+  overflow-y: hidden;
   width: 100%;
   margin: 5px 0;
 `
