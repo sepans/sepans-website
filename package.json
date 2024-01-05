@@ -14,6 +14,8 @@
     "babel-plugin-styled-components": "^2.0.7",
     "d3-array": "^3.2.4",
     "d3-geo": "^3.1.0",
+    "d3-scale": "^4.0.2",
+    "d3-shape": "^3.2.0",
     "dotenv": "^16.0.3",
     "gatsby": "^5.13.1",
     "gatsby-image": "^3.11.0",
@@ -40,6 +42,7 @@
   },
   "devDependencies": {
     "@types/d3-geo": "^3.1.0",
+    "@types/d3-shape": "^3.1.6",
     "@types/mapbox-gl": "^2.7.19",
     "@types/topojson": "^3.2.6",
     "@typescript-eslint/eslint-plugin": "^4.28.3",
