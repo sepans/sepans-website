@@ -30,6 +30,24 @@ export const GdElevation: React.FC<ElevationProps> = (props) => {
     setHeight(rect.height)
   }, [container.current])
 
+  useEffect(() => {
+    window.addEventListener('resize', () => {
+      console.log('resize')
+      const rect = container?.current?.getBoundingClientRect()
+      console.log(rect, rect.width)
+      setWidth(rect?.width)
+      setHeight(rect?.height)
+    })
+    return () => {
+      window.removeEventListener('resize', () => {
+        // console.log('what')
+        // const rect = container?.current?.getBoundingClientRect()
+        // setWidth(rect?.width)
+        // setHeight(rect?.height)
+      })
+    }
+  }, [])
+
   const hasDayChart = rideSegIndex > -1
 
   const track = hasDayChart ? tracks[rideSegIndex] : []

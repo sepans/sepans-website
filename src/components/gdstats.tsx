@@ -2,8 +2,9 @@ import React from 'react'
 import styled from 'styled-components'
 import { sum, mean } from 'd3-array'
 import { useActivities } from '../hooks/useActivities'
+import { GdParallelChart } from './gdparallelchart'
 
-interface GdStatsProps {
+export interface GdStatsProps {
   rideSegIndex: number
 }
 
@@ -11,10 +12,12 @@ const toMiles = (m) => m * 0.000621371
 const toFeet = (m) => m * 3.28084
 const toHrs = (minutes) => minutes * 0.000277778
 
-export const toFormattedFeet = (m: number) =>
-  toFeet(m).toLocaleString('en-US', {
-    maximumFractionDigits: 0
+const format = (num: number, decimal: number = 0) =>
+  num.toLocaleString('en-US', {
+    maximumFractionDigits: decimal || 0
   })
+
+export const toFormattedFeet = (m: number) => format(toFeet(m))
 
 const sumStats = (activities) => ({
   Moving_Time: sum(activities, (d) => parseFloat(d.Moving_Time)),
@@ -31,47 +34,49 @@ export const GdStats: React.FC<GdStatsProps> = (props) => {
     rideSegIndex > -1 ? activities[rideSegIndex] : sumStats(activities)
   return (
     <Container>
-      <Title>
-        {rideSegIndex === -1
-          ? 'Great Divide Tour (2023)'
-          : `Day ${rideSegIndex + 1}`}
-      </Title>
       <Stats>
         <div>
-          {toMiles(activityStats.Distance).toLocaleString('en-US', {
-            maximumFractionDigits: 1
-          })}{' '}
-          miles
+          <Label>Distance (miles)</Label>
+          <Value>{format(toMiles(activityStats.Distance), 1)}</Value>
         </div>
-        <div>{toFormattedFeet(activityStats.Elevation_Gain)} ft climb</div>
+        <div>
+          <Label>Climb (ft)</Label>
+          <Value>{toFormattedFeet(activityStats.Elevation_Gain)}</Value>
+        </div>
 
         <div>
-          {toHrs(activityStats.Moving_Time).toLocaleString('en-US', {
-            maximumFractionDigits: 1
-          })}{' '}
-          hrs
+          <Label>Ride time (hrs)</Label>
+          <Value>{format(toHrs(activityStats.Moving_Time), 1)}</Value>
         </div>
         <div>
-          {parseFloat(activityStats.Calories).toLocaleString('en-US', {
-            maximumFractionDigits: 0
-          })}{' '}
-          calories{' '}
+          <Label>Energy (cal)</Label>
+          <Value>{format(parseFloat(activityStats.Calories))}</Value>
         </div>
       </Stats>
+      {rideSegIndex > -1 && (
+        <GdParallelChart activities={activities} rideSegIndex={rideSegIndex} />
+      )}
     </Container>
   )
 }
-
-const Title = styled.h1`
-  margin: 8px 0;
-  font-size: 1em;
-  text-align: center;
-`
 
 const Container = styled.div`
   display: flex;
   flex-direction: column;
   font-family: arial;
+  margin-top: 10px;
+`
+
+const Label = styled.label`
+  font-size: 0.7em;
+  display: block;
+`
+
+const Value = styled.span`
+  font-size: 1.2em;
+  font-weight: 600;
+  padding: 5px 0;
+  display: inline-block;
 `
 
 const Stats = styled.div`
@@ -79,8 +84,16 @@ const Stats = styled.div`
   flex-direction: row;
   flex-wrap: wrap;
   div {
-    width: 50%;
+    width: 25%;
     font-size: 0.9em;
     line-height: 1.2em;
+    text-align: center;
+
+    &:nth-child(1) {
+      text-align: left;
+    }
+    &:nth-child(4) {
+      text-align: right;
+    }
   }
 `

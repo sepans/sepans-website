@@ -15,32 +15,39 @@ export const GdNav: React.FC<GdNavProps> = (props) => {
   const hasNextSeg = () => rideSegIndex !== numberOfTracks - 1
 
   return (
-    <NavContainer>
-      <NavButton
-        disabled={!hasPrevSeg()}
-        type="button"
-        onClick={() => setRideSegIndex(rideSegIndex - 1)}
-      >
-        {'<'}
-      </NavButton>
-      <StatsDiv>
-        <ZoomOutButton
-          disabled={rideSegIndex === -1}
+    <>
+      <NavContainer>
+        <NavButton
+          disabled={!hasPrevSeg()}
           type="button"
-          onClick={() => setRideSegIndex(-1)}
+          onClick={() => setRideSegIndex(rideSegIndex - 1)}
         >
-          view entire route
-        </ZoomOutButton>
-        <GdStats rideSegIndex={rideSegIndex} />
-      </StatsDiv>
-      <NavButton
-        disabled={!hasNextSeg()}
-        type="button"
-        onClick={() => setRideSegIndex(rideSegIndex + 1)}
-      >
-        {'>'}
-      </NavButton>
-    </NavContainer>
+          {'<'}
+        </NavButton>
+        <StatsDiv>
+          <ZoomOutButton
+            disabled={rideSegIndex === -1}
+            type="button"
+            onClick={() => setRideSegIndex(-1)}
+          >
+            view the entire route
+          </ZoomOutButton>
+          <Title>
+            {rideSegIndex === -1
+              ? 'Great Divide Tour (2023)'
+              : `Day ${rideSegIndex + 1}`}
+          </Title>
+        </StatsDiv>
+        <NavButton
+          disabled={!hasNextSeg()}
+          type="button"
+          onClick={() => setRideSegIndex(rideSegIndex + 1)}
+        >
+          {'>'}
+        </NavButton>
+      </NavContainer>
+      <GdStats rideSegIndex={rideSegIndex} />
+    </>
   )
 }
 
@@ -53,13 +60,20 @@ const NavContainer = styled.div`
 const NavButton = styled.button`
   border: 2px solid #555;
   background-color: #fff;
-  font-size: 1em;
-  height: 6em;
+  font-size: 1.2em;
+  height: 3.1em;
   padding: 0 0.75em;
   cursor: pointer;
+  font-weight: bold;
   :disabled {
     border: 1px solid #aaa;
   }
+`
+
+const Title = styled.h1`
+  margin: 8px 0;
+  font-size: 1em;
+  text-align: center;
 `
 
 const StatsDiv = styled.div`
