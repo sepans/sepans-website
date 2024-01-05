@@ -11,6 +11,11 @@ const toMiles = (m) => m * 0.000621371
 const toFeet = (m) => m * 3.28084
 const toHrs = (minutes) => minutes * 0.000277778
 
+export const toFormattedFeet = (m: number) =>
+  toFeet(m).toLocaleString('en-US', {
+    maximumFractionDigits: 0
+  })
+
 const sumStats = (activities) => ({
   Moving_Time: sum(activities, (d) => parseFloat(d.Moving_Time)),
   Average_Watts: mean(activities, (d) => parseFloat(d.Average_Watts)),
@@ -38,12 +43,7 @@ export const GdStats: React.FC<GdStatsProps> = (props) => {
           })}{' '}
           miles
         </div>
-        <div>
-          {toFeet(activityStats.Elevation_Gain).toLocaleString('en-US', {
-            maximumFractionDigits: 0
-          })}{' '}
-          ft climb
-        </div>
+        <div>{toFormattedFeet(activityStats.Elevation_Gain)} ft climb</div>
 
         <div>
           {toHrs(activityStats.Moving_Time).toLocaleString('en-US', {

@@ -20,6 +20,7 @@ export const useRideData = () => {
             points {
               lat
               lon
+              ele
             }
           }
         }

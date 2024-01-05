@@ -10,8 +10,14 @@ import 'yet-another-react-lightbox/styles.css'
 import { GdMap } from './gdmap'
 import { GdNav } from './gdnav'
 import { useRideTracks } from '../hooks/useRideTracks'
+import { GdElevation } from './gdelevation'
 
 const PHOTO_WIDTH = 80
+
+export interface SegmentProps {
+  rideSegIndex: number
+  setRideSegIndex: (index: number) => void
+}
 
 export const Gdmbr: React.FC = () => {
   const photos = useGreatDivideImages()
@@ -29,6 +35,11 @@ export const Gdmbr: React.FC = () => {
             setRideSegIndex={setRideSegIndex}
           />
         </MapWrapper>
+        <GdElevation
+          tracks={tracks}
+          rideSegIndex={rideSegIndex}
+          setRideSegIndex={setRideSegIndex}
+        />
         <GdNav
           rideSegIndex={rideSegIndex}
           setRideSegIndex={setRideSegIndex}
@@ -161,7 +172,12 @@ const LinkedImage: React.FC<LinkedImageProps> = (props) => {
           onKeyDown={openLighbox}
           onClick={openLighbox}
         >
-          <img alt={description} width={`${imageWidth}px`} src={thumbnailSrc} />
+          <img
+            style={{ filter: 'grayscale(80%)' }}
+            alt={description}
+            width={`${imageWidth}px`}
+            src={thumbnailSrc}
+          />
         </ImageButton>
       </PhotoWrapper>
     </>

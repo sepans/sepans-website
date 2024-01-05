@@ -4,13 +4,15 @@ import styled from 'styled-components'
 import mapboxgl, { Map } from 'mapbox-gl'
 import { useRideTracks } from '../hooks/useRideTracks'
 import 'mapbox-gl/dist/mapbox-gl.css'
+import { SegmentProps } from './gdmbr'
 
 export const MAP_WIDTH = 200
 export const MAP_HEIGHT = 510
 export const MAP_OFFSET_TOP = 30
 export const MAP_OFFSET_LEFT = 20
 
-const TRACK_COLOR = '#89CFF0'
+const TRACK_COLOR = '#FFF' // '#89CFF0'
+const TRACK_DISABLED_COLOR = '#858585' // '#AAA'
 
 const INIT_ZOOM = 2.2
 const INIT_LNG = -109.9
@@ -20,12 +22,7 @@ const INIT_PITCH = 20
 mapboxgl.accessToken =
   'pk.eyJ1Ijoic2VwYW5zbSIsImEiOiJjbHE3MDYwcnoweHpzMmpxbGR1dmFiand0In0.57Pw_8KBRchh14a5yBWgeA'
 
-interface GdMapProps {
-  rideSegIndex: number
-  setRideSegIndex: (index: number) => void
-}
-
-export const GdMap: React.FC<GdMapProps> = (props) => {
+export const GdMap: React.FC<SegmentProps> = (props) => {
   const mapContainer = useRef<HTMLDivElement>()
   const map = useRef<Map>()
 
@@ -86,7 +83,8 @@ export const GdMap: React.FC<GdMapProps> = (props) => {
     if (map.current) return
     map.current = new mapboxgl.Map({
       container: mapContainer.current || '',
-      style: 'mapbox://styles/mapbox/satellite-streets-v12',
+      // style: 'mapbox://styles/mapbox/satellite-streets-v12',
+      style: 'mapbox://styles/sepansm/clr0vt0sv00vr01qx6bko3ghc',
       center: [INIT_LNG, INIT_LAT],
       zoom: INIT_ZOOM,
       pitch: INIT_PITCH
@@ -134,7 +132,7 @@ export const GdMap: React.FC<GdMapProps> = (props) => {
           'line-cap': 'round'
         },
         paint: {
-          'line-color': '#AAA',
+          'line-color': TRACK_DISABLED_COLOR,
           'line-width': 3
         }
       })

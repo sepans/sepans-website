@@ -3307,7 +3307,7 @@ type PhotoQueryQuery = { readonly allFlickrPhoto: { readonly edges: ReadonlyArra
 type ridesQueryQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-type ridesQueryQuery = { readonly allRides: { readonly nodes: ReadonlyArray<{ readonly id: string, readonly track: { readonly name: string | null, readonly endPoint: { readonly lat: string | null, readonly lon: string | null } | null, readonly startingPoint: { readonly lat: string | null, readonly lon: string | null } | null, readonly points: ReadonlyArray<{ readonly lat: string | null, readonly lon: string | null } | null> | null } | null }> } };
+type ridesQueryQuery = { readonly allRides: { readonly nodes: ReadonlyArray<{ readonly id: string, readonly track: { readonly name: string | null, readonly endPoint: { readonly lat: string | null, readonly lon: string | null } | null, readonly startingPoint: { readonly lat: string | null, readonly lon: string | null } | null, readonly points: ReadonlyArray<{ readonly lat: string | null, readonly lon: string | null, readonly ele: string | null } | null> | null } | null }> } };
 
 type SiteTitleQueryQueryVariables = Exact<{ [key: string]: never; }>;
 
