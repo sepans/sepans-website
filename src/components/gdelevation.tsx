@@ -13,7 +13,7 @@ interface ElevationProps extends SegmentProps {
 
 const DAY_CHART_WITH_RATIO = 0.6
 const HEIGHT = 60
-const LABEL_MARGIN = 25
+const LABEL_MARGIN = 30
 
 export const GdElevation: React.FC<ElevationProps> = (props) => {
   const { rideSegIndex, tracks } = props
@@ -240,7 +240,7 @@ const ElContainer = styled.div`
 const Label = styled.text`
   fill: black;
   font-family: arial;
-  font-size: 9px;
+  font-size: 10px;
 `
 
 const HorLine = styled.line`

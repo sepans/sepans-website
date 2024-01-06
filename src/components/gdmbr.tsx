@@ -186,6 +186,8 @@ const LinkedImage: React.FC<LinkedImageProps> = (props) => {
 
 const PageWrapper = styled.div`
   width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
 `
 
 const MapWrapper = styled.div`
