@@ -69,10 +69,12 @@ export const GdMap: React.FC<GMapProps> = (props) => {
 
   useEffect(() => {
     if (zoomToPhoto) {
-      map.current.flyTo({
-        center: [zoomToPhoto.longitude, zoomToPhoto.latitude],
-        zoom: 10
-      })
+      if (zoomToPhoto.longitude && zoomToPhoto.latitude) {
+        map.current.flyTo({
+          center: [zoomToPhoto.longitude, zoomToPhoto.latitude],
+          zoom: 10
+        })
+      }
       map.current.setFilter('photo-markers', ['==', 'id', zoomToPhoto.id])
     } else if (rideSegIndex === -1) {
       zoomOut()

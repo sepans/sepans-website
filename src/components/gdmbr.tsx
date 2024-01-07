@@ -1,6 +1,6 @@
 /* eslint-disable import/no-unresolved */
 /* eslint-disable react/jsx-props-no-spreading */
-import React, { useState } from 'react'
+import React, { useMemo, useState } from 'react'
 import styled from 'styled-components'
 import Lightbox from 'yet-another-react-lightbox'
 // import { geoAlbersUsa } from 'd3-geo'
@@ -83,9 +83,9 @@ const ImageGroup: React.FC<ImageGroupProps> = React.memo(
     const { bounds } = useRideTracks()
     const [lightboxIndex, setLightboxIndex] = useState<number>(-1)
 
-    const randomGroupIndex = random(0, group.length - 30)
-    const displayPhotos =
-      rideSegIndex === -1
+    const displayPhotos = useMemo(() => {
+      const randomGroupIndex = random(0, group.length - 30)
+      return rideSegIndex === -1
         ? group
             .slice(randomGroupIndex, randomGroupIndex + 30)
             .sort(sortPhotosByTime)
@@ -103,6 +103,7 @@ const ImageGroup: React.FC<ImageGroupProps> = React.memo(
               )
             })
             .sort(sortPhotosByTime)
+    }, [rideSegIndex])
 
     return (
       <>
