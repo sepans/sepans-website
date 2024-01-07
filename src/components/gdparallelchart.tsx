@@ -51,15 +51,6 @@ export const GdParallelChart: React.FC<Props> = (props) => {
     }
   }, [])
 
-  console.log('new width', width)
-  // const distanceScale = scaleLinear()
-  //     .domain(extent(activities, distance))
-  //     .range([0, height])
-
-  // const elevationScale = scaleLinear()
-  //     .domain(extent(activities, elevation))
-  //     .range([0, height])
-
   const scales = dims.map((dim) =>
     scaleLinear().domain(extent(activities, dim)).range([height, 0])
   )

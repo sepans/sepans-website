@@ -4,6 +4,7 @@ import React, { useState } from 'react'
 import styled from 'styled-components'
 import Lightbox from 'yet-another-react-lightbox'
 // import { geoAlbersUsa } from 'd3-geo'
+import { random } from 'lodash'
 import { useGreatDivideImages } from '../hooks/useGreatDivideImages'
 
 import 'yet-another-react-lightbox/styles.css'
@@ -23,6 +24,7 @@ export const Gdmbr: React.FC = () => {
   const photos = useGreatDivideImages()
 
   const [rideSegIndex, setRideSegIndex] = useState(-1)
+  const [zoomToPhoto, setZoomToPhoto] = useState(null)
 
   const { tracks } = useRideTracks()
 
@@ -33,6 +35,8 @@ export const Gdmbr: React.FC = () => {
           <GdMap
             rideSegIndex={rideSegIndex}
             setRideSegIndex={setRideSegIndex}
+            photos={photos}
+            zoomToPhoto={zoomToPhoto}
           />
         </MapWrapper>
         <GdElevation
@@ -45,7 +49,11 @@ export const Gdmbr: React.FC = () => {
           setRideSegIndex={setRideSegIndex}
           numberOfTracks={tracks.length}
         />
-        <ImageGroup group={photos} rideSegIndex={rideSegIndex} />
+        <ImageGroup
+          group={photos}
+          setZoomToPhoto={setZoomToPhoto}
+          rideSegIndex={rideSegIndex}
+        />
       </PageWrapper>
     </>
   )
@@ -58,63 +66,77 @@ const GEO_THRESH = 0.0001
 interface ImageGroupProps {
   group: ImageGroupsType
   rideSegIndex: number
+  setZoomToPhoto: (object) => void
 }
 
-const ImageGroup: React.FC<ImageGroupProps> = (props) => {
-  const { rideSegIndex, group } = props
-  const { bounds } = useRideTracks()
-  const [lightboxIndex, setLightboxIndex] = useState<number>(-1)
+// This is a memoized component: it only re-renders when rideSegIndex changes.
+// reason for that: because Lightbox doesn't have a callback for when carosel
+// changes so lightboxIndex cannot be updated accordingly so when setZoomToPhoto is
+// called it updates zoomToPhoto state and the parent re-renders, re-rendering this
+// which sets back the open image to initial lightboxIndex
+const ImageGroup: React.FC<ImageGroupProps> = React.memo(
+  (props) => {
+    const { rideSegIndex, group, setZoomToPhoto } = props
+    const { bounds } = useRideTracks()
+    const [lightboxIndex, setLightboxIndex] = useState<number>(-1)
 
-  const displayPhotos =
-    rideSegIndex === -1
-      ? group.filter((photo, i) => i > Math.random() * 100)
-      : group
-          .filter((photo) => {
-            const bound = bounds[rideSegIndex]
-            const lat = Math.abs(parseFloat(photo.latitude))
-            const lon = Math.abs(parseFloat(photo.longitude))
+    const randomGroupIndex = random(0, group.length - 30)
+    const displayPhotos =
+      rideSegIndex === -1
+        ? group.slice(randomGroupIndex, randomGroupIndex + 30)
+        : group
+            .filter((photo) => {
+              const bound = bounds[rideSegIndex]
+              const lat = Math.abs(parseFloat(photo.latitude))
+              const lon = Math.abs(parseFloat(photo.longitude))
 
-            return (
-              lon < Math.abs(bound[0]) * (1 + GEO_THRESH) &&
-              lat < Math.abs(bound[3]) * (1 + GEO_THRESH) &&
-              lon > Math.abs(bound[2]) * (1 - GEO_THRESH) &&
-              lat > Math.abs(bound[1]) * (1 - GEO_THRESH)
+              return (
+                lon < Math.abs(bound[0]) * (1 + GEO_THRESH) &&
+                lat < Math.abs(bound[3]) * (1 + GEO_THRESH) &&
+                lon > Math.abs(bound[2]) * (1 - GEO_THRESH) &&
+                lat > Math.abs(bound[1]) * (1 - GEO_THRESH)
+              )
+            })
+            .sort(
+              (a, b) =>
+                new Date(a.dateTaken).getTime() -
+                new Date(b.dateTaken).getTime()
             )
-          })
-          .sort(
-            (a, b) =>
-              new Date(a.dateTaken).getTime() - new Date(b.dateTaken).getTime()
-          )
 
-  const lightboxStyles = {
-    container: { backgroundColor: 'rgba(0, 0, 0, .8)' },
-    slide: { alignContent: 'end' }
-  }
-
-  return (
-    <>
-      <ImageWrapper>
-        {displayPhotos.map((photo, i) => (
-          // eslint-disable-next-line react/jsx-props-no-spreading
-          <LinkedImage
-            key={`image-${photo.thumbnailSrc}`}
-            imageWidth={PHOTO_WIDTH}
-            {...photo}
-            albumIndex={i}
-            click={setLightboxIndex}
-          />
-        ))}
-      </ImageWrapper>
-      <Lightbox
-        open={lightboxIndex > -1}
-        close={() => setLightboxIndex(-1)}
-        index={lightboxIndex}
-        styles={lightboxStyles}
-        slides={displayPhotos.map((photo) => ({ src: photo.imageSrc }))}
-      />
-    </>
-  )
-}
+    return (
+      <>
+        <ImageWrapper>
+          {displayPhotos.map((photo, i) => (
+            // eslint-disable-next-line react/jsx-props-no-spreading
+            <LinkedImage
+              key={`image-${photo.thumbnailSrc}`}
+              imageWidth={PHOTO_WIDTH}
+              {...photo}
+              albumIndex={i}
+              click={setLightboxIndex}
+            />
+          ))}
+        </ImageWrapper>
+        <Lightbox
+          open={lightboxIndex > -1}
+          close={() => setLightboxIndex(-1)}
+          index={lightboxIndex}
+          className="gd-lightbox-styles"
+          on={{
+            view: ({ index }) => {
+              setZoomToPhoto(displayPhotos[index])
+            },
+            exiting: () => {
+              setZoomToPhoto(null)
+            }
+          }}
+          slides={displayPhotos.map((photo) => ({ src: photo.imageSrc }))}
+        />
+      </>
+    )
+  },
+  (prevProps, nextProps) => prevProps.rideSegIndex === nextProps.rideSegIndex
+)
 
 /*
 

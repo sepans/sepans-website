@@ -13,6 +13,7 @@ export const processFlickrImageData = (data: Queries.PhotoQueryQuery) =>
         ''
       const description = rawLabel?.replace(labelRegex, '')
       return {
+        id: node.id,
         thumbnailSrc: node.url_q || '',
         imageSrc: node.url_o || '',
         ratio: (node.width_o || 1) / (node.height_o || 1),

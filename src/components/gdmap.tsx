@@ -22,11 +22,15 @@ const INIT_PITCH = 20
 mapboxgl.accessToken =
   'pk.eyJ1Ijoic2VwYW5zbSIsImEiOiJjbHE3MDYwcnoweHpzMmpxbGR1dmFiand0In0.57Pw_8KBRchh14a5yBWgeA'
 
-export const GdMap: React.FC<SegmentProps> = (props) => {
+interface GMapProps extends SegmentProps {
+  photos: object[] // FIXME:
+  zoomToPhoto: object
+}
+
+export const GdMap: React.FC<GMapProps> = (props) => {
   const mapContainer = useRef<HTMLDivElement>()
   const map = useRef<Map>()
-
-  const { rideSegIndex } = props
+  const { rideSegIndex, photos, zoomToPhoto } = props
 
   // we don't need to keep track of map location/zoom state
   // const [lng, setLng] = useState(INIT_LNG)
@@ -52,6 +56,7 @@ export const GdMap: React.FC<SegmentProps> = (props) => {
     // map.current.setPitch(80)
     map?.current?.setFilter('route-layer', null)
     // setRideSegIndex(-1)
+    map?.current?.setFilter('photo-markers', false)
   }
 
   useEffect(() => {
@@ -62,6 +67,20 @@ export const GdMap: React.FC<SegmentProps> = (props) => {
     }
   }, [rideSegIndex])
 
+  useEffect(() => {
+    if (zoomToPhoto) {
+      map.current.flyTo({
+        center: [zoomToPhoto.longitude, zoomToPhoto.latitude],
+        zoom: 10
+      })
+      map.current.setFilter('photo-markers', ['==', 'id', zoomToPhoto.id])
+    } else if (rideSegIndex === -1) {
+      zoomOut()
+    } else {
+      zoomToSegIndex(rideSegIndex)
+    }
+  }, [zoomToPhoto])
+
   const zoomToSegIndex = (index: number) => {
     map.current.fitBounds(bounds[index], {
       padding: 20,
@@ -69,14 +88,9 @@ export const GdMap: React.FC<SegmentProps> = (props) => {
       duration: 2000
     })
     // map.current.setPitch(80)
-    map.current.setFilter('route-layer', [
-      '==',
-      'name',
-      `track-${index}`
-      // true,
-      // false
-    ])
-    // setRideSegIndex(index)
+    map.current.setFilter('route-layer', ['==', 'name', `track-${index}`])
+
+    map.current.setFilter('photo-markers', null)
   }
 
   useEffect(() => {
@@ -111,8 +125,28 @@ export const GdMap: React.FC<SegmentProps> = (props) => {
           }))
         }
       }
-      // console.log(trackSource)
       map.current.addSource(`route`, trackSource)
+
+      const photoMarkers = {
+        type: 'geojson',
+        data: {
+          type: 'FeatureCollection',
+          features: photos.map((photo, i) => ({
+            type: 'Feature',
+            geometry: {
+              type: 'Point',
+              coordinates: [photo.longitude, photo.latitude]
+            },
+            properties: {
+              thumbnail: photo.thumbnailSrc,
+              id: photo.id,
+              day: Math.floor(i / 3) // TODO: calculate based on bounds?
+            }
+          }))
+        }
+      }
+
+      map.current.addSource('photos', photoMarkers)
 
       map.current.addSource('mapbox-dem', {
         type: 'raster-dem',
@@ -150,6 +184,21 @@ export const GdMap: React.FC<SegmentProps> = (props) => {
           'line-width': 3
         }
       })
+
+      // photo markers
+      map.current.addLayer({
+        id: 'photo-markers',
+        type: 'circle',
+        source: 'photos',
+        paint: {
+          'circle-radius': 3,
+          'circle-color': '#E5E5E5',
+          'circle-stroke-color': '#000',
+          'circle-stroke-width': 2
+        }
+      })
+
+      map.current.setFilter('photo-markers', false)
     })
   })
 

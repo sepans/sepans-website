@@ -624,3 +624,29 @@ main {
     font-size: 100%;
   }
 }
+
+
+/* gd lightbox */
+
+.gd-lightbox-styles {
+
+  .yarl__slide  {
+    align-items: end;
+    margin-bottom: 2vh;
+    
+  }
+
+  .yarl__slide img {
+    max-height: 54vh !important;
+  }
+  
+  .yarl__container {
+    background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 1));
+  }
+
+
+}
+
+.gd-lightbox-styles.yarl__portal {
+  z-index: 2;
+}
