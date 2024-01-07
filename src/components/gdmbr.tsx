@@ -63,6 +63,9 @@ type ImageGroupsType = ReturnType<typeof useGreatDivideImages>
 
 const GEO_THRESH = 0.0001
 
+const sortPhotosByTime = (a, b) =>
+  new Date(a.dateTaken).getTime() - new Date(b.dateTaken).getTime()
+
 interface ImageGroupProps {
   group: ImageGroupsType
   rideSegIndex: number
@@ -83,7 +86,9 @@ const ImageGroup: React.FC<ImageGroupProps> = React.memo(
     const randomGroupIndex = random(0, group.length - 30)
     const displayPhotos =
       rideSegIndex === -1
-        ? group.slice(randomGroupIndex, randomGroupIndex + 30)
+        ? group
+            .slice(randomGroupIndex, randomGroupIndex + 30)
+            .sort(sortPhotosByTime)
         : group
             .filter((photo) => {
               const bound = bounds[rideSegIndex]
@@ -97,11 +102,7 @@ const ImageGroup: React.FC<ImageGroupProps> = React.memo(
                 lat > Math.abs(bound[1]) * (1 - GEO_THRESH)
               )
             })
-            .sort(
-              (a, b) =>
-                new Date(a.dateTaken).getTime() -
-                new Date(b.dateTaken).getTime()
-            )
+            .sort(sortPhotosByTime)
 
     return (
       <>
