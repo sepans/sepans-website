@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import styled from 'styled-components'
 // eslint-disable-next-line import/no-webpack-loader-syntax,
 import mapboxgl, { Map } from 'mapbox-gl'
@@ -30,6 +30,7 @@ interface GMapProps extends SegmentProps {
 export const GdMap: React.FC<GMapProps> = (props) => {
   const mapContainer = useRef<HTMLDivElement>()
   const map = useRef<Map>()
+  const [loading, setLoading] = useState(true)
   const { rideSegIndex, photos, zoomToPhoto } = props
 
   // we don't need to keep track of map location/zoom state
@@ -96,7 +97,10 @@ export const GdMap: React.FC<GMapProps> = (props) => {
   }
 
   useEffect(() => {
-    if (map.current) return
+    if (map.current) {
+      setLoading(false)
+      return
+    }
     map.current = new mapboxgl.Map({
       container: mapContainer.current || '',
       // style: 'mapbox://styles/mapbox/satellite-streets-v12',
@@ -112,6 +116,7 @@ export const GdMap: React.FC<GMapProps> = (props) => {
     // })
 
     map.current.on('load', () => {
+      setLoading(false)
       const trackSource = {
         type: 'geojson',
         data: {
@@ -206,6 +211,7 @@ export const GdMap: React.FC<GMapProps> = (props) => {
 
   return (
     <MapCrop>
+      <Loading>{loading ? 'loading the map...' : ''}</Loading>
       <div
         className="map-container"
         style={{ height: '40vh', width: '100%' }}
@@ -215,4 +221,13 @@ export const GdMap: React.FC<GMapProps> = (props) => {
   )
 }
 
-const MapCrop = styled.div``
+const MapCrop = styled.div`
+  position: relative;
+`
+
+const Loading = styled.div`
+  width: 100%;
+  text-align: center;
+  position: absolute;
+  font-size: 14px;
+`
