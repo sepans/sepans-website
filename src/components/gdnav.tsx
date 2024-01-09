@@ -42,6 +42,9 @@ export const GdNav: React.FC<GdNavProps> = (props) => {
           disabled={!hasNextSeg()}
           type="button"
           onClick={() => setRideSegIndex(rideSegIndex + 1)}
+          style={
+            rideSegIndex === -1 ? { color: 'blue', borderColor: 'blue' } : {}
+          }
         >
           {'>'}
         </NavButton>
