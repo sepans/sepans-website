@@ -1,13 +1,23 @@
 ---
 slug: "gdmbr"
 date: "2023-11-20"
-title: "Great divide route"
+title: "Great divide 2023"
+description: "Great Divide 2023 Visualization"
 type: "project"
 ---
 
 import { Gdmbr } from "../../components/gdmbr"
 import Layout from "../../components/layout"
 
-<Layout>
+<Layout meta={[
+     {
+        property: 'og:image',
+        content: 'https://live.staticflickr.com/65535/53332853587_1cc18c50ab_o.jpg'
+    },
+     {
+        property: 'og:description',
+        content: 'Great Divide 2023 Visualization'
+    },
+]}>
     <Gdmbr />
 </Layout>

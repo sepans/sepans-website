@@ -10,14 +10,18 @@ import styled from 'styled-components'
 
 import Header from './header'
 import './layout.css'
+import SEO from './seo'
 
 export interface LayoutProps {
   children: React.ReactNode
+  meta?: []
 }
 
-const Layout: React.FC<LayoutProps> = ({ children }) => (
+// TODO: query meta from mdx headers?
+const Layout: React.FC<LayoutProps> = ({ meta, children }) => (
   <>
     <Header />
+    <SEO meta={meta} />
     <Container>
       <MainArea>{children}</MainArea>
     </Container>

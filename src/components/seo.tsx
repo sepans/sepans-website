@@ -14,7 +14,7 @@ interface Props {
   description?: string
   lang?: string
   meta?: []
-  title: string
+  title?: string
 }
 
 const SEO: React.FC<Props> = ({ description, lang, meta, title }) => {
@@ -33,13 +33,12 @@ const SEO: React.FC<Props> = ({ description, lang, meta, title }) => {
   )
 
   const metaDescription = description || site.siteMetadata.description
-
   return (
     <Helmet
       htmlAttributes={{
         lang
       }}
-      title={title}
+      title={title || site.siteMetadata.title}
       titleTemplate={`%s | ${site.siteMetadata.title}`}
       meta={[
         {

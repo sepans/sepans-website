@@ -5,7 +5,7 @@ require('dotenv').config({
 module.exports = {
   siteMetadata: {
     title: 'sepans.com',
-    description: 'Sepand Ansari',
+    description: 'sepans',
     author: '@s3pans'
   },
   graphqlTypegen: true,
