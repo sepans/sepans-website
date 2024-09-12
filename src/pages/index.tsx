@@ -106,7 +106,7 @@ const IndexPage: React.FC = () => {
             )
           })}
         </div>
-        <div>
+        <div style="display: flex; flex-direction: column;">
           books
           <Link
             target="_blank"
