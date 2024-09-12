@@ -106,18 +106,20 @@ const IndexPage: React.FC = () => {
             )
           })}
         </div>
-        <Link
-          target="_blank"
-          href="https://sepans-dashboards.netlify.app/books"
-        >
+        <div>
           books
-          <PreviewContainer>
-            <img
-              src="https://covers.openlibrary.org/b/id/12921955-L.jpg"
-              alt="unnamable"
+          <Link
+            target="_blank"
+            href="https://sepans-dashboards.netlify.app/books"
+          >
+            <PreviewContainer>
+              <img
+                src="https://covers.openlibrary.org/b/id/12921955-L.jpg"
+                alt="unnamable"
             />
-          </PreviewContainer>
-        </Link>  
+            </PreviewContainer>
+          </Link>  
+        </div>
         <Link target="_blank" href="https://observablehq.com/@sepans/strava">
           rides
         </Link>
