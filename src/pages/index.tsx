@@ -71,7 +71,7 @@ const IndexPage: React.FC = () => {
             href="http://sepans.github.io/pb-lepracursor/components/pb-lepracursor/demo.html"
           >
             <img
-              src="https://camo.githubusercontent.com/ca9cd272d875a894bcb4dc6249416269d701e1c09a29669a68273f374b7785f2/687474703a2f2f736570616e732e6769746875622e696f2f70622d6c65707261637572736f722f636f6d706f6e656e74732f70622d6c65707261637572736f722f707265766965772e706e67"
+              src="https://camo.githubusercontent.com/7759a73b02ef5e0f300a07082f8bfd95583ae61394ff7509c44c8d909b8d5aff/687474703a2f2f736570616e732e6769746875622e696f2f70622d6c65707261637572736f722f636f6d706f6e656e74732f70622d6c65707261637572736f722f707265766965772e706e67"
               alt="lepra cursor"
             />
           </Link>
