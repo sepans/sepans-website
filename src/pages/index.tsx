@@ -108,16 +108,16 @@ const IndexPage: React.FC = () => {
         </div>
         <Link
           target="_blank"
-          href="https://observablehq.com/d/97c72828e7c9156a"
+          href="https://sepans-dashboards.netlify.app/books"
         >
           books
-        </Link>
-        <PreviewContainer>
-          <img
-            src="https://covers.openlibrary.org/b/id/12921955-L.jpg"
-            alt="unnamable"
-          />
-        </PreviewContainer>
+          <PreviewContainer>
+            <img
+              src="https://covers.openlibrary.org/b/id/12921955-L.jpg"
+              alt="unnamable"
+            />
+          </PreviewContainer>
+        </Link>  
         <Link target="_blank" href="https://observablehq.com/@sepans/strava">
           rides
         </Link>
