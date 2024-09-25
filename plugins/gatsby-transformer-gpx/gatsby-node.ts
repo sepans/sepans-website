@@ -46,11 +46,13 @@ async function onCreateNode({
   const rawXml = await loadNodeContent(node)
   const parsedXml = parseXml(rawXml)
   console.log('id', node.name)
+  const dirName = node.dir.split('/').slice(-1)[0]
 
   let nodeData: any = {
     id: node.name, // createNodeId(node.name),
     parent: node.id,
-    name: node.name
+    name: node.name,
+    route: dirName
     // children: [],
   }
   parsedXml.root.children.forEach((child) => {

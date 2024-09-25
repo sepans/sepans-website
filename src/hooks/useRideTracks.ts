@@ -1,10 +1,10 @@
 import { min, max } from 'd3-array'
-import { useRideData } from './useRideData'
+import { useGdmbrRideData } from './useGdmbrRideData'
 
 const POINT_RESOLUTION = 20
 
 export const useRideTracks = () => {
-  const rideData = useRideData()
+  const rideData = useGdmbrRideData()
 
   const tracks = rideData.allRides.nodes.map((ride) =>
     ride.track.points

@@ -2210,6 +2210,8 @@ type Query_ridesArgs = {
   internal: InputMaybe<InternalFilterInput>;
   name: InputMaybe<StringQueryOperatorInput>;
   parent: InputMaybe<NodeFilterInput>;
+  route: InputMaybe<StringQueryOperatorInput>;
+  time: InputMaybe<DateQueryOperatorInput>;
   track: InputMaybe<RidesTrackFilterInput>;
 };
 
@@ -2217,13 +2219,17 @@ type Query_ridesArgs = {
 type Query_siteArgs = {
   buildTime: InputMaybe<DateQueryOperatorInput>;
   children: InputMaybe<NodeFilterListInput>;
-  graphqlTypegen: InputMaybe<BooleanQueryOperatorInput>;
+  graphqlTypegen: InputMaybe<SiteGraphqlTypegenFilterInput>;
   host: InputMaybe<StringQueryOperatorInput>;
   id: InputMaybe<StringQueryOperatorInput>;
   internal: InputMaybe<InternalFilterInput>;
+  jsxRuntime: InputMaybe<StringQueryOperatorInput>;
   parent: InputMaybe<NodeFilterInput>;
+  pathPrefix: InputMaybe<StringQueryOperatorInput>;
+  polyfill: InputMaybe<BooleanQueryOperatorInput>;
   port: InputMaybe<IntQueryOperatorInput>;
   siteMetadata: InputMaybe<SiteSiteMetadataFilterInput>;
+  trailingSlash: InputMaybe<StringQueryOperatorInput>;
 };
 
 
@@ -2288,7 +2294,17 @@ type Rides = Node & {
   readonly internal: Internal;
   readonly name: Maybe<Scalars['String']>;
   readonly parent: Maybe<Node>;
+  readonly route: Maybe<Scalars['String']>;
+  readonly time: Maybe<Scalars['Date']>;
   readonly track: Maybe<RidesTrack>;
+};
+
+
+type Rides_timeArgs = {
+  difference: InputMaybe<Scalars['String']>;
+  formatString: InputMaybe<Scalars['String']>;
+  fromNow: InputMaybe<Scalars['Boolean']>;
+  locale: InputMaybe<Scalars['String']>;
 };
 
 type RidesConnection = {
@@ -2342,6 +2358,8 @@ type RidesFieldSelector = {
   readonly internal: InputMaybe<InternalFieldSelector>;
   readonly name: InputMaybe<FieldSelectorEnum>;
   readonly parent: InputMaybe<NodeFieldSelector>;
+  readonly route: InputMaybe<FieldSelectorEnum>;
+  readonly time: InputMaybe<FieldSelectorEnum>;
   readonly track: InputMaybe<RidesTrackFieldSelector>;
 };
 
@@ -2351,6 +2369,8 @@ type RidesFilterInput = {
   readonly internal: InputMaybe<InternalFilterInput>;
   readonly name: InputMaybe<StringQueryOperatorInput>;
   readonly parent: InputMaybe<NodeFilterInput>;
+  readonly route: InputMaybe<StringQueryOperatorInput>;
+  readonly time: InputMaybe<DateQueryOperatorInput>;
   readonly track: InputMaybe<RidesTrackFilterInput>;
 };
 
@@ -2401,51 +2421,87 @@ type RidesSortInput = {
   readonly internal: InputMaybe<InternalSortInput>;
   readonly name: InputMaybe<SortOrderEnum>;
   readonly parent: InputMaybe<NodeSortInput>;
+  readonly route: InputMaybe<SortOrderEnum>;
+  readonly time: InputMaybe<SortOrderEnum>;
   readonly track: InputMaybe<RidesTrackSortInput>;
 };
 
 type RidesTrack = {
   readonly endPoint: Maybe<RidesTrackEndPoint>;
+  readonly endTime: Maybe<Scalars['Date']>;
   readonly name: Maybe<Scalars['String']>;
   readonly points: Maybe<ReadonlyArray<Maybe<RidesTrackPoints>>>;
+  readonly startTime: Maybe<Scalars['Date']>;
   readonly startingPoint: Maybe<RidesTrackStartingPoint>;
+};
+
+
+type RidesTrack_endTimeArgs = {
+  difference: InputMaybe<Scalars['String']>;
+  formatString: InputMaybe<Scalars['String']>;
+  fromNow: InputMaybe<Scalars['Boolean']>;
+  locale: InputMaybe<Scalars['String']>;
+};
+
+
+type RidesTrack_startTimeArgs = {
+  difference: InputMaybe<Scalars['String']>;
+  formatString: InputMaybe<Scalars['String']>;
+  fromNow: InputMaybe<Scalars['Boolean']>;
+  locale: InputMaybe<Scalars['String']>;
 };
 
 type RidesTrackEndPoint = {
   readonly ele: Maybe<Scalars['String']>;
   readonly lat: Maybe<Scalars['String']>;
   readonly lon: Maybe<Scalars['String']>;
+  readonly time: Maybe<Scalars['Date']>;
+};
+
+
+type RidesTrackEndPoint_timeArgs = {
+  difference: InputMaybe<Scalars['String']>;
+  formatString: InputMaybe<Scalars['String']>;
+  fromNow: InputMaybe<Scalars['Boolean']>;
+  locale: InputMaybe<Scalars['String']>;
 };
 
 type RidesTrackEndPointFieldSelector = {
   readonly ele: InputMaybe<FieldSelectorEnum>;
   readonly lat: InputMaybe<FieldSelectorEnum>;
   readonly lon: InputMaybe<FieldSelectorEnum>;
+  readonly time: InputMaybe<FieldSelectorEnum>;
 };
 
 type RidesTrackEndPointFilterInput = {
   readonly ele: InputMaybe<StringQueryOperatorInput>;
   readonly lat: InputMaybe<StringQueryOperatorInput>;
   readonly lon: InputMaybe<StringQueryOperatorInput>;
+  readonly time: InputMaybe<DateQueryOperatorInput>;
 };
 
 type RidesTrackEndPointSortInput = {
   readonly ele: InputMaybe<SortOrderEnum>;
   readonly lat: InputMaybe<SortOrderEnum>;
   readonly lon: InputMaybe<SortOrderEnum>;
+  readonly time: InputMaybe<SortOrderEnum>;
 };
 
 type RidesTrackFieldSelector = {
   readonly endPoint: InputMaybe<RidesTrackEndPointFieldSelector>;
+  readonly endTime: InputMaybe<FieldSelectorEnum>;
   readonly name: InputMaybe<FieldSelectorEnum>;
   readonly points: InputMaybe<RidesTrackPointsFieldSelector>;
+  readonly startTime: InputMaybe<FieldSelectorEnum>;
   readonly startingPoint: InputMaybe<RidesTrackStartingPointFieldSelector>;
 };
 
 type RidesTrackFilterInput = {
   readonly endPoint: InputMaybe<RidesTrackEndPointFilterInput>;
+  readonly endTime: InputMaybe<DateQueryOperatorInput>;
   readonly name: InputMaybe<StringQueryOperatorInput>;
   readonly points: InputMaybe<RidesTrackPointsFilterListInput>;
+  readonly startTime: InputMaybe<DateQueryOperatorInput>;
   readonly startingPoint: InputMaybe<RidesTrackStartingPointFilterInput>;
 };
 
@@ -2453,18 +2509,29 @@ type RidesTrackPoints = {
   readonly ele: Maybe<Scalars['String']>;
   readonly lat: Maybe<Scalars['String']>;
   readonly lon: Maybe<Scalars['String']>;
+  readonly time: Maybe<Scalars['Date']>;
+};
+
+
+type RidesTrackPoints_timeArgs = {
+  difference: InputMaybe<Scalars['String']>;
+  formatString: InputMaybe<Scalars['String']>;
+  fromNow: InputMaybe<Scalars['Boolean']>;
+  locale: InputMaybe<Scalars['String']>;
 };
 
 type RidesTrackPointsFieldSelector = {
   readonly ele: InputMaybe<FieldSelectorEnum>;
   readonly lat: InputMaybe<FieldSelectorEnum>;
   readonly lon: InputMaybe<FieldSelectorEnum>;
+  readonly time: InputMaybe<FieldSelectorEnum>;
 };
 
 type RidesTrackPointsFilterInput = {
   readonly ele: InputMaybe<StringQueryOperatorInput>;
   readonly lat: InputMaybe<StringQueryOperatorInput>;
   readonly lon: InputMaybe<StringQueryOperatorInput>;
+  readonly time: InputMaybe<DateQueryOperatorInput>;
 };
 
 type RidesTrackPointsFilterListInput = {
@@ -2475,12 +2542,15 @@ type RidesTrackPointsSortInput = {
   readonly ele: InputMaybe<SortOrderEnum>;
   readonly lat: InputMaybe<SortOrderEnum>;
   readonly lon: InputMaybe<SortOrderEnum>;
+  readonly time: InputMaybe<SortOrderEnum>;
 };
 
 type RidesTrackSortInput = {
   readonly endPoint: InputMaybe<RidesTrackEndPointSortInput>;
+  readonly endTime: InputMaybe<SortOrderEnum>;
   readonly name: InputMaybe<SortOrderEnum>;
   readonly points: InputMaybe<RidesTrackPointsSortInput>;
+  readonly startTime: InputMaybe<SortOrderEnum>;
   readonly startingPoint: InputMaybe<RidesTrackStartingPointSortInput>;
 };
 
@@ -2488,36 +2558,52 @@ type RidesTrackStartingPoint = {
   readonly ele: Maybe<Scalars['String']>;
   readonly lat: Maybe<Scalars['String']>;
   readonly lon: Maybe<Scalars['String']>;
+  readonly time: Maybe<Scalars['Date']>;
+};
+
+
+type RidesTrackStartingPoint_timeArgs = {
+  difference: InputMaybe<Scalars['String']>;
+  formatString: InputMaybe<Scalars['String']>;
+  fromNow: InputMaybe<Scalars['Boolean']>;
+  locale: InputMaybe<Scalars['String']>;
 };
 
 type RidesTrackStartingPointFieldSelector = {
   readonly ele: InputMaybe<FieldSelectorEnum>;
   readonly lat: InputMaybe<FieldSelectorEnum>;
   readonly lon: InputMaybe<FieldSelectorEnum>;
+  readonly time: InputMaybe<FieldSelectorEnum>;
 };
 
 type RidesTrackStartingPointFilterInput = {
   readonly ele: InputMaybe<StringQueryOperatorInput>;
   readonly lat: InputMaybe<StringQueryOperatorInput>;
   readonly lon: InputMaybe<StringQueryOperatorInput>;
+  readonly time: InputMaybe<DateQueryOperatorInput>;
 };
 
 type RidesTrackStartingPointSortInput = {
   readonly ele: InputMaybe<SortOrderEnum>;
   readonly lat: InputMaybe<SortOrderEnum>;
   readonly lon: InputMaybe<SortOrderEnum>;
+  readonly time: InputMaybe<SortOrderEnum>;
 };
 
 type Site = Node & {
   readonly buildTime: Maybe<Scalars['Date']>;
   readonly children: ReadonlyArray<Node>;
-  readonly graphqlTypegen: Maybe<Scalars['Boolean']>;
+  readonly graphqlTypegen: Maybe<SiteGraphqlTypegen>;
   readonly host: Maybe<Scalars['String']>;
   readonly id: Scalars['ID'];
   readonly internal: Internal;
+  readonly jsxRuntime: Maybe<Scalars['String']>;
   readonly parent: Maybe<Node>;
+  readonly pathPrefix: Maybe<Scalars['String']>;
+  readonly polyfill: Maybe<Scalars['Boolean']>;
   readonly port: Maybe<Scalars['Int']>;
   readonly siteMetadata: Maybe<SiteSiteMetadata>;
+  readonly trailingSlash: Maybe<Scalars['String']>;
 };
 
 
@@ -2702,25 +2788,33 @@ type SiteEdge = {
 type SiteFieldSelector = {
   readonly buildTime: InputMaybe<FieldSelectorEnum>;
   readonly children: InputMaybe<NodeFieldSelector>;
-  readonly graphqlTypegen: InputMaybe<FieldSelectorEnum>;
+  readonly graphqlTypegen: InputMaybe<SiteGraphqlTypegenFieldSelector>;
   readonly host: InputMaybe<FieldSelectorEnum>;
   readonly id: InputMaybe<FieldSelectorEnum>;
   readonly internal: InputMaybe<InternalFieldSelector>;
+  readonly jsxRuntime: InputMaybe<FieldSelectorEnum>;
   readonly parent: InputMaybe<NodeFieldSelector>;
+  readonly pathPrefix: InputMaybe<FieldSelectorEnum>;
+  readonly polyfill: InputMaybe<FieldSelectorEnum>;
   readonly port: InputMaybe<FieldSelectorEnum>;
   readonly siteMetadata: InputMaybe<SiteSiteMetadataFieldSelector>;
+  readonly trailingSlash: InputMaybe<FieldSelectorEnum>;
 };
 
 type SiteFilterInput = {
   readonly buildTime: InputMaybe<DateQueryOperatorInput>;
   readonly children: InputMaybe<NodeFilterListInput>;
-  readonly graphqlTypegen: InputMaybe<BooleanQueryOperatorInput>;
+  readonly graphqlTypegen: InputMaybe<SiteGraphqlTypegenFilterInput>;
   readonly host: InputMaybe<StringQueryOperatorInput>;
   readonly id: InputMaybe<StringQueryOperatorInput>;
   readonly internal: InputMaybe<InternalFilterInput>;
+  readonly jsxRuntime: InputMaybe<StringQueryOperatorInput>;
   readonly parent: InputMaybe<NodeFilterInput>;
+  readonly pathPrefix: InputMaybe<StringQueryOperatorInput>;
+  readonly polyfill: InputMaybe<BooleanQueryOperatorInput>;
   readonly port: InputMaybe<IntQueryOperatorInput>;
   readonly siteMetadata: InputMaybe<SiteSiteMetadataFilterInput>;
+  readonly trailingSlash: InputMaybe<StringQueryOperatorInput>;
 };
 
 type SiteFunction = Node & {
@@ -2863,6 +2957,30 @@ type SiteFunctionSortInput = {
   readonly parent: InputMaybe<NodeSortInput>;
   readonly pluginName: InputMaybe<SortOrderEnum>;
   readonly relativeCompiledFilePath: InputMaybe<SortOrderEnum>;
+};
+
+type SiteGraphqlTypegen = {
+  readonly documentSearchPaths: Maybe<ReadonlyArray<Maybe<Scalars['String']>>>;
+  readonly generateOnBuild: Maybe<Scalars['Boolean']>;
+  readonly typesOutputPath: Maybe<Scalars['String']>;
+};
+
+type SiteGraphqlTypegenFieldSelector = {
+  readonly documentSearchPaths: InputMaybe<FieldSelectorEnum>;
+  readonly generateOnBuild: InputMaybe<FieldSelectorEnum>;
+  readonly typesOutputPath: InputMaybe<FieldSelectorEnum>;
+};
+
+type SiteGraphqlTypegenFilterInput = {
+  readonly documentSearchPaths: InputMaybe<StringQueryOperatorInput>;
+  readonly generateOnBuild: InputMaybe<BooleanQueryOperatorInput>;
+  readonly typesOutputPath: InputMaybe<StringQueryOperatorInput>;
+};
+
+type SiteGraphqlTypegenSortInput = {
+  readonly documentSearchPaths: InputMaybe<SortOrderEnum>;
+  readonly generateOnBuild: InputMaybe<SortOrderEnum>;
+  readonly typesOutputPath: InputMaybe<SortOrderEnum>;
 };
 
 type SiteGroupConnection = {
@@ -3225,13 +3343,17 @@ type SiteSiteMetadataSortInput = {
 type SiteSortInput = {
   readonly buildTime: InputMaybe<SortOrderEnum>;
   readonly children: InputMaybe<NodeSortInput>;
-  readonly graphqlTypegen: InputMaybe<SortOrderEnum>;
+  readonly graphqlTypegen: InputMaybe<SiteGraphqlTypegenSortInput>;
   readonly host: InputMaybe<SortOrderEnum>;
   readonly id: InputMaybe<SortOrderEnum>;
   readonly internal: InputMaybe<InternalSortInput>;
+  readonly jsxRuntime: InputMaybe<SortOrderEnum>;
   readonly parent: InputMaybe<NodeSortInput>;
+  readonly pathPrefix: InputMaybe<SortOrderEnum>;
+  readonly polyfill: InputMaybe<SortOrderEnum>;
   readonly port: InputMaybe<SortOrderEnum>;
   readonly siteMetadata: InputMaybe<SiteSiteMetadataSortInput>;
+  readonly trailingSlash: InputMaybe<SortOrderEnum>;
 };
 
 type SortOrderEnum =
@@ -3267,7 +3389,7 @@ type PhotoQueryQuery = { readonly allFlickrPhoto: { readonly edges: ReadonlyArra
 type ridesQueryQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-type ridesQueryQuery = { readonly allRides: { readonly nodes: ReadonlyArray<{ readonly id: string, readonly track: { readonly name: string | null, readonly endPoint: { readonly lat: string | null, readonly lon: string | null } | null, readonly startingPoint: { readonly lat: string | null, readonly lon: string | null } | null, readonly points: ReadonlyArray<{ readonly lat: string | null, readonly lon: string | null, readonly ele: string | null } | null> | null } | null }> } };
+type ridesQueryQuery = { readonly allRides: { readonly nodes: ReadonlyArray<{ readonly id: string, readonly route: string | null, readonly track: { readonly name: string | null, readonly endPoint: { readonly lat: string | null, readonly lon: string | null } | null, readonly startingPoint: { readonly lat: string | null, readonly lon: string | null } | null, readonly points: ReadonlyArray<{ readonly lat: string | null, readonly lon: string | null, readonly ele: string | null } | null> | null } | null }> } };
 
 type SiteTitleQueryQueryVariables = Exact<{ [key: string]: never; }>;
 
