@@ -10,6 +10,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "xml-parser": "^1.2.1"
+    "fast-xml-parser": "^4.5.0"
   }
 }

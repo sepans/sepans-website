@@ -1,19 +1,15 @@
 import { min, max } from 'd3-array'
 import { useGdmbrRideData } from './useGdmbrRideData'
 
-const POINT_RESOLUTION = 20
-
 export const useRideTracks = () => {
   const rideData = useGdmbrRideData()
 
   const tracks = rideData.allRides.nodes.map((ride) =>
-    ride.track.points
-      ?.filter((_, i) => i % POINT_RESOLUTION === 0)
-      ?.map((point) => [
-        parseFloat(point.lon),
-        parseFloat(point.lat),
-        parseFloat(point.ele)
-      ])
+    ride.track.points?.map((point) => [
+      parseFloat(point.lon),
+      parseFloat(point.lat),
+      parseFloat(point.ele)
+    ])
   )
   const bounds = rideData.allRides.nodes.map((ride) => [
     min(ride.track.points, (point) => parseFloat(point.lon)),
