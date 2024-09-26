@@ -37,14 +37,14 @@ async function onCreateNode({
         const { ele, lon, lat, time } = trkpt
         return {
           ele,
-          lon,
-          lat,
+          lon: parseFloat(lon),
+          lat: parseFloat(lat),
           time
         }
       })
   }
 
-  const time = parsedXml.gpx?.metadata?.time || ''
+  const time = parsedXml.gpx?.metadata?.time || points[0].time
 
   const nodeData: any = {
     id: node.name, // createNodeId(node.name),

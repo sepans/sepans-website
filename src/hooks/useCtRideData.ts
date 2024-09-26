@@ -1,10 +1,10 @@
 import { useStaticQuery, graphql } from 'gatsby'
 
-export const useGdmbrRideData = () => {
+export const useCtRideData = () => {
   // TODO: type
   const ridesQuery = graphql`
-    query gdmbrRidesQuery {
-      allRides(filter: { route: { eq: "gdmbr" } }) {
+    query ctRidesQuery {
+      allRides(filter: { route: { eq: "ct" } }) {
         nodes {
           id
           route
@@ -31,14 +31,10 @@ export const useGdmbrRideData = () => {
   `
 
   // eslint-disable-next-line no-undef
-  const data: Queries.gdmbrRidesQueryQuery = useStaticQuery(ridesQuery)
+  const data: Queries.ctRidesQueryQuery = useStaticQuery(ridesQuery)
 
-  // sort doesn't work because the convereted fit data doesn't have time
-  // data.allRides.nodes.sort((n1, n2) =>
-  //     new Date(n1.track.startTime).getTime() - new Date(n2.track.startTime).getTime())
-  // but since the path is soutbound it works with latitude
   data.allRides.nodes.sort(
-    (n1, n2) => n2.track.endPoint.lat - n1.track.endPoint.lat
+    (n1, n2) => new Date(n1.time).getTime() - new Date(n2.time).getTime()
   )
 
   return data

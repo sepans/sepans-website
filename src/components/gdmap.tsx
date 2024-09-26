@@ -2,7 +2,6 @@ import React, { useEffect, useRef, useState } from 'react'
 import styled from 'styled-components'
 // eslint-disable-next-line import/no-webpack-loader-syntax,
 import mapboxgl, { Map } from 'mapbox-gl'
-import { useRideTracks } from '../hooks/useRideTracks'
 import 'mapbox-gl/dist/mapbox-gl.css'
 import { SegmentProps } from './gdmbr'
 
@@ -14,9 +13,6 @@ export const MAP_OFFSET_LEFT = 20
 const TRACK_COLOR = '#FFF' // '#89CFF0'
 const TRACK_DISABLED_COLOR = '#858585' // '#AAA'
 
-const INIT_ZOOM = 2.2
-const INIT_LNG = -109.9
-const INIT_LAT = 42.2
 const INIT_PITCH = 20
 
 mapboxgl.accessToken =
@@ -25,20 +21,15 @@ mapboxgl.accessToken =
 interface GMapProps extends SegmentProps {
   photos: object[] // FIXME:
   zoomToPhoto: object
+  tracks: number[][][]
+  bounds: [number, number, number, number][]
 }
 
 export const GdMap: React.FC<GMapProps> = (props) => {
   const mapContainer = useRef<HTMLDivElement>()
   const map = useRef<Map>()
   const [loading, setLoading] = useState(true)
-  const { rideSegIndex, photos, zoomToPhoto } = props
-
-  // we don't need to keep track of map location/zoom state
-  // const [lng, setLng] = useState(INIT_LNG)
-  // const [lat, setLat] = useState(INIT_LAT)
-  // const [zoom, setZoom] = useState(INIT_ZOOM)
-
-  const { tracks, bounds } = useRideTracks()
+  const { rideSegIndex, photos, zoomToPhoto, tracks, bounds } = props
 
   const zoomOut = () => {
     map?.current?.fitBounds(
@@ -105,8 +96,15 @@ export const GdMap: React.FC<GMapProps> = (props) => {
       container: mapContainer.current || '',
       // style: 'mapbox://styles/mapbox/satellite-streets-v12',
       style: 'mapbox://styles/sepansm/clr0vt0sv00vr01qx6bko3ghc',
-      center: [INIT_LNG, INIT_LAT],
-      zoom: INIT_ZOOM,
+      bounds: [
+        bounds[0][0],
+        bounds[0][1],
+        bounds[bounds.length - 1][0],
+        bounds[bounds.length - 1][1]
+      ],
+      fitBoundsOptions: {
+        padding: 80
+      },
       pitch: INIT_PITCH
     })
     // map.current.on('move', () => {

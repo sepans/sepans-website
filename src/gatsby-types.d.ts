@@ -2543,8 +2543,8 @@ type RidesTrackFilterInput = {
 
 type RidesTrackPoints = {
   readonly ele: Maybe<Scalars['Float']>;
-  readonly lat: Maybe<Scalars['String']>;
-  readonly lon: Maybe<Scalars['String']>;
+  readonly lat: Maybe<Scalars['Float']>;
+  readonly lon: Maybe<Scalars['Float']>;
   readonly time: Maybe<Scalars['Date']>;
 };
 
@@ -2565,8 +2565,8 @@ type RidesTrackPointsFieldSelector = {
 
 type RidesTrackPointsFilterInput = {
   readonly ele: InputMaybe<FloatQueryOperatorInput>;
-  readonly lat: InputMaybe<StringQueryOperatorInput>;
-  readonly lon: InputMaybe<StringQueryOperatorInput>;
+  readonly lat: InputMaybe<FloatQueryOperatorInput>;
+  readonly lon: InputMaybe<FloatQueryOperatorInput>;
   readonly time: InputMaybe<DateQueryOperatorInput>;
 };
 
@@ -3446,6 +3446,21 @@ type activitiesQueryQueryVariables = Exact<{ [key: string]: never; }>;
 
 type activitiesQueryQuery = { readonly allActivitiesCsv: { readonly nodes: ReadonlyArray<{ readonly Activity_ID: string | null, readonly Activity_Name: string | null, readonly Activity_Date: string | null, readonly Moving_Time: string | null, readonly Distance: string | null, readonly Average_Speed: string | null, readonly Average_Watts: string | null, readonly Weighted_Average_Power: string | null, readonly Weather_Condition: string | null, readonly Elevation_Gain: string | null, readonly Max_Grade: string | null, readonly Calories: string | null, readonly Average_Temperature: string | null }> } };
 
+type ctActivitiesQueryQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+type ctActivitiesQueryQuery = { readonly allActivitiesCsv: { readonly nodes: ReadonlyArray<{ readonly Activity_ID: string | null, readonly Activity_Name: string | null, readonly Activity_Date: string | null, readonly Moving_Time: string | null, readonly Distance: string | null, readonly Average_Speed: string | null, readonly Average_Watts: string | null, readonly Weighted_Average_Power: string | null, readonly Weather_Condition: string | null, readonly Elevation_Gain: string | null, readonly Max_Grade: string | null, readonly Calories: string | null, readonly Average_Temperature: string | null }> } };
+
+type CTPhotoQueryQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+type CTPhotoQueryQuery = { readonly allFlickrPhoto: { readonly edges: ReadonlyArray<{ readonly node: { readonly id: string, readonly title: string | null, readonly description: string | null, readonly tags: string | null, readonly datetaken: string | null, readonly url_o: string | null, readonly width_q: number | null, readonly height_q: number | null, readonly url_q: string | null, readonly width_o: number | null, readonly height_o: number | null, readonly media: string | null, readonly media_status: string | null, readonly url_m: string | null, readonly url_c: string | null, readonly url_z: string | null, readonly farm: number | null, readonly server: string | null, readonly secret: string | null, readonly originalsecret: string | null, readonly photo_id: string | null, readonly latitude: string | null, readonly longitude: string | null } }> } };
+
+type ctRidesQueryQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+type ctRidesQueryQuery = { readonly allRides: { readonly nodes: ReadonlyArray<{ readonly id: string, readonly route: string | null, readonly time: string | null, readonly track: { readonly name: string | null, readonly endPoint: { readonly lat: string | null, readonly lon: string | null } | null, readonly startingPoint: { readonly lat: string | null, readonly lon: string | null } | null, readonly points: ReadonlyArray<{ readonly lat: number | null, readonly lon: number | null, readonly ele: number | null } | null> | null } | null }> } };
+
 type DividePhotoQueryQueryVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -3453,15 +3468,15 @@ type DividePhotoQueryQuery = { readonly allFlickrPhoto: { readonly edges: Readon
 
 type FlickrImageFragmentFragment = { readonly edges: ReadonlyArray<{ readonly node: { readonly id: string, readonly title: string | null, readonly description: string | null, readonly tags: string | null, readonly datetaken: string | null, readonly url_o: string | null, readonly width_q: number | null, readonly height_q: number | null, readonly url_q: string | null, readonly width_o: number | null, readonly height_o: number | null, readonly media: string | null, readonly media_status: string | null, readonly url_m: string | null, readonly url_c: string | null, readonly url_z: string | null, readonly farm: number | null, readonly server: string | null, readonly secret: string | null, readonly originalsecret: string | null, readonly photo_id: string | null, readonly latitude: string | null, readonly longitude: string | null } }> };
 
+type gdmbrRidesQueryQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+type gdmbrRidesQueryQuery = { readonly allRides: { readonly nodes: ReadonlyArray<{ readonly id: string, readonly route: string | null, readonly time: string | null, readonly track: { readonly name: string | null, readonly endPoint: { readonly lat: string | null, readonly lon: string | null } | null, readonly startingPoint: { readonly lat: string | null, readonly lon: string | null } | null, readonly points: ReadonlyArray<{ readonly lat: number | null, readonly lon: number | null, readonly ele: number | null } | null> | null } | null }> } };
+
 type PhotoQueryQueryVariables = Exact<{ [key: string]: never; }>;
 
 
 type PhotoQueryQuery = { readonly allFlickrPhoto: { readonly edges: ReadonlyArray<{ readonly node: { readonly id: string, readonly title: string | null, readonly description: string | null, readonly tags: string | null, readonly datetaken: string | null, readonly url_o: string | null, readonly width_q: number | null, readonly height_q: number | null, readonly url_q: string | null, readonly width_o: number | null, readonly height_o: number | null, readonly media: string | null, readonly media_status: string | null, readonly url_m: string | null, readonly url_c: string | null, readonly url_z: string | null, readonly farm: number | null, readonly server: string | null, readonly secret: string | null, readonly originalsecret: string | null, readonly photo_id: string | null, readonly latitude: string | null, readonly longitude: string | null } }> } };
-
-type ridesQueryQueryVariables = Exact<{ [key: string]: never; }>;
-
-
-type ridesQueryQuery = { readonly allRides: { readonly nodes: ReadonlyArray<{ readonly id: string, readonly route: string | null, readonly track: { readonly name: string | null, readonly endPoint: { readonly lat: string | null, readonly lon: string | null } | null, readonly startingPoint: { readonly lat: string | null, readonly lon: string | null } | null, readonly points: ReadonlyArray<{ readonly lat: string | null, readonly lon: string | null, readonly ele: number | null } | null> | null } | null }> } };
 
 type SiteTitleQueryQueryVariables = Exact<{ [key: string]: never; }>;
 

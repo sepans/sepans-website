@@ -5,11 +5,12 @@ import { GdStats } from './gdstats'
 interface GdNavProps {
   rideSegIndex: number
   numberOfTracks: number
+  title: string
   setRideSegIndex: (index: number) => void
 }
 
 export const GdNav: React.FC<GdNavProps> = (props) => {
-  const { rideSegIndex, setRideSegIndex, numberOfTracks } = props
+  const { rideSegIndex, setRideSegIndex, numberOfTracks, title } = props
 
   const hasPrevSeg = () => rideSegIndex >= 0
   const hasNextSeg = () => rideSegIndex !== numberOfTracks - 1
@@ -33,9 +34,7 @@ export const GdNav: React.FC<GdNavProps> = (props) => {
             view the entire route
           </ZoomOutButton>
           <Title>
-            {rideSegIndex === -1
-              ? 'Great Divide Tour (2023)'
-              : `Day ${rideSegIndex + 1}`}
+            {rideSegIndex === -1 ? title : `Day ${rideSegIndex + 1}`}
           </Title>
         </StatsDiv>
         <NavButton

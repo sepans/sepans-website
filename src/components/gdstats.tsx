@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { sum, mean } from 'd3-array'
-import { useActivities } from '../hooks/useActivities'
+import { useGdmbrActivities } from '../hooks/useGdmbrActivities'
 import { GdParallelChart } from './gdparallelchart'
 
 export interface GdStatsProps {
@@ -29,7 +29,7 @@ const sumStats = (activities) => ({
 
 export const GdStats: React.FC<GdStatsProps> = (props) => {
   const { rideSegIndex } = props
-  const activities = useActivities()
+  const activities = useGdmbrActivities()
   const activityStats =
     rideSegIndex > -1 ? activities[rideSegIndex] : sumStats(activities)
   return (

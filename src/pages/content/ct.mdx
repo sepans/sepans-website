@@ -1,0 +1,29 @@
+---
+slug: "ct"
+date: "2023-11-20"
+title: "Colorado Trail 2024"
+description: "Colorado Trail 2024 Visualization"
+type: "project"
+---
+
+import { Gdmbr } from "../../components/gdmbr"
+import Layout from "../../components/layout"
+import { useCtRideData } from '../../hooks/useCtRideData'
+import { useCTImages } from '../../hooks/useCTImages'
+
+<Layout meta={[
+     {
+        property: 'og:image',
+        content: 'https://live.staticflickr.com/65535/53332853587_1cc18c50ab_o.jpg'
+    },
+     {
+        property: 'og:description',
+        content: 'Colorado Trail 2024 Visualization'
+    },
+]}>
+    <Gdmbr 
+        title="Colorado trail (2024)"
+        trackDataSource={useCtRideData}
+        imageDataSource={useCTImages}
+     />
+</Layout>
