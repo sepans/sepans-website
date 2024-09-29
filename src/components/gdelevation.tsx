@@ -32,9 +32,7 @@ export const GdElevation: React.FC<ElevationProps> = (props) => {
 
   useEffect(() => {
     window.addEventListener('resize', () => {
-      console.log('resize')
       const rect = container?.current?.getBoundingClientRect()
-      console.log(rect, rect.width)
       setWidth(rect?.width)
       setHeight(rect?.height)
     })
