@@ -120,21 +120,25 @@ const IndexPage: React.FC = () => {
             </PreviewContainer>
           </Link>
         </div>
-        <Link target="_blank" href="https://observablehq.com/@sepans/strava">
+        <div style={{ display: 'flex', flexDirection: 'column' }}>
           rides
-        </Link>
-        <PreviewContainer>
-          <Link href="content/gdmbr">
-            <img
-              src="https://live.staticflickr.com/65535/53454099075_bb125bb6a8_q.jpg"
-              alt="great divide"
-            />
-          </Link>
-          <img
-            src="https://user-images.githubusercontent.com/687513/203892216-08ea7db9-347c-440e-ad45-43af08b98d82.png"
-            alt="rides"
-          />
-        </PreviewContainer>
+          <PreviewContainer>
+            <Link href="content/gdmbr">
+              <svg name="great divide">
+                <text x="1" y="70">
+                  GDMBR
+                </text>
+              </svg>
+            </Link>
+            <Link href="content/ct">
+              <svg name="colorado trail">
+                <text x="1" y="70">
+                  CT
+                </text>
+              </svg>
+            </Link>
+          </PreviewContainer>
+        </div>
         <Link target="_blank" href="https://github.com/sepans/">
           code
         </Link>
@@ -148,7 +152,8 @@ const IndexPage: React.FC = () => {
 
 const PreviewContainer = styled.span`
   display: inline-block;
-  img {
+  img,
+  svg {
     margin: 10px 10px 0 0;
     width: 75px;
     filter: grayscale(100%);
@@ -156,6 +161,9 @@ const PreviewContainer = styled.span`
     height: 75px;
     object-fit: cover;
     border: 1px solid black;
+    font-size: 12px;
+    font-family: inherit;
+    fill: #444;
   }
 `
 
@@ -182,7 +190,7 @@ const Link = styled.a`
   font-size: 16px;
 
   @media (min-width: 768px) {
-    margin-top: 10px;
+    margin-top: 0px;
     font-size: 14px;
   }
   text-decoration: none;
