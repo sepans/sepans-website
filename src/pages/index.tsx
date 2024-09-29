@@ -106,7 +106,7 @@ const IndexPage: React.FC = () => {
             )
           })}
         </div>
-        <div style="display: flex; flex-direction: column;">
+        <div style={{ display: 'flex', flexDirection: 'column' }}>
           books
           <Link
             target="_blank"
@@ -116,9 +116,9 @@ const IndexPage: React.FC = () => {
               <img
                 src="https://covers.openlibrary.org/b/id/12921955-L.jpg"
                 alt="unnamable"
-            />
+              />
             </PreviewContainer>
-          </Link>  
+          </Link>
         </div>
         <Link target="_blank" href="https://observablehq.com/@sepans/strava">
           rides
