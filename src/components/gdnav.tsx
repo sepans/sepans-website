@@ -1,13 +1,14 @@
 import React from 'react'
 import styled from 'styled-components'
 import { GdStats } from './gdstats'
+import { ActivitiesDataSource } from './gdmbr'
 
 interface GdNavProps {
   rideSegIndex: number
   numberOfTracks: number
   title: string
   setRideSegIndex: (index: number) => void
-  activitiesDataSource: any // FIXME:
+  activitiesDataSource: ActivitiesDataSource
 }
 
 export const GdNav: React.FC<GdNavProps> = (props) => {

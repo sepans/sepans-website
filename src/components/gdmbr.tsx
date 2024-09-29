@@ -21,10 +21,22 @@ export interface SegmentProps {
   setRideSegIndex: (index: number) => void
 }
 
+// FIXME:
+// eslint-disable-next-line no-undef
+type ActivitiesDataSourceRetType =
+  | Queries.ctActivitiesQueryQuery
+  | Queries.gdmbrActivitiesQueryQuery
+
+export type ActivitiesDataSource = () => ActivitiesDataSourceRetType
+
+// FIXME:
+// eslint-disable-next-line no-undef
+export type ImageDataSource = () => Queries.PhotoQueryQuery
+
 interface RideProps {
   trackDataSource: DataSourceType
-  imageDataSource: any // FIXME:
-  activitiesDataSource: any // FIXME:
+  imageDataSource: ImageDataSource
+  activitiesDataSource: ActivitiesDataSource
   title: string
 }
 

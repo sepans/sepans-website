@@ -3,7 +3,7 @@ import { useStaticQuery, graphql } from 'gatsby'
 export const useGdmbrActivities = () => {
   // TODO: type
   const activitiesQuery = graphql`
-    query activitiesQuery {
+    query gdmbrActivitiesQuery {
       allActivitiesCsv(limit: 49, skip: 244) {
         nodes {
           Activity_ID
@@ -25,7 +25,8 @@ export const useGdmbrActivities = () => {
   `
 
   // eslint-disable-next-line no-undef
-  const data: Queries.activitiesQueryQuery = useStaticQuery(activitiesQuery)
+  const data: Queries.gdmbrActivitiesQueryQuery =
+    useStaticQuery(activitiesQuery)
   const formattedData = data.allActivitiesCsv.nodes
     .map((node) => {
       const date = new Date(node.Activity_Date)
