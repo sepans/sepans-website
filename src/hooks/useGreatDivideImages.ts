@@ -13,7 +13,6 @@ export const useGreatDivideImages = () => {
   // TODO: fix type
   // eslint-disable-next-line no-undef
   const data: Queries.PhotoQueryQuery = useStaticQuery(generalAlbumQuery)
-
   const photos = processFlickrImageData(data)
 
   return photos

@@ -10,7 +10,8 @@ import { useGreatDivideImages } from '../hooks/useGreatDivideImages'
 import 'yet-another-react-lightbox/styles.css'
 import { GdMap } from './gdmap'
 import { GdNav } from './gdnav'
-import { useRideTracks } from '../hooks/useRideTracks'
+import { DataSourceType, useRideTracks } from '../hooks/useRideTracks'
+
 import { GdElevation } from './gdelevation'
 
 const PHOTO_WIDTH = 80
@@ -20,13 +21,34 @@ export interface SegmentProps {
   setRideSegIndex: (index: number) => void
 }
 
-export const Gdmbr: React.FC = () => {
-  const photos = useGreatDivideImages()
+// FIXME:
+// eslint-disable-next-line no-undef
+type ActivitiesDataSourceRetType =
+  | Queries.ctActivitiesQueryQuery
+  | Queries.gdmbrActivitiesQueryQuery
+
+export type ActivitiesDataSource = () => ActivitiesDataSourceRetType
+
+// FIXME:
+// eslint-disable-next-line no-undef
+export type ImageDataSource = () => Queries.PhotoQueryQuery
+
+interface RideProps {
+  trackDataSource: DataSourceType
+  imageDataSource: ImageDataSource
+  activitiesDataSource: ActivitiesDataSource
+  title: string
+}
+
+export const Gdmbr: React.FC<RideProps> = (props) => {
+  const { trackDataSource, title, imageDataSource, activitiesDataSource } =
+    props
+  const photos = imageDataSource()
 
   const [rideSegIndex, setRideSegIndex] = useState(-1)
   const [zoomToPhoto, setZoomToPhoto] = useState(null)
 
-  const { tracks } = useRideTracks()
+  const { tracks, bounds } = useRideTracks(trackDataSource)
 
   return (
     <>
@@ -37,6 +59,8 @@ export const Gdmbr: React.FC = () => {
             setRideSegIndex={setRideSegIndex}
             photos={photos}
             zoomToPhoto={zoomToPhoto}
+            tracks={tracks}
+            bounds={bounds}
           />
         </MapWrapper>
         <GdElevation
@@ -48,11 +72,14 @@ export const Gdmbr: React.FC = () => {
           rideSegIndex={rideSegIndex}
           setRideSegIndex={setRideSegIndex}
           numberOfTracks={tracks.length}
+          activitiesDataSource={activitiesDataSource}
+          title={title}
         />
         <ImageGroup
           group={photos}
           setZoomToPhoto={setZoomToPhoto}
           rideSegIndex={rideSegIndex}
+          bounds={bounds}
         />
       </PageWrapper>
     </>
@@ -70,6 +97,7 @@ interface ImageGroupProps {
   group: ImageGroupsType
   rideSegIndex: number
   setZoomToPhoto: (object) => void
+  bounds: any
 }
 
 // This is a memoized component: it only re-renders when rideSegIndex changes.
@@ -79,8 +107,7 @@ interface ImageGroupProps {
 // which sets back the open image to initial lightboxIndex
 const ImageGroup: React.FC<ImageGroupProps> = React.memo(
   (props) => {
-    const { rideSegIndex, group, setZoomToPhoto } = props
-    const { bounds } = useRideTracks()
+    const { rideSegIndex, group, setZoomToPhoto, bounds } = props
     const [lightboxIndex, setLightboxIndex] = useState<number>(-1)
 
     const displayPhotos = useMemo(() => {

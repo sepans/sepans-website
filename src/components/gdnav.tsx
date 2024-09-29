@@ -1,15 +1,24 @@
 import React from 'react'
 import styled from 'styled-components'
 import { GdStats } from './gdstats'
+import { ActivitiesDataSource } from './gdmbr'
 
 interface GdNavProps {
   rideSegIndex: number
   numberOfTracks: number
+  title: string
   setRideSegIndex: (index: number) => void
+  activitiesDataSource: ActivitiesDataSource
 }
 
 export const GdNav: React.FC<GdNavProps> = (props) => {
-  const { rideSegIndex, setRideSegIndex, numberOfTracks } = props
+  const {
+    rideSegIndex,
+    setRideSegIndex,
+    numberOfTracks,
+    title,
+    activitiesDataSource
+  } = props
 
   const hasPrevSeg = () => rideSegIndex >= 0
   const hasNextSeg = () => rideSegIndex !== numberOfTracks - 1
@@ -33,9 +42,7 @@ export const GdNav: React.FC<GdNavProps> = (props) => {
             view the entire route
           </ZoomOutButton>
           <Title>
-            {rideSegIndex === -1
-              ? 'Great Divide Tour (2023)'
-              : `Day ${rideSegIndex + 1}`}
+            {rideSegIndex === -1 ? title : `Day ${rideSegIndex + 1}`}
           </Title>
         </StatsDiv>
         <NavButton
@@ -49,7 +56,10 @@ export const GdNav: React.FC<GdNavProps> = (props) => {
           {'>'}
         </NavButton>
       </NavContainer>
-      <GdStats rideSegIndex={rideSegIndex} />
+      <GdStats
+        rideSegIndex={rideSegIndex}
+        activitiesDataSource={activitiesDataSource}
+      />
     </>
   )
 }
