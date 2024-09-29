@@ -10,6 +10,7 @@ import { Gdmbr } from "../../components/gdmbr"
 import Layout from "../../components/layout"
 import { useGdmbrRideData } from '../../hooks/useGdmbrRideData'
 import { useGreatDivideImages } from '../../hooks/useGreatDivideImages'
+import { useGdmbrActivities } from '../../hooks/useGdmbrActivities'
 
 <Layout meta={[
      {
@@ -25,5 +26,6 @@ import { useGreatDivideImages } from '../../hooks/useGreatDivideImages'
         title="Great Divide Tour (2023)" 
         trackDataSource={useGdmbrRideData} 
         imageDataSource={useGreatDivideImages}
+        activitiesDataSource={useGdmbrActivities}
     />
 </Layout>

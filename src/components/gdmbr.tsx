@@ -24,11 +24,13 @@ export interface SegmentProps {
 interface RideProps {
   trackDataSource: DataSourceType
   imageDataSource: any // FIXME:
+  activitiesDataSource: any // FIXME:
   title: string
 }
 
 export const Gdmbr: React.FC<RideProps> = (props) => {
-  const { trackDataSource, title, imageDataSource } = props
+  const { trackDataSource, title, imageDataSource, activitiesDataSource } =
+    props
   const photos = imageDataSource()
 
   const [rideSegIndex, setRideSegIndex] = useState(-1)
@@ -58,6 +60,7 @@ export const Gdmbr: React.FC<RideProps> = (props) => {
           rideSegIndex={rideSegIndex}
           setRideSegIndex={setRideSegIndex}
           numberOfTracks={tracks.length}
+          activitiesDataSource={activitiesDataSource}
           title={title}
         />
         <ImageGroup

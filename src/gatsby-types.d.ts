@@ -44,6 +44,7 @@ type ActivitiesCsv = Node & {
   readonly Average_Elapsed_Speed: Maybe<Scalars['String']>;
   readonly Average_Flow: Maybe<Scalars['String']>;
   readonly Average_Grade: Maybe<Scalars['String']>;
+  readonly Average_Grade_Adjusted_Pace: Maybe<Scalars['String']>;
   readonly Average_Heart_Rate: Maybe<Scalars['String']>;
   readonly Average_Negative_Grade: Maybe<Scalars['String']>;
   readonly Average_Positive_Grade: Maybe<Scalars['String']>;
@@ -53,6 +54,7 @@ type ActivitiesCsv = Node & {
   readonly Bike: Maybe<Scalars['String']>;
   readonly Bike_Weight: Maybe<Scalars['String']>;
   readonly Calories: Maybe<Scalars['String']>;
+  readonly Carbon_Saved: Maybe<Scalars['String']>;
   readonly Cloud_Cover: Maybe<Scalars['String']>;
   readonly Commute: Maybe<Scalars['String']>;
   readonly Dewpoint: Maybe<Scalars['String']>;
@@ -70,6 +72,7 @@ type ActivitiesCsv = Node & {
   readonly Gear: Maybe<Scalars['String']>;
   readonly Grade_Adjusted_Distance: Maybe<Scalars['String']>;
   readonly Humidity: Maybe<Scalars['String']>;
+  readonly Intensity: Maybe<Scalars['String']>;
   readonly Jump_Count: Maybe<Scalars['String']>;
   readonly Max_Cadence: Maybe<Scalars['String']>;
   readonly Max_Grade: Maybe<Scalars['String']>;
@@ -86,6 +89,7 @@ type ActivitiesCsv = Node & {
   readonly Other_Time: Maybe<Scalars['String']>;
   readonly Perceived_Exertion: Maybe<Scalars['String']>;
   readonly Perceived_Relative_Effort: Maybe<Scalars['String']>;
+  readonly Pool_Length: Maybe<Scalars['String']>;
   readonly Power_Count: Maybe<Scalars['String']>;
   readonly Precipitation_Intensity: Maybe<Scalars['String']>;
   readonly Precipitation_Probability: Maybe<Scalars['String']>;
@@ -95,10 +99,13 @@ type ActivitiesCsv = Node & {
   readonly Start_Time: Maybe<Scalars['String']>;
   readonly Sunrise_Time: Maybe<Scalars['String']>;
   readonly Sunset_Time: Maybe<Scalars['String']>;
+  readonly Timer_Time: Maybe<Scalars['String']>;
+  readonly Total_Cycles: Maybe<Scalars['String']>;
   readonly Total_Grit: Maybe<Scalars['String']>;
   readonly Total_Steps: Maybe<Scalars['String']>;
   readonly Total_Weight_Lifted: Maybe<Scalars['String']>;
   readonly Total_Work: Maybe<Scalars['String']>;
+  readonly Training_Load: Maybe<Scalars['String']>;
   readonly Type: Maybe<Scalars['String']>;
   readonly UV_Index: Maybe<Scalars['String']>;
   readonly Uphill_Time: Maybe<Scalars['String']>;
@@ -178,6 +185,7 @@ type ActivitiesCsvFieldSelector = {
   readonly Average_Elapsed_Speed: InputMaybe<FieldSelectorEnum>;
   readonly Average_Flow: InputMaybe<FieldSelectorEnum>;
   readonly Average_Grade: InputMaybe<FieldSelectorEnum>;
+  readonly Average_Grade_Adjusted_Pace: InputMaybe<FieldSelectorEnum>;
   readonly Average_Heart_Rate: InputMaybe<FieldSelectorEnum>;
   readonly Average_Negative_Grade: InputMaybe<FieldSelectorEnum>;
   readonly Average_Positive_Grade: InputMaybe<FieldSelectorEnum>;
@@ -187,6 +195,7 @@ type ActivitiesCsvFieldSelector = {
   readonly Bike: InputMaybe<FieldSelectorEnum>;
   readonly Bike_Weight: InputMaybe<FieldSelectorEnum>;
   readonly Calories: InputMaybe<FieldSelectorEnum>;
+  readonly Carbon_Saved: InputMaybe<FieldSelectorEnum>;
   readonly Cloud_Cover: InputMaybe<FieldSelectorEnum>;
   readonly Commute: InputMaybe<FieldSelectorEnum>;
   readonly Dewpoint: InputMaybe<FieldSelectorEnum>;
@@ -204,6 +213,7 @@ type ActivitiesCsvFieldSelector = {
   readonly Gear: InputMaybe<FieldSelectorEnum>;
   readonly Grade_Adjusted_Distance: InputMaybe<FieldSelectorEnum>;
   readonly Humidity: InputMaybe<FieldSelectorEnum>;
+  readonly Intensity: InputMaybe<FieldSelectorEnum>;
   readonly Jump_Count: InputMaybe<FieldSelectorEnum>;
   readonly Max_Cadence: InputMaybe<FieldSelectorEnum>;
   readonly Max_Grade: InputMaybe<FieldSelectorEnum>;
@@ -220,6 +230,7 @@ type ActivitiesCsvFieldSelector = {
   readonly Other_Time: InputMaybe<FieldSelectorEnum>;
   readonly Perceived_Exertion: InputMaybe<FieldSelectorEnum>;
   readonly Perceived_Relative_Effort: InputMaybe<FieldSelectorEnum>;
+  readonly Pool_Length: InputMaybe<FieldSelectorEnum>;
   readonly Power_Count: InputMaybe<FieldSelectorEnum>;
   readonly Precipitation_Intensity: InputMaybe<FieldSelectorEnum>;
   readonly Precipitation_Probability: InputMaybe<FieldSelectorEnum>;
@@ -229,10 +240,13 @@ type ActivitiesCsvFieldSelector = {
   readonly Start_Time: InputMaybe<FieldSelectorEnum>;
   readonly Sunrise_Time: InputMaybe<FieldSelectorEnum>;
   readonly Sunset_Time: InputMaybe<FieldSelectorEnum>;
+  readonly Timer_Time: InputMaybe<FieldSelectorEnum>;
+  readonly Total_Cycles: InputMaybe<FieldSelectorEnum>;
   readonly Total_Grit: InputMaybe<FieldSelectorEnum>;
   readonly Total_Steps: InputMaybe<FieldSelectorEnum>;
   readonly Total_Weight_Lifted: InputMaybe<FieldSelectorEnum>;
   readonly Total_Work: InputMaybe<FieldSelectorEnum>;
+  readonly Training_Load: InputMaybe<FieldSelectorEnum>;
   readonly Type: InputMaybe<FieldSelectorEnum>;
   readonly UV_Index: InputMaybe<FieldSelectorEnum>;
   readonly Uphill_Time: InputMaybe<FieldSelectorEnum>;
@@ -267,6 +281,7 @@ type ActivitiesCsvFilterInput = {
   readonly Average_Elapsed_Speed: InputMaybe<StringQueryOperatorInput>;
   readonly Average_Flow: InputMaybe<StringQueryOperatorInput>;
   readonly Average_Grade: InputMaybe<StringQueryOperatorInput>;
+  readonly Average_Grade_Adjusted_Pace: InputMaybe<StringQueryOperatorInput>;
   readonly Average_Heart_Rate: InputMaybe<StringQueryOperatorInput>;
   readonly Average_Negative_Grade: InputMaybe<StringQueryOperatorInput>;
   readonly Average_Positive_Grade: InputMaybe<StringQueryOperatorInput>;
@@ -276,6 +291,7 @@ type ActivitiesCsvFilterInput = {
   readonly Bike: InputMaybe<StringQueryOperatorInput>;
   readonly Bike_Weight: InputMaybe<StringQueryOperatorInput>;
   readonly Calories: InputMaybe<StringQueryOperatorInput>;
+  readonly Carbon_Saved: InputMaybe<StringQueryOperatorInput>;
   readonly Cloud_Cover: InputMaybe<StringQueryOperatorInput>;
   readonly Commute: InputMaybe<StringQueryOperatorInput>;
   readonly Dewpoint: InputMaybe<StringQueryOperatorInput>;
@@ -293,6 +309,7 @@ type ActivitiesCsvFilterInput = {
   readonly Gear: InputMaybe<StringQueryOperatorInput>;
   readonly Grade_Adjusted_Distance: InputMaybe<StringQueryOperatorInput>;
   readonly Humidity: InputMaybe<StringQueryOperatorInput>;
+  readonly Intensity: InputMaybe<StringQueryOperatorInput>;
   readonly Jump_Count: InputMaybe<StringQueryOperatorInput>;
   readonly Max_Cadence: InputMaybe<StringQueryOperatorInput>;
   readonly Max_Grade: InputMaybe<StringQueryOperatorInput>;
@@ -309,6 +326,7 @@ type ActivitiesCsvFilterInput = {
   readonly Other_Time: InputMaybe<StringQueryOperatorInput>;
   readonly Perceived_Exertion: InputMaybe<StringQueryOperatorInput>;
   readonly Perceived_Relative_Effort: InputMaybe<StringQueryOperatorInput>;
+  readonly Pool_Length: InputMaybe<StringQueryOperatorInput>;
   readonly Power_Count: InputMaybe<StringQueryOperatorInput>;
   readonly Precipitation_Intensity: InputMaybe<StringQueryOperatorInput>;
   readonly Precipitation_Probability: InputMaybe<StringQueryOperatorInput>;
@@ -318,10 +336,13 @@ type ActivitiesCsvFilterInput = {
   readonly Start_Time: InputMaybe<StringQueryOperatorInput>;
   readonly Sunrise_Time: InputMaybe<StringQueryOperatorInput>;
   readonly Sunset_Time: InputMaybe<StringQueryOperatorInput>;
+  readonly Timer_Time: InputMaybe<StringQueryOperatorInput>;
+  readonly Total_Cycles: InputMaybe<StringQueryOperatorInput>;
   readonly Total_Grit: InputMaybe<StringQueryOperatorInput>;
   readonly Total_Steps: InputMaybe<StringQueryOperatorInput>;
   readonly Total_Weight_Lifted: InputMaybe<StringQueryOperatorInput>;
   readonly Total_Work: InputMaybe<StringQueryOperatorInput>;
+  readonly Training_Load: InputMaybe<StringQueryOperatorInput>;
   readonly Type: InputMaybe<StringQueryOperatorInput>;
   readonly UV_Index: InputMaybe<StringQueryOperatorInput>;
   readonly Uphill_Time: InputMaybe<StringQueryOperatorInput>;
@@ -401,6 +422,7 @@ type ActivitiesCsvSortInput = {
   readonly Average_Elapsed_Speed: InputMaybe<SortOrderEnum>;
   readonly Average_Flow: InputMaybe<SortOrderEnum>;
   readonly Average_Grade: InputMaybe<SortOrderEnum>;
+  readonly Average_Grade_Adjusted_Pace: InputMaybe<SortOrderEnum>;
   readonly Average_Heart_Rate: InputMaybe<SortOrderEnum>;
   readonly Average_Negative_Grade: InputMaybe<SortOrderEnum>;
   readonly Average_Positive_Grade: InputMaybe<SortOrderEnum>;
@@ -410,6 +432,7 @@ type ActivitiesCsvSortInput = {
   readonly Bike: InputMaybe<SortOrderEnum>;
   readonly Bike_Weight: InputMaybe<SortOrderEnum>;
   readonly Calories: InputMaybe<SortOrderEnum>;
+  readonly Carbon_Saved: InputMaybe<SortOrderEnum>;
   readonly Cloud_Cover: InputMaybe<SortOrderEnum>;
   readonly Commute: InputMaybe<SortOrderEnum>;
   readonly Dewpoint: InputMaybe<SortOrderEnum>;
@@ -427,6 +450,7 @@ type ActivitiesCsvSortInput = {
   readonly Gear: InputMaybe<SortOrderEnum>;
   readonly Grade_Adjusted_Distance: InputMaybe<SortOrderEnum>;
   readonly Humidity: InputMaybe<SortOrderEnum>;
+  readonly Intensity: InputMaybe<SortOrderEnum>;
   readonly Jump_Count: InputMaybe<SortOrderEnum>;
   readonly Max_Cadence: InputMaybe<SortOrderEnum>;
   readonly Max_Grade: InputMaybe<SortOrderEnum>;
@@ -443,6 +467,7 @@ type ActivitiesCsvSortInput = {
   readonly Other_Time: InputMaybe<SortOrderEnum>;
   readonly Perceived_Exertion: InputMaybe<SortOrderEnum>;
   readonly Perceived_Relative_Effort: InputMaybe<SortOrderEnum>;
+  readonly Pool_Length: InputMaybe<SortOrderEnum>;
   readonly Power_Count: InputMaybe<SortOrderEnum>;
   readonly Precipitation_Intensity: InputMaybe<SortOrderEnum>;
   readonly Precipitation_Probability: InputMaybe<SortOrderEnum>;
@@ -452,10 +477,13 @@ type ActivitiesCsvSortInput = {
   readonly Start_Time: InputMaybe<SortOrderEnum>;
   readonly Sunrise_Time: InputMaybe<SortOrderEnum>;
   readonly Sunset_Time: InputMaybe<SortOrderEnum>;
+  readonly Timer_Time: InputMaybe<SortOrderEnum>;
+  readonly Total_Cycles: InputMaybe<SortOrderEnum>;
   readonly Total_Grit: InputMaybe<SortOrderEnum>;
   readonly Total_Steps: InputMaybe<SortOrderEnum>;
   readonly Total_Weight_Lifted: InputMaybe<SortOrderEnum>;
   readonly Total_Work: InputMaybe<SortOrderEnum>;
+  readonly Training_Load: InputMaybe<SortOrderEnum>;
   readonly Type: InputMaybe<SortOrderEnum>;
   readonly UV_Index: InputMaybe<SortOrderEnum>;
   readonly Uphill_Time: InputMaybe<SortOrderEnum>;
@@ -1870,6 +1898,7 @@ type Query_activitiesCsvArgs = {
   Average_Elapsed_Speed: InputMaybe<StringQueryOperatorInput>;
   Average_Flow: InputMaybe<StringQueryOperatorInput>;
   Average_Grade: InputMaybe<StringQueryOperatorInput>;
+  Average_Grade_Adjusted_Pace: InputMaybe<StringQueryOperatorInput>;
   Average_Heart_Rate: InputMaybe<StringQueryOperatorInput>;
   Average_Negative_Grade: InputMaybe<StringQueryOperatorInput>;
   Average_Positive_Grade: InputMaybe<StringQueryOperatorInput>;
@@ -1879,6 +1908,7 @@ type Query_activitiesCsvArgs = {
   Bike: InputMaybe<StringQueryOperatorInput>;
   Bike_Weight: InputMaybe<StringQueryOperatorInput>;
   Calories: InputMaybe<StringQueryOperatorInput>;
+  Carbon_Saved: InputMaybe<StringQueryOperatorInput>;
   Cloud_Cover: InputMaybe<StringQueryOperatorInput>;
   Commute: InputMaybe<StringQueryOperatorInput>;
   Dewpoint: InputMaybe<StringQueryOperatorInput>;
@@ -1896,6 +1926,7 @@ type Query_activitiesCsvArgs = {
   Gear: InputMaybe<StringQueryOperatorInput>;
   Grade_Adjusted_Distance: InputMaybe<StringQueryOperatorInput>;
   Humidity: InputMaybe<StringQueryOperatorInput>;
+  Intensity: InputMaybe<StringQueryOperatorInput>;
   Jump_Count: InputMaybe<StringQueryOperatorInput>;
   Max_Cadence: InputMaybe<StringQueryOperatorInput>;
   Max_Grade: InputMaybe<StringQueryOperatorInput>;
@@ -1912,6 +1943,7 @@ type Query_activitiesCsvArgs = {
   Other_Time: InputMaybe<StringQueryOperatorInput>;
   Perceived_Exertion: InputMaybe<StringQueryOperatorInput>;
   Perceived_Relative_Effort: InputMaybe<StringQueryOperatorInput>;
+  Pool_Length: InputMaybe<StringQueryOperatorInput>;
   Power_Count: InputMaybe<StringQueryOperatorInput>;
   Precipitation_Intensity: InputMaybe<StringQueryOperatorInput>;
   Precipitation_Probability: InputMaybe<StringQueryOperatorInput>;
@@ -1921,10 +1953,13 @@ type Query_activitiesCsvArgs = {
   Start_Time: InputMaybe<StringQueryOperatorInput>;
   Sunrise_Time: InputMaybe<StringQueryOperatorInput>;
   Sunset_Time: InputMaybe<StringQueryOperatorInput>;
+  Timer_Time: InputMaybe<StringQueryOperatorInput>;
+  Total_Cycles: InputMaybe<StringQueryOperatorInput>;
   Total_Grit: InputMaybe<StringQueryOperatorInput>;
   Total_Steps: InputMaybe<StringQueryOperatorInput>;
   Total_Weight_Lifted: InputMaybe<StringQueryOperatorInput>;
   Total_Work: InputMaybe<StringQueryOperatorInput>;
+  Training_Load: InputMaybe<StringQueryOperatorInput>;
   Type: InputMaybe<StringQueryOperatorInput>;
   UV_Index: InputMaybe<StringQueryOperatorInput>;
   Uphill_Time: InputMaybe<StringQueryOperatorInput>;

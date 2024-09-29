@@ -4,7 +4,7 @@ export const useCtActivities = () => {
   // TODO: type
   const activitiesQuery = graphql`
     query ctActivitiesQuery {
-      allActivitiesCsv(limit: 49, skip: 244) {
+      allActivitiesCsv(limit: 16, skip: 358) {
         nodes {
           Activity_ID
           Activity_Name
@@ -32,6 +32,6 @@ export const useCtActivities = () => {
       return { ...node, Activity_Date: date }
     })
     .sort((a, b) => a.Activity_Date.getTime() - b.Activity_Date.getTime())
-    .filter((a) => a.Activity_Name.toLowerCase().indexOf('CT') > -1)
+    .filter((a) => a.Activity_Name.toLowerCase().indexOf('ct') > -1)
   return formattedData
 }

@@ -7,10 +7,17 @@ interface GdNavProps {
   numberOfTracks: number
   title: string
   setRideSegIndex: (index: number) => void
+  activitiesDataSource: any // FIXME:
 }
 
 export const GdNav: React.FC<GdNavProps> = (props) => {
-  const { rideSegIndex, setRideSegIndex, numberOfTracks, title } = props
+  const {
+    rideSegIndex,
+    setRideSegIndex,
+    numberOfTracks,
+    title,
+    activitiesDataSource
+  } = props
 
   const hasPrevSeg = () => rideSegIndex >= 0
   const hasNextSeg = () => rideSegIndex !== numberOfTracks - 1
@@ -48,7 +55,10 @@ export const GdNav: React.FC<GdNavProps> = (props) => {
           {'>'}
         </NavButton>
       </NavContainer>
-      <GdStats rideSegIndex={rideSegIndex} />
+      <GdStats
+        rideSegIndex={rideSegIndex}
+        activitiesDataSource={activitiesDataSource}
+      />
     </>
   )
 }

@@ -1,11 +1,11 @@
 import React from 'react'
 import styled from 'styled-components'
 import { sum, mean } from 'd3-array'
-import { useGdmbrActivities } from '../hooks/useGdmbrActivities'
 import { GdParallelChart } from './gdparallelchart'
 
 export interface GdStatsProps {
   rideSegIndex: number
+  activitiesDataSource: any // FIXME:
 }
 
 const toMiles = (m) => m * 0.000621371
@@ -28,10 +28,11 @@ const sumStats = (activities) => ({
 })
 
 export const GdStats: React.FC<GdStatsProps> = (props) => {
-  const { rideSegIndex } = props
-  const activities = useGdmbrActivities()
+  const { rideSegIndex, activitiesDataSource } = props
+  const activities = activitiesDataSource()
   const activityStats =
     rideSegIndex > -1 ? activities[rideSegIndex] : sumStats(activities)
+  console.log('stats', activityStats)
   return (
     <Container>
       <Stats>
