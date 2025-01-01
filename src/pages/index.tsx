@@ -43,7 +43,7 @@ const IndexPage: React.FC = () => {
             </Link>
             <Link target="_blank" href="https://purplebulldozer.com">
               <img
-                src="https://purplebulldozer.com/img/posts/lenses.png"
+                src="https://live.staticflickr.com/65535/54239460653_272cb7fc3d_q.jpg"
                 alt="lenses"
               />
             </Link>
@@ -90,7 +90,7 @@ const IndexPage: React.FC = () => {
           </Link>
           <Link target="_blank" href="https://theuse.info">
             <img
-              src="https://user-images.githubusercontent.com/687513/202745453-ce13a00c-0854-43db-91c2-c55f3298aea4.png"
+              src="https://live.staticflickr.com/65535/54239468433_ed7242d142_q.jpg"
               alt="theuse.info"
             />
           </Link>
