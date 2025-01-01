@@ -7,13 +7,12 @@ import { useFlickrImages } from '../hooks/useFlickrImages'
 import { Link, PreviewContainer } from '../pages'
 
 export const DiyRandomImages: React.FC = () => {
-  const isSSR = typeof window === 'undefined'
-
-  const [isClientRendered, setIsClientRendered] = useState(false)
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [_, setIsClientRendering] = useState(false)
 
   useEffect(() => {
-    console.log('client rendering', isSSR)
-    setIsClientRendered(true)
+    // re-render images when rendered on client side to randomize
+    setIsClientRendering(true)
   }, [])
 
   const { photoGroups } = useFlickrImages()
@@ -34,16 +33,7 @@ export const DiyRandomImages: React.FC = () => {
           <PreviewContainer key={`group-${label}`} title={label}>
             {group.slice(randomIndex, randomIndex + 1).map((photo) => (
               <Link href="content/diy">
-                {/* don't bother rendering images when it is server side */}
-                {isClientRendered ? (
-                  <img
-                    height={150}
-                    src={photo.thumbnailSrc}
-                    alt={photo.label}
-                  />
-                ) : (
-                  <div>blah</div>
-                )}
+                <img height={150} src={photo.thumbnailSrc} alt={photo.label} />
               </Link>
             ))}
           </PreviewContainer>
