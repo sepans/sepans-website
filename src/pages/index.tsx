@@ -1,165 +1,139 @@
-import { random } from 'lodash'
 import React from 'react'
 
 import styled from 'styled-components'
-import Layout from '../components/layout'
 import SEO from '../components/seo'
-import { useFlickrImages } from '../hooks/useFlickrImages'
+import Layout from '../components/layout'
+import { DiyRandomImages } from '../components/diyRandomImages'
 
-const IndexPage: React.FC = () => {
-  const { photoGroups } = useFlickrImages()
-
-  const groupsSize = Object.keys(photoGroups).length
-  const groupsToPick = 6
-  const start = random(0, groupsSize - groupsToPick)
-  const randomGroups = Object.entries(photoGroups).slice(
-    start,
-    start + groupsToPick
-  )
-
-  return (
-    <Layout>
-      <SEO title="sepans.com" />
-      <Title>Sepand Ansari</Title>
-      <Links>
-        <Header>
-          <Link target="_blank" href="https://purplebulldozer.com">
-            work
-          </Link>
-        </Header>
-        <div>
-          <PreviewContainer>
-            <Link target="_blank" href="https://purplebulldozer.com">
-              <img
-                src="https://live.staticflickr.com/65535/54239465448_5ce55bb954_q.jpg"
-                alt="Encartopedia"
-              />
-            </Link>
-            <Link target="_blank" href="https://purplebulldozer.com">
-              <img
-                src="https://live.staticflickr.com/65535/54239632480_120fc53887_q.jpg"
-                alt="ctzen"
-              />
-            </Link>
-            <Link target="_blank" href="https://purplebulldozer.com">
-              <img
-                src="https://live.staticflickr.com/65535/54239460653_272cb7fc3d_q.jpg"
-                alt="lenses"
-              />
-            </Link>
-            <Link target="_blank" href="https://purplebulldozer.com">
-              <img
-                src="https://live.staticflickr.com/65535/54239222946_bd6cf8af09_q.jpg"
-                alt="lohgic"
-              />
-            </Link>
-            <Link target="_blank" href="https://purplebulldozer.com">
-              <img
-                src="https://live.staticflickr.com/65535/54239223171_ef41555824_q.jpg"
-                alt="history lab"
-              />
-            </Link>
-          </PreviewContainer>
-        </div>
-        <Header>
-          <Link
-            target="_blank"
-            href="https://web.archive.org/web/20140208010957/http://sepans.com/sp/"
-          >
-            old work
-          </Link>
-        </Header>
+const IndexPage: React.FC = () => (
+  <Layout>
+    <SEO title="sepans.com" />
+    <Title>Sepand Ansari</Title>
+    <Links>
+      <Header>
+        <Link target="_blank" href="https://purplebulldozer.com">
+          work
+        </Link>
+      </Header>
+      <div>
         <PreviewContainer>
-          <Link
-            target="_blank"
-            href="http://sepans.github.io/pb-lepracursor/components/pb-lepracursor/demo.html"
-          >
+          <Link target="_blank" href="https://purplebulldozer.com">
             <img
-              src="https://live.staticflickr.com/65535/54239638410_34876579ac_q.jpg"
-              alt="lepra cursor"
+              src="https://live.staticflickr.com/65535/54239465448_5ce55bb954_q.jpg"
+              alt="Encartopedia"
             />
           </Link>
-          <Link
-            target="_blank"
-            href="https://web.archive.org/web/20131223080911/http://sepans.com/sp/works/wikistalker/"
-          >
+          <Link target="_blank" href="https://purplebulldozer.com">
             <img
-              src="https://live.staticflickr.com/65535/54239467003_e4a1b6dc31_q.jpg"
-              alt="wikistalker"
+              src="https://live.staticflickr.com/65535/54239632480_120fc53887_q.jpg"
+              alt="ctzen"
             />
           </Link>
-          <Link target="_blank" href="https://theuse.info">
+          <Link target="_blank" href="https://purplebulldozer.com">
             <img
-              src="https://live.staticflickr.com/65535/54239468433_ed7242d142_q.jpg"
-              alt="theuse.info"
+              src="https://live.staticflickr.com/65535/54239460653_272cb7fc3d_q.jpg"
+              alt="lenses"
+            />
+          </Link>
+          <Link target="_blank" href="https://purplebulldozer.com">
+            <img
+              src="https://live.staticflickr.com/65535/54239222946_bd6cf8af09_q.jpg"
+              alt="lohgic"
+            />
+          </Link>
+          <Link target="_blank" href="https://purplebulldozer.com">
+            <img
+              src="https://live.staticflickr.com/65535/54239223171_ef41555824_q.jpg"
+              alt="history lab"
             />
           </Link>
         </PreviewContainer>
-        <Header>
-          <Link href="content/diy">projects</Link>
-        </Header>
-        <div>
-          {randomGroups.map(([label, group]) => {
-            const randomIndex = random(0, group.length - 1)
-            return (
-              <PreviewContainer key={`group-${label}`} title={label}>
-                {group.slice(randomIndex, randomIndex + 1).map((photo) => (
-                  <Link href="content/diy">
-                    <img src={photo.thumbnailSrc} alt={photo.label} />
-                  </Link>
-                ))}
-              </PreviewContainer>
-            )
-          })}
-        </div>
-        <Header>books</Header>
-        <div style={{ display: 'flex', flexDirection: 'column' }}>
-          <Link
-            target="_blank"
-            href="https://sepans-dashboards.netlify.app/books"
-          >
-            <PreviewContainer>
-              <img
-                src="https://live.staticflickr.com/65535/54239222436_08c0a31eaf_q.jpg"
-                alt="unnamable"
-              />
-            </PreviewContainer>
-          </Link>
-        </div>
-
-        <Header>rides</Header>
-        <div style={{ display: 'flex', flexDirection: 'column' }}>
+      </div>
+      <Header>
+        <Link
+          target="_blank"
+          href="https://web.archive.org/web/20140208010957/http://sepans.com/sp/"
+        >
+          old work
+        </Link>
+      </Header>
+      <PreviewContainer>
+        <Link
+          target="_blank"
+          href="http://sepans.github.io/pb-lepracursor/components/pb-lepracursor/demo.html"
+        >
+          <img
+            src="https://live.staticflickr.com/65535/54239638410_34876579ac_q.jpg"
+            alt="lepra cursor"
+          />
+        </Link>
+        <Link
+          target="_blank"
+          href="https://web.archive.org/web/20131223080911/http://sepans.com/sp/works/wikistalker/"
+        >
+          <img
+            src="https://live.staticflickr.com/65535/54239467003_e4a1b6dc31_q.jpg"
+            alt="wikistalker"
+          />
+        </Link>
+        <Link target="_blank" href="https://theuse.info">
+          <img
+            src="https://live.staticflickr.com/65535/54239468433_ed7242d142_q.jpg"
+            alt="theuse.info"
+          />
+        </Link>
+      </PreviewContainer>
+      <Header>
+        <Link href="content/diy">projects</Link>
+      </Header>
+      <DiyRandomImages />
+      <Header>books</Header>
+      <div style={{ display: 'flex', flexDirection: 'column' }}>
+        <Link
+          target="_blank"
+          href="https://sepans-dashboards.netlify.app/books"
+        >
           <PreviewContainer>
-            <Link href="content/gdmbr">
-              <img
-                src="https://live.staticflickr.com/65535/54238324297_dbb471603f_q.jpg"
-                alt="Great divide ride"
-              />
-            </Link>
-            <Link href="content/ct">
-              <img
-                src="https://live.staticflickr.com/65535/54239633205_beaf7959d9_q.jpg"
-                alt="Colorado trail ride"
-              />
-            </Link>
+            <img
+              src="https://live.staticflickr.com/65535/54239222436_08c0a31eaf_q.jpg"
+              alt="unnamable"
+            />
           </PreviewContainer>
-        </div>
-        <Header style={{ margin: '0.5em 0' }}>
-          <Link target="_blank" href="https://github.com/sepans/">
-            code
-          </Link>
-        </Header>
-        <Header>
-          <Link target="_blank" href="https://www.linkedin.com/in/sepans/">
-            resume
-          </Link>
-        </Header>
-      </Links>
-    </Layout>
-  )
-}
+        </Link>
+      </div>
 
-const PreviewContainer = styled.span`
+      <Header>rides</Header>
+      <div style={{ display: 'flex', flexDirection: 'column' }}>
+        <PreviewContainer>
+          <Link href="content/gdmbr">
+            <img
+              src="https://live.staticflickr.com/65535/54238324297_dbb471603f_q.jpg"
+              alt="Great divide ride"
+            />
+          </Link>
+          <Link href="content/ct">
+            <img
+              src="https://live.staticflickr.com/65535/54239633205_beaf7959d9_q.jpg"
+              alt="Colorado trail ride"
+            />
+          </Link>
+        </PreviewContainer>
+      </div>
+      <Header style={{ margin: '0.5em 0' }}>
+        <Link target="_blank" href="https://github.com/sepans/">
+          code
+        </Link>
+      </Header>
+      <Header>
+        <Link target="_blank" href="https://www.linkedin.com/in/sepans/">
+          resume
+        </Link>
+      </Header>
+    </Links>
+  </Layout>
+)
+
+export const PreviewContainer = styled.span`
   display: inline-block;
   img,
   svg {
@@ -198,7 +172,7 @@ const Header = styled.div`
   }
 `
 
-const Link = styled.a`
+export const Link = styled.a`
   color: #333;
 
   display: inline-block;
