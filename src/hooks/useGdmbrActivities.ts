@@ -4,7 +4,7 @@ export const useGdmbrActivities = () => {
   // TODO: type
   const activitiesQuery = graphql`
     query gdmbrActivitiesQuery {
-      allActivitiesCsv(limit: 49, skip: 244) {
+      allActivitiesCsv(limit: 49, skip: 239) {
         nodes {
           Activity_ID
           Activity_Name
