@@ -1,10 +1,25 @@
-import { random } from 'lodash'
-import React from 'react'
+'use client'
 
+import { random } from 'lodash'
+import React, { useEffect } from 'react'
+
+// import Loadable from "@loadable/component"
 import { useFlickrImages } from '../hooks/useFlickrImages'
 import { Link, PreviewContainer } from '../pages'
 
 export const DiyRandomImages: React.FC = () => {
+  console.log('I get executed in the browser and the client')
+
+  const isSSR = typeof window === 'undefined'
+  console.log(isSSR)
+
+  useEffect(() => {
+    console.log('I am only being executed in the browser')
+  }, [])
+
+  if (isSSR) {
+    return <div />
+  }
   const { photoGroups } = useFlickrImages()
 
   const groupsSize = Object.keys(photoGroups).length
@@ -32,3 +47,5 @@ export const DiyRandomImages: React.FC = () => {
     </div>
   )
 }
+
+// export const LoadableDiyRandomImages = React.lazy(() => DiyRandomImages)
