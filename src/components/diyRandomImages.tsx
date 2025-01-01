@@ -1,13 +1,17 @@
 'use client'
 
 import { random } from 'lodash'
-import React from 'react'
+import React, { useEffect } from 'react'
 
 import { useFlickrImages } from '../hooks/useFlickrImages'
 import { Link, PreviewContainer } from '../pages'
 
 export const DiyRandomImages: React.FC = () => {
   const isSSR = typeof window === 'undefined'
+
+  useEffect(() => {
+    console.log('client rendering', isSSR)
+  }, [])
 
   const { photoGroups } = useFlickrImages()
 
@@ -28,11 +32,7 @@ export const DiyRandomImages: React.FC = () => {
             {group.slice(randomIndex, randomIndex + 1).map((photo) => (
               <Link href="content/diy">
                 {/* don't bother rendering images when it is server side */}
-                <img
-                  height={150}
-                  src={isSSR ? photo.thumbnailSrc : ''}
-                  alt={photo.label}
-                />
+                <img height={150} src={photo.thumbnailSrc} alt={photo.label} />
               </Link>
             ))}
           </PreviewContainer>
