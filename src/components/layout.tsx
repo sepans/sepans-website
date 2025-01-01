@@ -31,12 +31,11 @@ const Layout: React.FC<LayoutProps> = ({ meta, children }) => (
 const Container = styled.div`
   display: flex;
   width: 100%;
-  padding: 30px;
+  padding: 1.5em;
   margin-bottom: 30px;
   @media (min-width: 768px) {
     max-width: 90%; /* for diy grid */
-    padding-left: 80px;
-    padding-top: 120px;
+    padding: 3em;
   }
 `
 const MainArea = styled.div`
