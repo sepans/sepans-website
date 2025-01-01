@@ -1,22 +1,15 @@
 'use client'
 
 import { random } from 'lodash'
-import React, { useEffect } from 'react'
+import React from 'react'
 
-// import Loadable from "@loadable/component"
 import { useFlickrImages } from '../hooks/useFlickrImages'
 import { Link, PreviewContainer } from '../pages'
 
 export const DiyRandomImages: React.FC = () => {
-  console.log('I get executed in the browser and the client')
-
   const isSSR = typeof window === 'undefined'
-  console.log(isSSR)
 
-  useEffect(() => {
-    console.log('I am only being executed in the browser')
-  }, [])
-
+  // don't bother rendering anything on the server-side. let client side hydration render images
   if (isSSR) {
     return <div />
   }
@@ -47,5 +40,3 @@ export const DiyRandomImages: React.FC = () => {
     </div>
   )
 }
-
-// export const LoadableDiyRandomImages = React.lazy(() => DiyRandomImages)
