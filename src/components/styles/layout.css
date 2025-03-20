@@ -1,0 +1,32 @@
+/* gd lightbox */
+
+.gd-lightbox-styles {
+
+  .yarl__slide  {
+    align-items: end;
+    margin-bottom: 2vh;
+    
+  }
+
+  .yarl__slide img {
+    max-height: 54vh !important;
+  }
+  
+  .yarl__container {
+    background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 1));
+  }
+
+  .yarl__button {
+    color: black;
+    background-color: rgba(255, 255, 255, 0.8);
+    filter: none;
+    padding: 0;
+    top: 75%;
+  }
+
+
+}
+
+.gd-lightbox-styles.yarl__portal {
+  z-index: 2;
+}

@@ -1,0 +1,484 @@
+---
+slug: "p5-tutorial"
+date: "2025-03-17"
+title: "p5js simple tutorial (persian)"
+description: "A simple tutorial for p5js library"
+type: "tutorial"
+direction: "rtl"
+---
+
+import Layout from "../../../components/tutorial-layout"
+import CodeEmbed from "../../../components/p5/CodeEmbed"
+import { Paragraph, CenteredContainer, SectionBreak } from "../../../components/p5/paragraph"
+
+<Layout dir="rtl">
+    #  راهنمای ساده p5.js 
+
+    برای برنامه‌نویسی p5.js به این آدرس برید:
+
+    [editor.p5js.org](https://editor.p5js.org/)
+
+    یادتون باشه login کنید که بتونید برنامه‌ای که می‌نویسید را save کنید تا بتونید بعدا ازشون استفاده کنید و برای دیگران بفرستید.
+
+    یه برنامه p5.js این شکلی ه:
+
+
+
+    <CodeEmbed
+        client:load
+        showCode={true}
+        previewWidth={200}
+        previewHeight={200}
+        initialValue={`
+function setup() {
+
+    //  دستورها رو اینجا هرکدوم تو یه خط جدید بین } بالا و { پایین بنویسید
+
+    createCanvas(200, 200)  // این دستور سایز صفحه طراحی رو تعیین میکنه 
+    
+    background('white’')  // این دستور زمینه رو سفید میکنه 
+    fill('red')  // این یکی رنگ رو عوض می‌کنه 
+    rect(20, 30, 50, 100)  // و این یه مستطیل می‌کشه
+            
+}
+
+function draw() {   
+
+}
+        `}
+        previewable
+        editable={true}
+        lazyLoad={false}
+        allowSideBySide={true}
+        includeSound={false}
+    />
+
+    <Paragraph type="warning">
+    حواستون به  <code>{'{'}</code> و <code>{'}'}</code>  باشه که  پاک نشه و دستورها رو بین آنها بنویسید مثل برنامه بالا 
+    </Paragraph>
+
+    بعدا راجع به اینکه  <code>setup</code> و  <code>draw</code> چی هستند در قسمت ساختار برنامه p5 صحبت می‌کنیم.
+
+### دستگاه مختصات
+
+برای کشیدن شکلها باید جای اون ها رو تو صفحه مشخص کنیم. برای این کار از دستگاه مختصات استفاده میکنیم.
+
+ گوشه بالا سمت چپ صفحه نقطه (0, 0) است و هرچی به سمت چپ بریم مقدار x و هرچه به پایین بریم مقدار y بیشتر میشه.
+
+
+<CenteredContainer>
+    <CodeEmbed
+            client:load
+            showCode={false}
+            previewWidth={200}
+            previewHeight={200}
+            initialValue={`
+                function setup() {
+                    createCanvas(200, 200)  
+                }
+
+                function draw() {   
+
+                background('white')
+                for(let i = 0; i < 400; i = i + 10) {
+                    stroke('#B5B5B5')
+                    strokeWeight(1)
+                    line(i, 0, i, width);
+                    line(0, i, height, i);
+                }
+                fill('black')
+                stroke('black')
+
+                circle(1, 1, 7)
+                noStroke()
+                text('(0, 0)', 5, 15);
+
+                circle(mouseX, mouseY, 7)
+                strokeWeight(1.5)
+                stroke('black')
+                const xPos = mouseX || 120
+                const yPos = mouseY || 50
+                line(0, yPos, xPos, yPos);
+                line(xPos, 0, xPos, yPos);
+                strokeWeight(1)
+                if(xPos > 0 || yPos > 0) {
+                    noStroke()
+                    text('x', xPos + 5 , yPos / 2);
+                    text('y', xPos / 2 , yPos + 10);
+                    text('('+xPos+','+yPos+')', xPos + 5, yPos);
+                }
+            }
+        
+            `}
+            previewable
+            editable={true}
+            lazyLoad={false}
+            allowSideBySide={true}
+            includeSound={false}
+        />
+
+</CenteredContainer>
+
+### دستورهای به درد بخور
+
+#### تغییر رنگ زمینه
+
+<code>background(‘white’)</code>
+
+می‌تونید روی رنگ کلیک کنید و یه زنگ جدید انتخاب کنید. یه چیزی شبیه این میشه
+
+<code>background('#FF0000')</code>
+
+این کد رنگ قرمز ه. p5.js رنگها رو به هم با کد میشناسه هم با اسم مثل 'red' یا 'pink' 
+
+<Paragraph type="warning">
+حواستون باشه رنگ یا کد رنگ باید بین دو تا  <code>'</code>  باشه. کد رنگ همیشه با  <code>#</code>  شروع میشه.
+</Paragraph>
+
+<SectionBreak />
+
+#### مستطیل
+
+<code>rect(100, 200, 50, 100)</code>
+
+<CenteredContainer>
+    <CodeEmbed
+            client:load
+            showCode={false}
+            previewWidth={200}
+            previewHeight={200}
+            initialValue={`
+                function setup() {
+                    createCanvas(200, 200)  
+
+                    background('white')
+                    for(let i = 0; i < 400; i = i + 10) {
+                        stroke('#B5B5B5')
+                        strokeWeight(1)
+                        line(i, 0, i, width);
+                        line(0, i, height, i);
+                    }
+                    textSize(16);
+                    fill('white')
+                    noStroke()
+                    rect(0, 0, 400, 30);
+                    fill('rgb(216,35,150)')
+                    
+                    text('rect(x, y, width, height)', 10, 18)                    
+                    strokeWeight(1.5)
+                    stroke('black')
+                    noFill()
+                    rect(50, 70, 100, 50)
+                    strokeWeight(1)
+                    textSize(12)
+                    text('width', 80, 135);
+                    text('height', 155, 100);
+                    text('(x, y)', 30, 60);
+                    fill('black')
+                    circle(50, 70, 7)
+
+
+                }
+
+                function draw() {   
+
+                }
+            
+        
+            `}
+            previewable
+            editable={true}
+            lazyLoad={false}
+            allowSideBySide={true}
+            includeSound={false}
+        />
+
+</CenteredContainer>
+
+<Paragraph type="warning">
+بین عددها  <code>,</code>  یادتون نره!
+</Paragraph>
+
+<SectionBreak />
+
+
+#### دایره
+
+<code>circle(100, 200, 50)</code>
+
+<CenteredContainer>
+    <CodeEmbed
+            client:load
+            showCode={false}
+            previewWidth={200}
+            previewHeight={200}
+            initialValue={`
+                function setup() {
+                   createCanvas(200, 200)  
+
+                    background('white')
+                    for(let i = 0; i < 400; i = i + 10) {
+                        stroke('#B5B5B5')
+                        strokeWeight(1)
+                        line(i, 0, i, width);
+                        line(0, i, height, i);
+                    }
+                    textSize(16);
+                    fill('white')
+                    noStroke()
+                    rect(0, 0, 400, 30);
+                    fill('rgb(216,35,150)')
+                    
+                    text('circle(x, y, size)', 10, 18)                    
+                    strokeWeight(1.5)
+                    stroke('black')
+                    noFill()
+                    circle(100, 100, 100)
+                    strokeWeight(1)
+                    textSize(12)
+                    text('size', 85, 170);
+                    
+                    text('(x, y)', 90, 90);
+                    fill('black')
+                    circle(100, 100, 7)
+
+
+                }
+
+                function draw() {   
+
+                }
+            
+        
+            `}
+            previewable
+            editable={true}
+            lazyLoad={false}
+            allowSideBySide={true}
+            includeSound={false}
+        />
+
+</CenteredContainer>
+
+<SectionBreak />
+
+#### خط
+
+<code>line(50, 50, 100, 100)</code>
+
+<CenteredContainer>
+    <CodeEmbed
+            client:load
+            showCode={false}
+            previewWidth={200}
+            previewHeight={200}
+            initialValue={`
+                function setup() {
+                       
+                    createCanvas(200, 200)
+                    background('white')
+                    for(let i = 0; i < 400; i = i + 10) {
+                        stroke('#B5B5B5')
+                        strokeWeight(1)
+                        line(i, 0, i, width);
+                        line(0, i, height, i);
+                    }
+                    textSize(16);
+                    fill('white')
+                    noStroke()
+                    rect(0, 0, 400, 30);
+                    fill('rgb(216,35,150)')
+                    
+                    text('line(x1, y1, x2, y2)', 10, 18)                    
+                    strokeWeight(1.5)
+                    stroke('black')
+                    noFill()
+                    line(60, 60, 150, 150)
+                    strokeWeight(1)
+                    
+                    textSize(12)
+                   
+                    
+                    text('(x1, y1)', 50, 50);
+                    text('(x2, y2)', 150, 170);
+                    fill('black')
+                    circle(60, 60, 7)   
+                    circle(150, 150, 7)  
+
+
+                }
+
+                function draw() {   
+
+                }
+            
+        
+            `}
+            previewable
+            editable={true}
+            lazyLoad={false}
+            allowSideBySide={true}
+            includeSound={false}
+        />
+
+</CenteredContainer>
+
+<SectionBreak />
+
+
+#### مثلث   
+
+<code>triangle(100, 50, 50, 100, 150, 100)</code>
+
+<CenteredContainer>
+    <CodeEmbed
+            client:load
+            showCode={false}
+            previewWidth={200}
+            previewHeight={200}
+            initialValue={`
+                function setup() {
+                       
+
+     createCanvas(200, 200)
+                    background('white')
+                    for(let i = 0; i < 400; i = i + 10) {
+                        stroke('#B5B5B5')
+                        strokeWeight(1)
+                        line(i, 0, i, width);
+                        line(0, i, height, i);
+                    }
+                    textSize(14);
+                    fill('white')
+                    noStroke()
+                    rect(0, 0, 400, 30);
+                    fill('rgb(216,35,150)')
+                    
+                    text('triangle(x1, y1, x2, y2, x3, y3)', 5, 18)                    
+                    strokeWeight(1.5)
+                    stroke('black')
+                    noFill()
+                    triangle(100, 50, 50, 150, 150, 150)
+                    strokeWeight(1)
+                    
+                    textSize(12)
+                   
+                    
+                    text('(x1, y1)', 50, 50);
+                    text('(x2, y2)', 20, 170);
+                    text('(x3, y3)', 150, 170);
+                    fill('black')
+                    circle(100, 50, 7)  
+                    circle(50, 150, 7)
+                    circle(150, 150, 7)  
+    
+
+
+                }
+
+                function draw() {   
+
+                }
+            
+        
+            `}
+            previewable
+            editable={true}
+            lazyLoad={false}
+            allowSideBySide={true}
+            includeSound={false}
+        />
+
+</CenteredContainer>
+
+<SectionBreak />
+
+#### تغییر رنگ داخل شکل   
+
+<code>fill(‘yellow’)</code>
+
+<SectionBreak />
+
+#### تغییر رنگ دور شکل   
+
+<code>stroke(‘yellow’)</code>
+
+<SectionBreak />
+
+حالا می‌تونیم از این دستورها استفاده کنیم و شکلهای مختلف بکشیم.
+
+
+    <CodeEmbed
+        client:load
+        showCode={true}
+        previewWidth={300}
+        previewHeight={300}
+        initialValue={`
+function setup() {
+    createCanvas(400, 400)   
+    noStroke()
+
+    fill("#291C0B") 
+    rect(50, 50, 160, 40)  // hair 
+
+    fill("#AC7C68");
+    rect(50, 50 + 40, 160, 100)// head
+
+    fill("#291C0B") // sideburn
+    rect(50, 50 + 40, 20, 20)  
+    rect(50 + 140, 50 + 40, 20, 20)    
+
+    fill("#FDF8EF")
+    rect(50 + 20, 50 + 60, 40, 20 ) // left eye
+    rect(50 + 100, 50 + 60, 40, 20 ) // right eye
+
+    fill("#2224AD");
+    rect(50 + 40, 50 + 60, 20, 20 ) // left eye ball
+    rect(50 + 100, 50 + 60, 20, 20 ) // right eye ball
+
+    fill("#8F5743");
+    rect(50 + 60, 50 + 80, 40, 20) // nose
+
+    fill("#6C3D2C");
+    rect(50 + 40, 50 + 120, 80, 20) // beard
+    rect(50 + 40, 50 + 100, 20, 20)
+    rect(50 + 100, 50 + 100, 20, 20)
+}
+
+function draw() {   
+}
+        `}
+        previewable
+        editable={true}
+        lazyLoad={false}
+        allowSideBySide={true}
+        includeSound={false}
+    />
+
+<SectionBreak />
+
+#### نوشتن   
+
+<code>text(‘hello’, 10, 10)</code>
+
+
+.hello این دستور روی نقطه ۱۰ و ۱۰ مینویسه
+
+<Paragraph type="warning">
+حواستون به  <code>'</code>  ها دور چیزی که می‌خواهید بنویسید باشه
+</Paragraph>
+
+یا مثلا می‌تونید رو صفحه اومجی بکشید
+
+<code>text(‘🌸’, 100, 250)</code>
+
+<br/>
+اگر بخواهید نوشته یا اموجی‌تون بزرگتر باشه با این دستور می‌شه این کار رو کرد:
+
+
+<code>textSize(42) <br/>
+text(‘🌸’, 100, 250)</code>
+
+
+
+</Layout>

@@ -1,0 +1,53 @@
+html {
+    font: 100%/1em georgia, serif;
+
+}
+
+pre, code, .codem-root {
+    direction: ltr;
+    display:inline-block;
+  
+}
+
+code {
+    padding: 4px 5px;
+}
+
+h1 {
+    color: #c01c4c;
+    margin: 30px auto;
+    width: fit-content;
+}
+
+iframe {
+    border: 1px solid #EEE;
+}
+
+.cm-editor {
+    background-color: #f7f7f7;
+    padding: 10px;
+    .dark-theme & {
+      background-color: #DDD;
+      color: black;
+    }
+  }
+  
+  .dark-theme .code-editor-container {
+    filter: invert(100%);
+    & .circle-button {
+      filter: invert(100%);
+    }
+  }
+  
+  .cm-editor * {
+    font-family: var(--font-serif), monospace;
+  }
+  
+  .cm-scroller,
+  .cm-editor {
+    border-radius: 20px;
+  }
+  
+  .cm-focused {
+    outline-offset: -1px;
+  }
