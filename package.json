@@ -42,6 +42,7 @@
     "react-helmet": "^6.1.0",
     "styled-components": "^5.3.6",
     "topojson": "^3.0.2",
+    "vazirmatn": "^33.0.3",
     "yet-another-react-lightbox": "^3.10.2"
   },
   "devDependencies": {

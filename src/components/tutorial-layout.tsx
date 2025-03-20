@@ -6,6 +6,8 @@ import './styles/common.css'
 import './styles/tutorial.css'
 import SEO from './seo'
 
+import 'vazirmatn/Vazirmatn-Variable-font-face.css'
+
 export interface LayoutProps {
   children: React.ReactNode
   dir?: string
@@ -17,7 +19,7 @@ const Layout: React.FC<LayoutProps> = (props) => {
   const { meta, children, dir } = props
   return (
     <>
-      <Header includeFonts />
+      <Header />
       <SEO meta={meta} />
       <Container dir={dir}>{children}</Container>
     </>
