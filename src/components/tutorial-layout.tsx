@@ -10,32 +10,36 @@ import styled from 'styled-components'
 
 import Header from './header'
 import './styles/common.css'
-import './styles/layout.css'
+import './styles/tutorial.css'
 import SEO from './seo'
 
 export interface LayoutProps {
   children: React.ReactNode
+  dir?: string
   meta?: []
 }
 
 // TODO: query meta from mdx headers?
-const Layout: React.FC<LayoutProps> = ({ meta, children }) => (
-  <>
-    <Header />
-    <SEO meta={meta} />
-    <Container>
-      <MainArea>{children}</MainArea>
-    </Container>
-  </>
-)
+const Layout: React.FC<LayoutProps> = (props) => {
+  const { meta, children, dir } = props
+  return (
+    <>
+      <Header />
+      <SEO meta={meta} />
+      <Container dir={dir}>
+        <MainArea>{children}</MainArea>
+      </Container>
+    </>
+  )
+}
 
 const Container = styled.div`
   display: flex;
   width: 100%;
+  max-width: 1100px;
   padding: 1.5em;
   margin-bottom: 30px;
   @media (min-width: 768px) {
-    max-width: 90%; /* for diy grid */
     padding: 3em;
   }
 `
