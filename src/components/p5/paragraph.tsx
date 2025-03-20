@@ -37,7 +37,10 @@ const Icon = styled.span`
 `
 
 export const CenteredContainer = styled.div`
-  width: 800px;
+  width: 100%;
+  @media (min-width: 768px) {
+    max-width: 900px;
+  }
 `
 
 export const SectionBreak = styled.div`
