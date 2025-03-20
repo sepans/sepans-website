@@ -1,7 +1,14 @@
+/*
+  Mostly of the code was taken from p5.js website and changed it to work with gatsby/react/styled components
+  credit: p5.js authors
+
+  This component is used to embed p5.js code snippets in the p5.js editor.
+  It includes a code editor and a preview of the sketch.
+  It also includes buttons to run, stop, copy, and reset the code.
+*/
 import React, { useState, useEffect, useRef } from 'react'
 import CodeMirror, { EditorView } from '@uiw/react-codemirror'
 import { javascript } from '@codemirror/lang-javascript'
-// import { cdnLibraryUrl, cdnSoundUrl } from "@/src/globals/globals";
 
 import styled from 'styled-components'
 import { CodeFrame } from './frame'
@@ -16,7 +23,7 @@ interface CodeEmbedProps {
   previewWidth?: number
   base?: string
   lazyLoad?: boolean
-  allowSideBySide?: boolean
+  // allowSideBySide?: boolean
   fullWidth?: boolean
   includeSound?: boolean
   showCode?: boolean
@@ -43,7 +50,7 @@ export const CodeEmbed: React.FC<CodeEmbedProps> = ({
   )
 
   let { previewWidth, previewHeight } = props
-  const { showCode, allowSideBySide, fullWidth } = props
+  const { showCode, fullWidth } = props
   const canvasMatch =
     /createCanvas\(\s*(\d+),\s*(\d+)\s*(?:,\s*(?:P2D|WEBGL)\s*)?\)/m.exec(
       initialCode
@@ -53,7 +60,7 @@ export const CodeEmbed: React.FC<CodeEmbedProps> = ({
     previewHeight = previewHeight || parseFloat(canvasMatch[2])
   }
 
-  const largeSketch = previewWidth && previewWidth > 770 - 60
+  // const largeSketch = previewWidth && previewWidth > 770 - 60
 
   // Quick hack to make room for DOM that gets added below the canvas by default
   const domMatch = /create(Button|Select|P|Div|Input|ColorPicker)/.exec(
@@ -89,13 +96,9 @@ export const CodeEmbed: React.FC<CodeEmbedProps> = ({
   if (!rendered) return <div className="code-placeholder" />
 
   return (
-    <Container
-      showCode={showCode}
-      allowSideBySide={allowSideBySide}
-      fullWidth={fullWidth}
-    >
+    <Container showCode={showCode} fullWidth={fullWidth}>
       {props.previewable ? (
-        <Preview largeSketch={largeSketch}>
+        <Preview>
           <div>
             <CodeFrame
               jsCode={previewCodeString}
@@ -107,21 +110,6 @@ export const CodeEmbed: React.FC<CodeEmbedProps> = ({
               scripts={props.includeSound ? [cdnSoundUrl] : []}
             />
           </div>
-          {showCode && (
-            <PlayButtons largeSketch={largeSketch}>
-              <CircleButton onClick={updateOrReRun} aria-label="Run sketch">
-                <Icon kind="play" />
-              </CircleButton>
-              <CircleButton
-                onClick={() => {
-                  setPreviewCodeString('')
-                }}
-                aria-label="Stop sketch"
-              >
-                <Icon kind="stop" />
-              </CircleButton>
-            </PlayButtons>
-          )}
         </Preview>
       ) : null}
       {showCode && (
@@ -152,6 +140,17 @@ export const CodeEmbed: React.FC<CodeEmbedProps> = ({
             }}
           />
           <CopyButtons>
+            <CircleButton onClick={updateOrReRun} aria-label="Run sketch">
+              <Icon kind="play" />
+            </CircleButton>
+            <CircleButton
+              onClick={() => {
+                setPreviewCodeString('')
+              }}
+              aria-label="Stop sketch"
+            >
+              <Icon kind="stop" />
+            </CircleButton>
             <CopyCodeButton textToCopy={codeString || initialCode} />
             <CircleButton
               onClick={() => {
@@ -181,34 +180,24 @@ const Container = styled.div<{
   gap: 10px;
   overflow: hidden;
   max-width: 950px;
-  ${(p) => (p.fullWidth ? `width: 100%;` : '')}
+  width: 100%;
+  ${(p) => (p.fullWidth ? 'width: 100%;' : '')}
   ${(p) => (p.showCode ? '' : 'width: fit-content; margin: 0 auto;')}
+  @media (min-width: 950px) {
+    flex-direction: row;
+  }
 `
 
 /* className={`ml-0 flex w-fit gap-[20px] ${largeSketch ? "flex-col" : (props.allowSideBySide ? "" : "flex-col lg:flex-row")}`} */
 
-const Preview = styled.div<{ largeSketch: boolean; allowSideBySide?: boolean }>`
+const Preview = styled.div`
   margin-left: 0;
   gap: 10px;
   width: fit-content;
   display: flex;
-  flex-direction: ${(p) => {
-    if (p.largeSketch) {
-      return 'row'
-    }
-    if (p.allowSideBySide) {
-      return 'row'
-    }
-    return 'row'
-  }};
+  flex-direction: column;
 `
-/*  `flex gap-2.5 ${largeSketch ? "flex-row" : "md:flex-row lg:flex-col"}` */
-const PlayButtons = styled.div<{ largeSketch: boolean }>`
-  display: flex;
-  gap: 20px;
-  flex-direction: ${(p) => (p.largeSketch ? `row` : 'column')};
-`
-/* "absolute right-0 top-0 flex flex-col gap-xs p-xs md:flex-row" */
+
 const CopyButtons = styled.div`
   position: absolute;
   right: 15px;
@@ -218,7 +207,6 @@ const CopyButtons = styled.div`
   gap: 10px;
 `
 
-/*  className="code-editor-container relative w-full" */
 const CodeContainer = styled.div`
   position: relative;
   width: 100%;

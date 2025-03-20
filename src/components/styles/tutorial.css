@@ -1,6 +1,9 @@
-html {
-    font: 100%/1em georgia, serif;
+html, body {
+    font-size: 1em;
+}
 
+html, body, h1, h2, h3, h4, h5, h6 {
+    font-family: "Vazirmatn", georgia, serif;
 }
 
 pre, code, .codem-root {
