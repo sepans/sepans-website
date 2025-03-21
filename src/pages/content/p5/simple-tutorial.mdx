@@ -41,10 +41,6 @@ function setup() {
     rect(20, 30, 50, 100)  // و این یه مستطیل می‌کشه
             
 }
-
-function draw() {   
-
-}
         `}
         previewable
         editable={true}
@@ -53,10 +49,14 @@ function draw() {
         includeSound={false}
     />
 
+<br/>
+عددهایی که توی مثال بالا هستند رو تغییر بدهید و ببینید و ▶️ را بزنید. ببینید چه اتفاقی میوفته. 
+
     <Paragraph type="warning">
     حواستون به  <code>{'{'}</code> و <code>{'}'}</code>  باشه که  پاک نشه و دستورها رو بین آنها بنویسید مثل برنامه بالا 
     </Paragraph>
 
+    فعلا تمام دستورها رو بین دو کروشه <code>setup</code> مینویسیم و به <code>draw</code> کاری نداریم.
     بعدا راجع به اینکه  <code>setup</code> و  <code>draw</code> چی هستند در قسمت ساختار برنامه p5 صحبت می‌کنیم.
 
 ### دستگاه مختصات
@@ -121,6 +121,10 @@ function draw() {
 
 ### دستورهای به درد بخور
 
+    <Paragraph type="warning">
+    اولین چیزی که موقع برنامه‌نویسی p5 باید حواسمون باشه اینه که حروف کوچک و بزرگ با هم فرق دارن مثلا اگه به جای <code>createCanvas</code> بنویسیم <code>create<b>c</b>anvas</code> یا <code><b>C</b>reateCanvas</code> برنامه error میده
+    </Paragraph>
+
 #### تغییر رنگ زمینه
 
 <code>background(‘white’)</code>
@@ -179,13 +183,7 @@ function draw() {
 
 
                 }
-
-                function draw() {   
-
-                }
-            
-        
-            `}
+           `}
             previewable
             editable={true}
             lazyLoad={false}
@@ -241,15 +239,7 @@ function draw() {
                     text('(x, y)', 90, 90);
                     fill('black')
                     circle(100, 100, 7)
-
-
                 }
-
-                function draw() {   
-
-                }
-            
-        
             `}
             previewable
             editable={true}
@@ -307,13 +297,7 @@ function draw() {
 
 
                 }
-
-                function draw() {   
-
-                }
-            
-        
-            `}
+           `}
             previewable
             editable={true}
             lazyLoad={false}
@@ -375,12 +359,6 @@ function draw() {
 
 
                 }
-
-                function draw() {   
-
-                }
-            
-        
             `}
             previewable
             editable={true}
@@ -397,11 +375,15 @@ function draw() {
 
 <code>fill(‘yellow’)</code>
 
+و <code>noFill()</code> داخل شکلها رو بدون رنگ می‌کنه.
+
 <SectionBreak />
 
 #### تغییر رنگ دور شکل   
 
 <code>stroke(‘yellow’)</code>
+
+یا اینکه با <code>noStroke()</code> میشه خط دور شکلها را برداشت
 
 <SectionBreak />
 
@@ -411,12 +393,15 @@ function draw() {
     <CodeEmbed
         client:load
         showCode={true}
-        previewWidth={300}
-        previewHeight={300}
+        previewWidth={252}
+        previewHeight={252}
         initialValue={`
 function setup() {
-    createCanvas(400, 400)   
+    createCanvas(250, 250)  
+    background('lightgray')     
     noStroke()
+
+    // سر آقا رو ما نقطه ۵۰ و ۵۰ میکشیم برای همین برای x و y ه مستطیل‌ها ۵۰ تا به همه اضافه می‌کنیم.
 
     fill("#291C0B") 
     rect(50, 50, 160, 40)  // hair 
@@ -444,10 +429,7 @@ function setup() {
     rect(50 + 40, 50 + 100, 20, 20)
     rect(50 + 100, 50 + 100, 20, 20)
 }
-
-function draw() {   
-}
-        `}
+      `}
         previewable
         editable={true}
         lazyLoad={false}
@@ -479,6 +461,323 @@ function draw() {
 <code>textSize(42) <br/>
 text(‘🌸’, 100, 250)</code>
 
+با استفاده از اموجی‌ها میشه کلی چیز کشید!
+
+    <CodeEmbed
+        client:load
+        showCode={true}
+        previewWidth={500}
+        previewHeight={300}
+        initialValue={`
+function setup() {
+
+    createCanvas(500, 300)
+
+    background('rgb(8,5,60)')
+    textSize(50)
+    text('🌖', 370, 80)
+    textSize(10)
+    text('⭐️', 250, 80)   
+    textSize(5)
+    text('⭐️', 390, 150)
+    text('⭐️', 120, 50) 
+    text('⭐️', 180, 120) 
+
+    fill('green')
+    triangle(0, 230, 480, 300, 0, 300)
+
+    textSize(110)
+    text('🌲', -30, 245) 
+    text('🌲', 80, 265) 
+
+    textSize(160)
+    text('🌲', 0, 275)
+
+    textSize(45)
+    text('🐈‍⬛', 250, 280)
+
+}
+      `}
+        previewable
+        editable={true}
+        lazyLoad={false}
+        allowSideBySide={true}
+        includeSound={false}
+    />
+
+<SectionBreak />
+
+اگر بخواهید یک دستور اجرا نشه می‌تونید قبلش دوتا / بزارید:
+
+<code>// rect(5, 10, 10, 10)</code>
+
+به این comment میگن. یعنی یادداشت چون نوشته‌ای هست که اجرا نمیشه. انگار یه یادداشت هست برای آدمها که p5.js اون رو اصلا نمی‌بینه. 
+
+<SectionBreak />
+
+#### متغیرها
+
+متغیر مثل یه جعبه ای ه که میشه توش یه عدد (یا متن) گذاشت و از اون استفاده کرد. متغیرها کمک میکنه که یه سری اعداد را لازم نباشه تکرار کنیم. مثلا اینجا 
+
+<code>
+rect(5, 10, <b>10</b>, <b>10</b>)<br/>
+rect(15, 30, <b>10</b>, <b>10</b>)
+</code>
+
+اندازه مربع های ما ۱۰ هست. پس میتونیم یه متغیر تعریف کنیم به اسم size و از اون استفاده کنیم
+
+<code>
+<b>var size = 10</b><br/>
+rect(5, 10, <b>size</b>, <b>size</b>)<br/>
+rect(15, 30, <b>size</b>, <b>size</b>)
+</code>
+
+مثلا توی مثال قبل میشه نقطه‌ای که کله آقا هست رو توی دوتا متغیر <code>headX, headY</code> گذاشت تا بشه به راحتی جای کله رو عوض کرد. امتحان کنید:
+
+
+    <CodeEmbed
+        client:load
+        showCode={true}
+        previewWidth={252}
+        previewHeight={252}
+        initialValue={`
+var headX = 20
+var headY = 20
+
+function setup() {
+
+    createCanvas(250, 250)  
+    background('lightgray')     
+    noStroke()
+   
+
+    fill("#291C0B") 
+    rect(headX, headY, 160, 40)  // hair 
+
+    fill("#AC7C68");
+    rect(headX, headY + 40, 160, 100)// head
+
+    fill("#291C0B") // sideburn
+    rect(headX, headY + 40, 20, 20)  
+    rect(headX + 140, headY + 40, 20, 20)    
+
+    fill("#FDF8EF")
+    rect(headX + 20, headY + 60, 40, 20 ) // left eye
+    rect(headX + 100, headY + 60, 40, 20 ) // right eye
+
+    fill("#2224AD");
+    rect(headX + 40, headY + 60, 20, 20 ) // left eye ball
+    rect(headX + 100, headY + 60, 20, 20 ) // right eye ball
+
+    fill("#8F5743");
+    rect(headX + 60, headY + 80, 40, 20) // nose
+
+    fill("#6C3D2C");
+    rect(headX + 40, headY + 120, 80, 20) // beard
+    rect(headX + 40, headY + 100, 20, 20)
+    rect(headX + 100, headY + 100, 20, 20)
+   
+}
+        `}
+        previewable
+        editable={true}
+        lazyLoad={false}
+        allowSideBySide={true}
+        includeSound={false}
+    />
+<br/>
+    متغیرها خیلی چیزای بدرد بخوری هستند. مثلا در قسمت‌های بعد می‌بینیم که با متغیرها میشه انیمیشن درست کرد.
+
+<SectionBreak />
+
+#### حلقه‌ها
+
+p5 و کلا کامپیوترها کارهای تکراری رو خیلی خوب انجام میده. برای تکرار یک کار میتونیم از حلقه ها استفاده کنیم. مثلا 
+:
+
+  <CodeEmbed
+        client:load
+        showCode={true}
+        previewWidth={300}
+        previewHeight={200}
+        initialValue={`
+function setup() {
+    createCanvas(300, 200) 
+    
+    background('white’') 
+    fill('black')
+
+    rect(0, 0, 20, 20)
+    rect(40, 0, 20, 20)
+    rect(80, 0, 20, 20)
+    rect(120, 0, 20, 20)            
+}
+        `}
+        previewable
+        editable={true}
+        lazyLoad={false}
+        allowSideBySide={true}
+        includeSound={false}
+    />
+
+    <br/>
+
+چهار تا مستطیل میکشه. نگاه کنید که y و width و height ه همه یکی ه و فقط مقدار x ه که ۴۰ تا ۴۰ تا اضافه میشه. بجای این میشه نوشت:
+
+ <CodeEmbed
+        client:load
+        showCode={true}
+        previewWidth={300}
+        previewHeight={200}
+        initialValue={`
+function setup() {
+    createCanvas(300, 200) 
+    
+    background('white’') 
+    fill('black')
+
+    for(var i = 0; i <= 130; i = i + 40 ) {
+        rect(i, 0, 20, 20)
+    }
+                
+}
+        `}
+        previewable
+        editable={true}
+        lazyLoad={false}
+        allowSideBySide={true}
+        includeSound={false}
+    />
+
+<br/>
+
+یخورده به نظر پیجیده میاد ولی حلقه‌ها سه قسمت دارند:
+
+<code>
+for(<b>var i = 0;</b> i < 130; i = i + 40 )
+</code>
+
+اینجا یه متغیر به اسم  <code>i</code>  تعریف کردیم که اول 0 ه.
+
+<code>
+for(var i = 0; i < 130;<b> i = i + 40 </b>)
+</code>
+
+هر دفعه که حلقه اجرا می‌شه 40 تا به <code>i</code> اضافه میکنیم.
+
+<code>
+for(var i = 0;<b> i < 130;</b> i = i + 40)
+</code>
+
+تا وقتی که  <code>i</code> کوچکتر از ۱۳۰ باشه.
+
+    <Paragraph type="warning">
+    حواستون به <code>{'{'}</code> و <code>{'}'}</code>  باشه. دستورهایی که توی حلقه باید تکرار بشن باید بین این دوتا کروشه باشند. 
+    </Paragraph>  
+
+    <Paragraph type="excercise">
+    
+    می‌تونید کد بالا رو طوری تغییر بدید که تا آخر خط مربع بکشه؟ 
+    <br/><b>راهنمایی: </b> چه چیزی باعث میشه بعد ۴ تا مربع دیگه چیزی نکشه؟ اگه اون رو تغییر بدید بیشتر میکشه!
+    </Paragraph>
+
+    <Paragraph type="excercise">
+    <b>تمرین سخت‌تر:</b>
+    سعی کنید خط دوم صفحه شطرنجی رو هم بکشید. <br/>اول دستورهای <code>rect</code> رو جدا جدا بدون حلقه بنویسید بعد ببینید چیه که داره تغییر میکنه و بعد بجای دستورهای جدا یه حلقه بنویسید. 
+    </Paragraph>  
+
+<SectionBreak />
+
+### random
+دستور random یه عدد شانسی به شما می‌ده. می‌شه به دستور random گفت که این عدد حداقل و حداکثر چقدر باشه. مثلا
+<code>
+random(0, 10)
+</code>
+
+یه عدد شانسی بین ۰ تا ۱۰ میده. 
+
+یه کاربرد random کشیدن یه تعداد زیاد شکل جاهای مختلف صفحه با استفاده از حلقه است:
+
+ <CodeEmbed
+        client:load
+        showCode={true}
+        previewWidth={300}
+        previewHeight={200}
+        initialValue={`
+function setup() {
+    createCanvas(300, 200) 
+    
+    background('black') 
+    
+    for(var i = 0; i < 20; i = i + 1) {
+       text('⭐', random(0, width), random(0, height))
+    }
+}
+        `}
+        previewable
+        editable={true}
+        lazyLoad={false}
+        allowSideBySide={true}
+        includeSound={false}
+    />
+
+    اگر چند دفعه ▶️ رو بزنید می‌بینید که ستاره‌ها هر دفعه یک جای جدید کشیده می‌شوند.
+
+    <Paragraph type="warning">
+    <code>width</code> و <code>height</code> دو تا متغیر هستتد که p5 اتوماتیک تعریف کرده و طول و عرض صفحه رو توش میریزه.
+    </Paragraph>     
+
+    اینجا از این متغیرها استفاده می‌کنیم که یه عدد شانسی برای <code>x</code> و <code>y</code> جایی که ستاره‌ها رو می‌کشه استفاده کنه.
+
+    <Paragraph type="excercise">
+   آیا می‌تونید کاری کنید که سایز ستاره‌ها هم متفاوت باشه؟ <b>راهنمایی:</b> از دستور <code>textSize</code>  همراه با <code>random</code> استفاده کنید.
+    </Paragraph> 
+    <br/>
+
+<SectionBreak />
+
+### قسمت‌های برنامه p5
+
+تا حالا هرچی دستور استفاده کردیم داخل کروشه‌های <code>setup</code> بود و به <code>draw</code> کاری نداشتیم.
+فرق <code>draw</code> و <code>setup</code> اینه که هر دستوری توی <code>setup</code> باشه فقط یکبار وقتی برنامه اول اول اجرا می‌شه انجام می‌شه ولی دستور های توی <code>draw</code> چندین بار در ثانیه همه شون پشت سر هم اجرا می‌شوند. این به چه دردی می‌خوره؟ تو قسمت بعد می بینیم که با این کار میتونیم شکل‌ها رو حرکت بدیم!
+
+مثلا مثال ستاره‌های بالا اگه دستورها رو از توی <code>setup</code> ببریم توی <code>draw</code> اینجوری میشه:
+
+ <CodeEmbed
+        client:load
+        showCode={true}
+        previewWidth={300}
+        previewHeight={200}
+        initialValue={`
+function setup() {
+    createCanvas(300, 200) 
+}
+
+function draw() {
+    background('black') 
+    
+    for(var i = 0; i < 20; i = i + 1) {
+       text('⭐', random(0, width), random(0, height))
+    }
+}
+        `}
+        previewable
+        editable={true}
+        lazyLoad={false}
+        allowSideBySide={true}
+        includeSound={false}
+    />
+
+چون برعکس مثال قبلی هر ثانیه چندید بار ستاره‌ها یک جای شانسی کشیده می‌شه و هر دفعه یه جای جدیده.
+
+<Paragraph type="warning">
+یک سری دستورها که برای تنظیمات اولیه است باید حتما توی <code>setup</code> باشه. مثل <code>createCanvas</code> که سایز صفحه رو تنظیم می‌کنه.
+</Paragraph>
+
+<Paragraph type="excercise">
+   میتونید کاری کنید که ستاره‌ها روی هم بیاد تا تمام صفحه رو بگیره؟
+   <b>راهنمایی: </b> چه چیزی باعث میشه هر بار صفحه پاک می‌شه؟ اگر اون دستور بره توی <code>setup</code> دیگه همه ستاره‌ها پاک نمیشه.
+</Paragraph> 
 
 
 </Layout>
