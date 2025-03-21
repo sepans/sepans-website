@@ -820,9 +820,9 @@ function draw() {
         previewWidth={300}
         previewHeight={200}
         initialValue={`
-var snailX = 0
-var catX = 0
-var mouseX = 0
+var sX = 0
+var cX = 0
+var mX = 0
 
 function setup() {
     createCanvas(400, 200) 
@@ -835,13 +835,13 @@ function draw() {
     background('white')
     textSize(40)
     
-    text('😸', catX, 50)
-    text('🐭', mouseX, 100)
-    text('🐌', snailX, 150)
+    text('😸', cX, 50)
+    text('🐭', mX, 100)
+    text('🐌', sX, 150)
 
-    catX = catX + 1
-    mouseX = mouseX + 0.5
-    snailX = snailX + 0.1
+    cX = cX + 1
+    mX = mX + 0.5
+    sX = sX + 0.05
 }
         `}
         previewable
@@ -851,14 +851,66 @@ function draw() {
         includeSound={false}
     />
 
+    اگر توی صفحه چیزی نیست دوباره دکمه ▶️ رو بزنید.
+
 <Paragraph type="excercise">
     می‌تونید سرعت حرکت حیوانات رو تغییر بدید یا حیوانات جدیدی با سرعت مختلف اضافه کنید؟
 </Paragraph> 
 
-حتما متوجه شدید که چون هر دفعه که <code>draw</code> اجرا میشه مقدار <code>catX, snailX</code> اضافه میشه پس هر دفعه یک کمی جلوتر کشیده میشه.
+حتما متوجه شدید که چون هر دفعه که <code>draw</code> اجرا میشه مقدار <code>cX, sX</code> اضافه میشه پس هر دفعه یک کمی جلوتر کشیده میشه.
+
+<Paragraph type="excercise">
+    می‌تونید کاری کنید که اموجی‌ها عمودی حرکت کنند یا اوریب برن؟
+</Paragraph> 
 
 <Paragraph type="warning">
    اگر می‌خواهید از یک متغیر برای انیمشن استفاده کنید حتما باید بیرون <code>draw</code> و <code>setup</code> تعریف بشه.
 </Paragraph>
+
+<SectionBreak />
+
+#### if
+
+توی مثال بالا اگر مقدار <code>cX</code> از عرض صفحه بیشتر بشه دایره از صفحه خارج میشه. ولی می‌شه هر دفعه چک کرد که اگر <code>cX</code> از عرض صفحه یا width بزرگ تر شد اون رو دوباره صفر کرد.
+
+<CodeEmbed
+        client:load
+        showCode={true}
+        previewWidth={300}
+        previewHeight={200}
+        initialValue={`
+var cX = 0
+
+function setup() {
+    createCanvas(400, 200) 
+    background('white')
+    
+}
+
+function draw() {
+
+    background('white')
+    textSize(40)
+    
+    text('😸', cX, 50)
+
+
+    cX = cX + 4
+
+    if(cX > width) {
+        cX = 0
+    }
+}
+        `}
+        previewable
+        editable={true}
+        lazyLoad={false}
+        allowSideBySide={true}
+        includeSound={false}
+    />
+
+    <Paragraph type="warning">
+    حواستون به <code>{'{'}</code> و <code>{'}'}</code>  باشه. دستورهایی که درصورت درست بودن شرط باید اجرا بشوند باید داخل کروشه باشند.
+    </Paragraph>      
 
 </Layout>
