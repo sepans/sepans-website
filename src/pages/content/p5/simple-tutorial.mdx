@@ -50,7 +50,7 @@ function setup() {
     />
 
 <br/>
-عددهایی که توی مثال بالا هستند رو تغییر بدهید و ببینید و ▶️ را بزنید. ببینید چه اتفاقی میوفته. 
+عددهایی که توی مثال بالا هستند رو تغییر بدهید و ▶️ را بزنید. ببینید چه اتفاقی میوفته. 
 
     <Paragraph type="warning">
     حواستون به  <code>{'{'}</code> و <code>{'}'}</code>  باشه که  پاک نشه و دستورها رو بین آنها بنویسید مثل برنامه بالا 
@@ -688,7 +688,7 @@ for(var i = 0;<b> i < 130;</b> i = i + 40)
 
 <SectionBreak />
 
-### random
+#### random
 دستور random یه عدد شانسی به شما می‌ده. می‌شه به دستور random گفت که این عدد حداقل و حداکثر چقدر باشه. مثلا
 <code>
 random(0, 10)
@@ -779,5 +779,86 @@ function draw() {
    <b>راهنمایی: </b> چه چیزی باعث میشه هر بار صفحه پاک می‌شه؟ اگر اون دستور بره توی <code>setup</code> دیگه همه ستاره‌ها پاک نمیشه.
 </Paragraph> 
 
+<SectionBreak />
+
+#### mouseX و mouseY
+
+اگه می‌خواید شکلی که میکشید با ماوس تکون بخوره برای <code>x</code> و <code>y</code> میشه <code>mouseX</code> , <code>mouseY</code> گذاشت
+
+ <CodeEmbed
+        client:load
+        showCode={true}
+        previewWidth={300}
+        previewHeight={200}
+        initialValue={`
+function setup() {
+    createCanvas(300, 200) 
+    background('white')
+}
+
+function draw() {
+    textSize(80)
+    text('🦄', mouseX, mouseY)
+}
+        `}
+        previewable
+        editable={true}
+        lazyLoad={false}
+        allowSideBySide={true}
+        includeSound={false}
+    />
+
+نگاه کنید که اینجا <code>background('white')</code> توی <code>setup</code> ه. امتحان کنید که اگر اون خط رو ببرید توی <code>draw</code> چی میشه.
+
+<SectionBreak />
+
+#### انیمیشن
+
+ <CodeEmbed
+        client:load
+        showCode={true}
+        previewWidth={300}
+        previewHeight={200}
+        initialValue={`
+var snailX = 0
+var catX = 0
+var mouseX = 0
+
+function setup() {
+    createCanvas(400, 200) 
+    background('white')
+    
+}
+
+function draw() {
+
+    background('white')
+    textSize(40)
+    
+    text('😸', catX, 50)
+    text('🐭', mouseX, 100)
+    text('🐌', snailX, 150)
+
+    catX = catX + 1
+    mouseX = mouseX + 0.5
+    snailX = snailX + 0.1
+}
+        `}
+        previewable
+        editable={true}
+        lazyLoad={false}
+        allowSideBySide={true}
+        includeSound={false}
+    />
+
+<Paragraph type="excercise">
+    می‌تونید سرعت حرکت حیوانات رو تغییر بدید یا حیوانات جدیدی با سرعت مختلف اضافه کنید؟
+</Paragraph> 
+
+حتما متوجه شدید که چون هر دفعه که <code>draw</code> اجرا میشه مقدار <code>catX, snailX</code> اضافه میشه پس هر دفعه یک کمی جلوتر کشیده میشه.
+
+<Paragraph type="warning">
+   اگر می‌خواهید از یک متغیر برای انیمشن استفاده کنید حتما باید بیرون <code>draw</code> و <code>setup</code> تعریف بشه.
+</Paragraph>
 
 </Layout>
